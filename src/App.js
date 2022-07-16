@@ -5,6 +5,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Link
 } from "react-router-dom";
 import Homepage from "./Pages/Homepage/Homepage";
 import Feature1 from "./Pages/DestinationSearch/DestinationSearch";
