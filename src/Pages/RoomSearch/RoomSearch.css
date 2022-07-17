@@ -1,0 +1,33 @@
+.hotel{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 60px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.hotelDetails {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+.hotelDesc{
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelTitle{
+    font-size: 40px;
+}
+
+.hotelImg {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.hotelRooms{
+    display: flex;
+}
