@@ -9,7 +9,7 @@ const SearchItem = () => {
   };
   return (
     <div className="searchItem">
-        <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg" />
+        <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg"  alt={"Hotel Pic"}/>
         <div className="siDesc">
             <h1 className="siTitle">Oryx Rotana Hotel</h1>
             <span className="siDistance">500m from center</span>
