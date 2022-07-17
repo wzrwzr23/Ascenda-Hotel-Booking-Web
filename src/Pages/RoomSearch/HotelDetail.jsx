@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import axios from 'axios'
 import { Carousel } from 'antd'
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons"
@@ -204,4 +204,4 @@ export default class Detail extends React.Component {
             </div>
         )
     }
-}
+}*/
