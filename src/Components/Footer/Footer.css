@@ -1,0 +1,41 @@
+.footer{
+    width: 100%;
+    font-size: 12px;
+    background-color: #003580;
+    color: white;
+    justify-content: center;
+    position: relative;
+    padding: 20px;
+    padding-right: 30px;
+  }
+  
+  .fLists{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 50px;
+  }
+  
+  .fList{
+    list-style: none;
+    padding: 0;
+  }
+  
+  .fListItem{
+    margin-bottom: 10px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .fBox{
+    border: 1px solid white;
+    padding: 10px;
+    padding-right: 100px;
+    border-radius: 20px;
+  }
+  
+  .fBoxItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
