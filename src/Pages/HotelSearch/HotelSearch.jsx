@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../../Components/Header/Header'
+import Navbar from '../../Components/Navbar/Navbar'
 
 const HotelSearch = () => {
   return (
-    <div>HotelSearch</div>
+    <>
+    <Navbar/>
+    <Header type="list"/>
+    </>
   )
 }
 
