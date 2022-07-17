@@ -10,7 +10,6 @@ import Footer from '../../Components/Footer/Footer';
 
 const HotelSearch = () => {
   const location = useLocation();
-  console.log(location);
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);

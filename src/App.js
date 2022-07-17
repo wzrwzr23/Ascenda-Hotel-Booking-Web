@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Homepage/>}/>
         <Route path="/destinationsearch" element={<Feature1/>}/>
         <Route path="/hotelsearch" element={<Feature2/>}/>
-        <Route path="/roomsearch" element={<Feature3/>}/>
+        <Route path="/hotelsearch/:id" element={<Feature3/>}/>
         <Route path="/booking" element={<Feature4/>}/>
       </Routes>
     </BrowserRouter>
