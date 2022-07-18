@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
 import Footer from '../../Components/Footer/Footer';
+var destdata = require('../../destinations.json')
 
 const HotelSearch = () => {
   const location = useLocation();
@@ -14,6 +15,14 @@ const HotelSearch = () => {
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+
+  const [value, setValue] = useState('')
+  const onChange = (event) => {
+    setValue(event.target.value)
+  }
+  const onSearch = (searchDest) => {
+    setValue(searchDest)
+  }
   return (
     <>
     <Navbar/>
@@ -24,7 +33,16 @@ const HotelSearch = () => {
           <h1 className="lsTitle">Search</h1>
           <div className="lsItem">
             <label>Destination</label>
-            <input placeholder={destination} type="text" />
+            <input placeholder={destination} type="text" value={value} onChange={onChange}/>
+          </div>
+          <div className='dropdown'>
+            {destdata.filter(item => {
+              const searchDest = value.toLowerCase()
+              const destTerm = item.term.toLowerCase()
+              return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
+            })
+            .map((item) => (
+              <div onClick={()=>onSearch(item.term)} className='dropdown-row'>{item.term}</div>))}
           </div>
           <div className="lsItem">
             <label>Check-in Date</label>
@@ -84,7 +102,7 @@ const HotelSearch = () => {
                 </div>
               </div>
             </div>
-            <button>Search</button>
+            <button onClick={() => onSearch(value)}>Search</button>
         </div>
         <div className="listResult"> 
           <SearchItem/>
