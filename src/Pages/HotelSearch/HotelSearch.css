@@ -81,3 +81,18 @@
   .listResult {
     flex: 3;
   }
+
+  .dropdown {
+    background-color: white;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .dropdown-row:hover {
+    background-color: #fcde8d;
+  }
+
+  .dropdpwn-row {
+    text-align: start;
+    margin: 2px 0;
+  }
