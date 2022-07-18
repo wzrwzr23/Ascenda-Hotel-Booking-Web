@@ -13,7 +13,7 @@ const RoomSearch = () => {
     const [description, setDescription] = useState("Description");
     const [long, setLong] = useState("103.8198");
     const [lat, setLat] = useState("1.3521");
-    let [map, setMap] = useState();
+    const [map, setMap] = useState();
     const [name, setName] = useState("Hotel Name");
     const [address, setAddress] = useState("Address");
     const [rating, setRating] = useState("Rating");
@@ -37,7 +37,6 @@ const RoomSearch = () => {
     useEffect(() => {
         fetchData("diH7");
     }, []);
-
 
 
 /*    const initMap = () => {
