@@ -39,11 +39,11 @@ const RoomSearch = () => {
     }, []);
 
 
-/*    const initMap = () => {
+    const initMap = () => {
         const marker = new google.maps.Marker({
             position: {lat: lat, lng: long},
             map: map,
-        })}*/
+        })}
 
 
 /*    const render = (status: Status) => {
