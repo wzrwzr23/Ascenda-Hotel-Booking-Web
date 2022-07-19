@@ -2,19 +2,20 @@ import './HotelSearch.css'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem.jsx';
 import Footer from '../../Components/Footer/Footer';
 import useFetch from "../../hooks/useFetch";
+import { SearchContext } from '../../Context/SearchContext';
 var destdata = require('../../destinations.json')
 
 
 const HotelSearch = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
-  const [date, setDate] = useState(location.state.date);
+  const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
 
@@ -29,10 +30,15 @@ const HotelSearch = () => {
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?city=${destination}`
   );
+  console.log(data);
+
+  //const {dates} = useContext(SearchContext);
 
   const handleClick = () => {
     reFetch();
   };
+
+//refetch not working
 
   return (
     <>
@@ -59,14 +65,14 @@ const HotelSearch = () => {
           <div className="lsItem">
             <label>Check-in Date</label>
             <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
+                dates[0].startDate,
                 "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDate([item.selection])}
+                  onChange={(item) => setDates([item.selection])}
                   minDate={new Date()}
-                  ranges={date}
+                  ranges={dates}
                 />
               )}
           </div>

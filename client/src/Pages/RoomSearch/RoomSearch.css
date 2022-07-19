@@ -18,8 +18,23 @@
     flex-direction: column;
 }
 
+.rating{
+    padding-top: 5px;
+    padding-bottom: 20px;
+    font-size: 13px;
+}
+
+.hotelAddress{
+    padding-bottom: 10px;
+    font-size: 20px;
+}
+
+.desc{
+    font-size: 20px;
+}
+
 .hotelTitle{
-    font-size: 40px;
+    font-size: 45px;
 }
 
 .hotelImg {
@@ -31,3 +46,9 @@
 .hotelRooms{
     display: flex;
 }
+.numberOfDays{
+    padding-top: 40px;
+    font-size: 25px;
+    color: #003580;
+}
+
