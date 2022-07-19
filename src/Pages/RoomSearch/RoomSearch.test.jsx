@@ -1,8 +1,11 @@
-/*
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import {unmountComponentAtNode} from "react-dom";
+import {act} from "react-dom/test-utils";
 import RoomSearch from "./RoomSearch";
+import TestRenderer from 'react-test-renderer';
+import Navbar from "../../Components/Navbar/Navbar";
+import { render, fireEvent, screen } from "@testing-library/react";
+
 
 let container = null;
 beforeEach(() => {
@@ -18,7 +21,7 @@ afterEach(() => {
     container = null;
 });
 
-it("renders user data", async () => {
+it("renders hotel data", async () => {
     const fakeHotel = {
         name: "The Fullerton Hotel Singapore",
         latitude: 1.28624,
@@ -80,17 +83,21 @@ it("renders user data", async () => {
             json: () => Promise.resolve(fakeHotel)
         })
     );
+    /*const testRenderer = TestRenderer.create(<RoomSearch/>)
+    const testInstance = testRenderer.root;
+
+    expect(testInstance.findByProps({className: "roomSearch"})).toContain(<Navbar/>);*/
 
     // Use the asynchronous version of act to apply resolved promises
-    await act(async () => {
-        render(<RoomSearch id="0KmN" />, container);
+    await act(function Component() {
+        render(<RoomSearch hotelID="0KmN"/>, container);
     });
 
-    expect(container.querySelector("summary").textContent).toBe(fakeHotel.name);
-    expect(container.querySelector("strong").textContent).toBe(fakeHotel.latitude);
-
+    expect(container.querySelector("div").textContent).toBe(fakeHotel.name);
+    expect(container.textContent).toContain(fakeHotel.latitude);
     expect(container.textContent).toContain(fakeHotel.address);
+    expect(container.textContent).toContainHTML(fakeHotel.description);
 
     // remove the mock to ensure tests are completely isolated
     global.fetch.mockRestore();
-});*/
+});
