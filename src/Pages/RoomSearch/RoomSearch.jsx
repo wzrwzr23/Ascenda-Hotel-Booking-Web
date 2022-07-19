@@ -3,10 +3,9 @@ import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import RoomItem from '../../Components/RoomItem/RoomItem'
 import './RoomSearch.css'
-import React, {useState, useEffect, useMemo} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios'
-import { GoogleMap, useLoadScript, Marker, LoadScript } from "@react-google-maps/api";
-const google = window.google;
+import { GoogleMap, Marker, LoadScript } from "@react-google-maps/api";
 
 
 const RoomSearch = () => {
@@ -19,7 +18,11 @@ const RoomSearch = () => {
     const [rating, setRating] = useState("Rating");
     const [amenities_ratings, setAmenities_Ratings] = useState([]);
     const [amenities, setAmenities] = useState("Amenities");
-    const [image, setImage] = useState("Image Link");
+    const [image_suffix, setImage_suffix] = useState("Image Suffix");
+    const [image_detail, setImage_detail] = useState("Image Prefix");
+    const [hires_image_index, setHires_image_index] = useState("hires_image_index");
+    const [default_image_index, setDefault_image_index] = useState(1);
+    const [img_link, set_Img_link] = useState("");
 
     const fetchData = async (hotelID) => {
         await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${hotelID}`)
@@ -30,19 +33,36 @@ const RoomSearch = () => {
                 setRating(response.data.rating);
                 setLong(response.data.longitude);
                 setLat(response.data.latitude);
-                //setAmenities(response.data.amenities);
+                setAmenities(response.data.amenities);
                 setAmenities_Ratings(response.data.amenities_ratings);
+                setImage_detail(response.data.image_details);
+                setDefault_image_index(response.data.default_image_index);
+
+                console.log(image_detail);
+                //console.log(name)
+/*              setHires_image_index(response.data.hires_image_index);
+*/
+
+                /*let arr = hires_image_index ? hires_image_index.split(',') : [default_image_index], newSwiperList = []
+                arr.forEach((v, i) => {
+                    newSwiperList.push({
+                        name: name,
+                        imgs: {${image_prefix}${v}${image_suffix}}
+                    })
+                })*/
+
             }).catch(error => console.error(`Error: ${error}`));
     }
     useEffect(() => {
         fetchData("00bv");
     }, []);
 
+/*    set_Img_link(image_prefix+default_image_index+image_suffix);
+    console.log(img_link);*/
 
-/*    const center = useMemo(() => ({ lat: lat, lng: long }), []);
-    useLoadScript({
-        googleMapsApiKey: "AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4",
-    });*/
+/*
+    setImage_suffix(imd);
+    console.log(image_suffix);*/
 
     const mapStyles = {
             height: "100vh",
@@ -51,38 +71,6 @@ const RoomSearch = () => {
     const defaultCenter = {
             lat: parseFloat(lat), lng: parseFloat(long)
         }
-
-/*    const initMap = () => {
-        const myCenter = new google.maps.LatLng(lat, long)
-        const mapProp = {
-            center: myCenter,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
-        const map = new google.maps.Map(document.getElementById("map"), mapProp)
-        const marker = new google.maps.Marker({
-            position: myCenter,
-        })
-        marker.setMap(map)
-        const infoWindow = new google.maps.InfoWindow({
-        })
-
-        infoWindow.open(map, marker);
-    }
-    initMap()*/
-
-/*    const render = (status: Status) => {
-        return <h1>{status}</h1>;
-    };
-    const Map: React.FC<{}> = () => {};
-    const ref = React.useRef(null);
-``
-    useEffect(() => {
-        if (ref.current && !map) {
-            setMap(new window.google.maps.Map(ref.current, {}));
-        }
-    }, [ref, map]);*/
-
 
   return (
     <div className="roomSearch">
@@ -105,7 +93,7 @@ const RoomSearch = () => {
                 <div>Hotel address: {address}</div>
             </div>
           </div>
-          <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="hotelImg" />
+          <img src={image_detail.prefix+default_image_index+image_detail.suffix} className="hotelImg" />
         </div>
         <div className="hotelRooms">
           <RoomItem/>
@@ -117,8 +105,12 @@ const RoomSearch = () => {
               <GoogleMap
                   mapContainerStyle={mapStyles}
                   zoom={13}
-                  center={defaultCenter}
-              />
+                  center={defaultCenter}>
+                      <Marker
+                          title={'The marker`s title will appear as a tooltip.'}
+                          name={'SOMA'}
+                          position={defaultCenter} />
+              </GoogleMap>
           </LoadScript>
       </div>
       <Footer/>
