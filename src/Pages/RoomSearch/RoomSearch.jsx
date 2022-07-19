@@ -3,17 +3,17 @@ import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import RoomItem from '../../Components/RoomItem/RoomItem'
 import './RoomSearch.css'
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import axios from 'axios'
-
+import { GoogleMap, useLoadScript, Marker, LoadScript } from "@react-google-maps/api";
+const google = window.google;
 
 
 const RoomSearch = () => {
 
     const [description, setDescription] = useState("Description");
-    const [long, setLong] = useState("103.8198");
-    const [lat, setLat] = useState("1.3521");
-    const [map, setMap] = useState();
+    const [long, setLong] = useState(10);
+    const [lat, setLat] = useState(10);
     const [name, setName] = useState("Hotel Name");
     const [address, setAddress] = useState("Address");
     const [rating, setRating] = useState("Rating");
@@ -35,16 +35,41 @@ const RoomSearch = () => {
             }).catch(error => console.error(`Error: ${error}`));
     }
     useEffect(() => {
-        fetchData("diH7");
+        fetchData("00bv");
     }, []);
 
 
-    const initMap = () => {
-        const marker = new google.maps.Marker({
-            position: {lat: lat, lng: long},
-            map: map,
-        })}
+/*    const center = useMemo(() => ({ lat: lat, lng: long }), []);
+    useLoadScript({
+        googleMapsApiKey: "AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4",
+    });*/
 
+    const mapStyles = {
+            height: "100vh",
+            width: "100%"};
+
+    const defaultCenter = {
+            lat: parseFloat(lat), lng: parseFloat(long)
+        }
+
+/*    const initMap = () => {
+        const myCenter = new google.maps.LatLng(lat, long)
+        const mapProp = {
+            center: myCenter,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        const map = new google.maps.Map(document.getElementById("map"), mapProp)
+        const marker = new google.maps.Marker({
+            position: myCenter,
+        })
+        marker.setMap(map)
+        const infoWindow = new google.maps.InfoWindow({
+        })
+
+        infoWindow.open(map, marker);
+    }
+    initMap()*/
 
 /*    const render = (status: Status) => {
         return <h1>{status}</h1>;
@@ -59,10 +84,6 @@ const RoomSearch = () => {
     }, [ref, map]);*/
 
 
-    const mapStyles = {
-        width: '100%',
-        height: '100%',
-    };
   return (
     <div className="roomSearch">
       <Navbar/>
@@ -91,12 +112,14 @@ const RoomSearch = () => {
           <RoomItem/>
           <RoomItem/>
         </div>
-{/*        <div className="hotelMap">
-            <Wrapper apiKey={"AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4"} render={render}>
-                <RoomSearch />
-            </Wrapper>
-            <div ref={ref} />
-        </div>*/}
+          <LoadScript
+              googleMapsApiKey='AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4'>
+              <GoogleMap
+                  mapContainerStyle={mapStyles}
+                  zoom={13}
+                  center={defaultCenter}
+              />
+          </LoadScript>
       </div>
       <Footer/>
     </div>
