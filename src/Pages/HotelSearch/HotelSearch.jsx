@@ -2,7 +2,7 @@ import './HotelSearch.css'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import { useLocation } from "react-router-dom";
-
+import destData from "../../destinations.json"
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
@@ -10,7 +10,6 @@ import Footer from '../../Components/Footer/Footer';
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 
-var destdata = require('../../destinations.json')
 
 const HotelSearch = () => {
 
@@ -34,20 +33,19 @@ const HotelSearch = () => {
   const onSearch = (searchDest) => {
     setValue(searchDest)
   }
-
-  const fetchData = async (DestinationID) => {
+    const fetchData = async (DestinationID) => {
   
     await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${DestinationID}`)
         .then((response) => {
             setData(response.data)
         }).catch(error => console.error(`Error: ${error}`));
 }
-date.map(item => {
-    setName(item.name);
-})
-useEffect(() => {
-    fetchData("WD0M");
-}, []);
+/*    data.map(item => {
+        setName(item.name);
+    })*/
+    useEffect(() => {
+        fetchData("WD0M");
+    }, []);
 
   return (
     <>
@@ -62,7 +60,7 @@ useEffect(() => {
             <input placeholder={destination} type="text" value={value} onChange={onChange}/>
           </div>
           <div className='dropdown'>
-            {destdata.filter(item => {
+            {destData.filter(item => {
               const searchDest = value.toLowerCase()
               const destTerm = item.term.toLowerCase()
               return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
