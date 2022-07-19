@@ -137,35 +137,6 @@ const HotelSearch = () => {
             </div>
             <button onClick={() => console.log(getUID(value, destData))}>Search</button>
         </div>
-        <div className="searchItem">
-        <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg"  alt={"Hotel Pic"}/>
-        <div className="siDesc">
-            <h1 className="siTitle">{name}</h1>
-            <span className="siDistance">{address}</span>
-            <span className="siTaxiOp">{description}</span>
-            <span className="siSubtitle">
-            Hotel with Air conditioning
-            </span>
-            <span className="siFeatures">
-            Entire studio • 1 bathroom • 21m² 1 full bed
-            </span>
-            <span className="siCancelOp">Cancellation  with refund!</span>
-            <span className="siCancelOpSubtitle">
-            You can cancel later, so lock in this great price today!
-            </span>
-        </div>
-        <div className="siDetails">
-            <div className="siRating">
-            <span>{rating}</span>
-            <button>8.9</button>
-            </div>
-            <div className="siDetailTexts">
-            <span className="siPrice">S$119</span>
-            <span className="siTaxOp">Includes taxes and fees</span>
-     {/*       <button className="siCheckButton" onClick={handleClicked}>See availability</button> */}
-            </div>
-        </div>
-    </div>
         <div className="listResult"> 
           <SearchItem/>
           <SearchItem/>
