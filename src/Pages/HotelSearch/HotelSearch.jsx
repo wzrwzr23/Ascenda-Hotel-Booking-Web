@@ -13,13 +13,14 @@ import axios from 'axios'
 var destdata = require('../../destinations.json')
 
 const HotelSearch = () => {
+
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
 
-
+    const [data, setData] = useState([]);
   const [description, setDescription] = useState("Description");
   const [name, setName] = useState("Hotel Name");
   const [address, setAddress] = useState("Address");
@@ -36,15 +37,16 @@ const HotelSearch = () => {
 
   const fetchData = async (DestinationID) => {
   
-    await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination=${DestinationID}`)
+    await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${DestinationID}`)
         .then((response) => {
-            setName(response.data.name);
-            setAddress(response.data.address);
-            setRating(response.data.rating);
+            setData(response.data)
         }).catch(error => console.error(`Error: ${error}`));
 }
+date.map(item => {
+    setName(item.name);
+})
 useEffect(() => {
-    fetchData("050G");
+    fetchData("WD0M");
 }, []);
 
   return (
@@ -131,7 +133,7 @@ useEffect(() => {
         <div className="searchItem">
         <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg"  alt={"Hotel Pic"}/>
         <div className="siDesc">
-            <h1 className="siTitle">{nagit me}</h1>
+            <h1 className="siTitle">{name}</h1>
             <span className="siDistance">{address}</span>
             <span className="siTaxiOp">{description}</span>
             <span className="siSubtitle">
