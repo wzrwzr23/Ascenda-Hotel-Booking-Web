@@ -66,7 +66,7 @@ const HotelSearch = () => {
               return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
             })
             .map((item) => (
-              <div onClick={()=>onSearch(item.term)} className='dropdown-row'>{item.term}</div>))}
+              <div onClick={()=>onSearch(item.uid)} className='dropdown-row'>{item.term}</div>))}
           </div>
           <div className="lsItem">
             <label>Check-in Date</label>
@@ -126,7 +126,7 @@ const HotelSearch = () => {
                 </div>
               </div>
             </div>
-            <button onClick={() => onSearch(value)}>Search</button>
+            <button onClick={() => console.log(value)}>Search</button>
         </div>
         <div className="searchItem">
         <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg"  alt={"Hotel Pic"}/>
