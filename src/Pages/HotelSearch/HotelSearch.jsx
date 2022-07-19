@@ -2,11 +2,14 @@ import './HotelSearch.css'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
 import Footer from '../../Components/Footer/Footer';
+import React, {useState, useEffect} from "react";
+import axios from 'axios'
+
 var destdata = require('../../destinations.json')
 
 const HotelSearch = () => {
@@ -16,6 +19,13 @@ const HotelSearch = () => {
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
 
+
+  const [description, setDescription] = useState("Description");
+  const [name, setName] = useState("Hotel Name");
+  const [address, setAddress] = useState("Address");
+  const [rating, setRating] = useState("Rating");
+  const [image, setImage] = useState("Image Link");
+
   const [value, setValue] = useState('')
   const onChange = (event) => {
     setValue(event.target.value)
@@ -23,6 +33,20 @@ const HotelSearch = () => {
   const onSearch = (searchDest) => {
     setValue(searchDest)
   }
+
+  const fetchData = async (DestinationID) => {
+  
+    await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination=${DestinationID}`)
+        .then((response) => {
+            setName(response.data.name);
+            setAddress(response.data.address);
+            setRating(response.data.rating);
+        }).catch(error => console.error(`Error: ${error}`));
+}
+useEffect(() => {
+    fetchData("050G");
+}, []);
+
   return (
     <>
     <Navbar/>
@@ -104,6 +128,35 @@ const HotelSearch = () => {
             </div>
             <button onClick={() => onSearch(value)}>Search</button>
         </div>
+        <div className="searchItem">
+        <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="siImg"  alt={"Hotel Pic"}/>
+        <div className="siDesc">
+            <h1 className="siTitle">{nagit me}</h1>
+            <span className="siDistance">{address}</span>
+            <span className="siTaxiOp">{description}</span>
+            <span className="siSubtitle">
+            Hotel with Air conditioning
+            </span>
+            <span className="siFeatures">
+            Entire studio • 1 bathroom • 21m² 1 full bed
+            </span>
+            <span className="siCancelOp">Cancellation  with refund!</span>
+            <span className="siCancelOpSubtitle">
+            You can cancel later, so lock in this great price today!
+            </span>
+        </div>
+        <div className="siDetails">
+            <div className="siRating">
+            <span>{rating}</span>
+            <button>8.9</button>
+            </div>
+            <div className="siDetailTexts">
+            <span className="siPrice">S$119</span>
+            <span className="siTaxOp">Includes taxes and fees</span>
+     {/*       <button className="siCheckButton" onClick={handleClicked}>See availability</button> */}
+            </div>
+        </div>
+    </div>
         <div className="listResult"> 
           <SearchItem/>
           <SearchItem/>
