@@ -66,7 +66,7 @@ const HotelSearch = () => {
               return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
             })
             .map((item) => (
-              <div onClick={()=>onSearch(item.term)} className='dropdown-row'>{item.term}</div>))}
+              <div onClick={()=>onSearch(item.uid)} className='dropdown-row'>{item.term}</div>))}
           </div>
           <div className="lsItem">
             <label>Check-in Date</label>
@@ -126,7 +126,7 @@ const HotelSearch = () => {
                 </div>
               </div>
             </div>
-            <button onClick={() => onSearch(value)}>Search</button>
+            <button onClick={() => console.log(value)}>Search</button>
         </div>
         <div className="listResult"> 
           <SearchItem/>
