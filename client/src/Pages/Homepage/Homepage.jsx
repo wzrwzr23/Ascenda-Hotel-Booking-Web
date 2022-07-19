@@ -2,15 +2,17 @@ import './Home.css'
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
+import Featured from '../../Components/Featured/Featured';
 
 const Homepage = () => {
   return (
     <>
     <Navbar/>
     <Header/>
-    <p>Something</p>
     <br />
-    <p>Display some picture</p>
+    <div className="homeContainer">
+        <Featured/>
+    </div>
     <h1>Display1</h1>
     <h1>Display2</h1>
     <h1>Display3</h1>

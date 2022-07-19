@@ -5,9 +5,11 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
-import SearchItem from '../../Components/SearchItem/SearchItem';
+import SearchItem from '../../Components/SearchItem/SearchItem.jsx';
 import Footer from '../../Components/Footer/Footer';
+import useFetch from "../../hooks/useFetch";
 var destdata = require('../../destinations.json')
+
 
 const HotelSearch = () => {
   const location = useLocation();
@@ -16,13 +18,22 @@ const HotelSearch = () => {
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
 
-  const [value, setValue] = useState('')
-  const onChange = (event) => {
-    setValue(event.target.value)
-  }
-  const onSearch = (searchDest) => {
-    setValue(searchDest)
-  }
+  // const [value, setValue] = useState('')
+  // const onChange = (event) => {
+  //   setValue(event.target.value)
+  // }
+  // const onSearch = (searchDest) => {
+  //   setValue(searchDest)
+  // }
+
+  const { data, loading, error, reFetch } = useFetch(
+    `/hotels?city=${destination}`
+  );
+
+  const handleClick = () => {
+    reFetch();
+  };
+
   return (
     <>
     <Navbar/>
@@ -33,9 +44,10 @@ const HotelSearch = () => {
           <h1 className="lsTitle">Search</h1>
           <div className="lsItem">
             <label>Destination</label>
-            <input placeholder={destination} type="text" value={value} onChange={onChange}/>
+            <input placeholder={destination} type="text" />
+            {/* <input placeholder={destination} type="text" value={value} onChange={onChange}/> */}
           </div>
-          <div className='dropdown'>
+          {/* <div className='dropdown'>
             {destdata.filter(item => {
               const searchDest = value.toLowerCase()
               const destTerm = item.term.toLowerCase()
@@ -43,7 +55,7 @@ const HotelSearch = () => {
             })
             .map((item) => (
               <div onClick={()=>onSearch(item.term)} className='dropdown-row'>{item.term}</div>))}
-          </div>
+          </div> */}
           <div className="lsItem">
             <label>Check-in Date</label>
             <span onClick={() => setOpenDate(!openDate)}>{`${format(
@@ -61,18 +73,6 @@ const HotelSearch = () => {
           <div className="lsItem">
               <label>Options</label>
               <div className="lsOptions">
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    Min price <small>per night</small>
-                  </span>
-                  <input type="number" className="lsOptionInput" />
-                </div>
-                <div className="lsOptionItem">
-                  <span className="lsOptionText">
-                    Max price <small>per night</small>
-                  </span>
-                  <input type="number" className="lsOptionInput" />
-                </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Adult</span>
                   <input
@@ -102,16 +102,18 @@ const HotelSearch = () => {
                 </div>
               </div>
             </div>
-            <button onClick={() => onSearch(value)}>Search</button>
+            <button onClick={handleClick}>Search</button>
         </div>
         <div className="listResult"> 
-          <SearchItem/>
-          <SearchItem/>
-          <SearchItem/>
-          <SearchItem/>
-          <SearchItem/>
-          <SearchItem/>
-          <SearchItem/>
+          {loading ? (
+              "loading"
+            ) : (
+              <>
+                {data.map((item) => (
+                  <SearchItem item={item} key={item._id} />
+                ))}
+              </>
+          )}
         </div>
       </div>
     </div>

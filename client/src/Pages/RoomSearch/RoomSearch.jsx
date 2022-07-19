@@ -6,8 +6,6 @@ import './RoomSearch.css'
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 
-
-
 const RoomSearch = () => {
 
     const [description, setDescription] = useState("Description");
