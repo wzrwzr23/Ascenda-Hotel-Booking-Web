@@ -35,58 +35,16 @@ it("renders hotel data", async () => {
             "prefix": "https://d2ey9sqrvkqdfs.cloudfront.net/diH7/"
         },
         default_image_index: 1,
-        amenities_ratings: [
-            {
-                "name": "Location",
-                "score": 96
-            },
-            {
-                "name": "Wellness",
-                "score": 95
-            },
-            {
-                "name": "Service",
-                "score": 91
-            },
-            {
-                "name": "WiFi",
-                "score": 87
-            },
-            {
-                "name": "Vibe",
-                "score": 86
-            },
-            {
-                "name": "Breakfast",
-                "score": 84
-            },
-            {
-                "name": "Amenities",
-                "score": 81
-            },
-            {
-                "name": "Food",
-                "score": 80
-            },
-            {
-                "name": "Room",
-                "score": 77
-            },
-            {
-                "name": "Comfort",
-                "score": 62
-            }
-        ],
     };
     jest.spyOn(global, "fetch").mockImplementation(() =>
         Promise.resolve({
             json: () => Promise.resolve(fakeHotel)
         })
     );
-    /*const testRenderer = TestRenderer.create(<RoomSearch/>)
+    const testRenderer = TestRenderer.create(<RoomSearch/>)
     const testInstance = testRenderer.root;
 
-    expect(testInstance.findByProps({className: "roomSearch"})).toContain(<Navbar/>);*/
+    expect(testInstance.findByProps({className: "roomSearch"})).toContain(<Navbar/>);
 
     // Use the asynchronous version of act to apply resolved promises
     await act(function Component() {
@@ -101,3 +59,4 @@ it("renders hotel data", async () => {
     // remove the mock to ensure tests are completely isolated
     global.fetch.mockRestore();
 });
+
