@@ -10,9 +10,7 @@ import Footer from '../../Components/Footer/Footer';
 import React, {useState, useEffect} from "react";
 import axios from 'axios'
 
-
 const HotelSearch = () => {
-
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
@@ -25,14 +23,8 @@ const HotelSearch = () => {
   const [address, setAddress] = useState("Address");
   const [rating, setRating] = useState("Rating");
   const [image, setImage] = useState("Image Link");
-
-  const [value, setValue] = useState('')
-  const onChange = (event) => {
-    setValue(event.target.value)
-  }
-  const onSearch = (searchDest) => {
-    setValue(searchDest)
-  }
+  const [inpDest, setUserDest] = useState('')
+  const [filteredDestLs, setFilteredDestLs] = useState([])
     const fetchData = async (DestinationID) => {
   
     await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${DestinationID}`)
@@ -46,6 +38,19 @@ const HotelSearch = () => {
     useEffect(() => {
         fetchData("WD0M");
     }, []);
+  
+    const searchDest = (event) => {
+      const userSearch = event
+      const lowercase = userSearch.toLowerCase()
+      setUserDest(userSearch)
+      const filterDest = destData.filter((item) => {
+        const destTerm = item.term.toLowerCase()
+        return lowercase && destTerm.startsWith(lowercase) && destTerm !== lowercase
+      })
+      if (userSearch === '') {
+        setFilteredDestLs([])
+      } else {setFilteredDestLs(filterDest.slice(0, 10))}
+    }
 
   function getUID(value, file) {
     for (var i=0; i<file.length; i++) {
@@ -66,16 +71,12 @@ const HotelSearch = () => {
           <h1 className="lsTitle">Search</h1>
           <div className="lsItem">
             <label>Destination</label>
-            <input placeholder={destination} type="text" value={value} onChange={onChange}/>
-          </div>
-          <div className='dropdown'>
-            {destData.filter(item => {
-              const searchDest = value.toLowerCase()
-              const destTerm = item.term.toLowerCase()
-              return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
-            })
-            .map((item) => (
-              <div onClick={()=>onSearch(item.term, item.uid)} className='dropdown-row'>{item.term}</div>))}
+            <input placeholder='Destinations' type="text" value={inpDest} onChange={(e) => searchDest(e.target.value)}/>
+            <div className='dropdown' data-testid="filter-dest">
+            {filteredDestLs.map((item) => {return (
+              <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
+            )})}
+            </div>
           </div>
           <div className="lsItem">
             <label>Check-in Date</label>
@@ -135,7 +136,7 @@ const HotelSearch = () => {
                 </div>
               </div>
             </div>
-            <button onClick={() => console.log(getUID(value, destData))}>Search</button>
+            <button onClick={() => console.log(getUID(inpDest, destData))} data-testid='search-button'>Search</button>
         </div>
         <div className="listResult"> 
           <SearchItem/>
@@ -152,5 +153,6 @@ const HotelSearch = () => {
     </>
   )
 }
+
 
 export default HotelSearch

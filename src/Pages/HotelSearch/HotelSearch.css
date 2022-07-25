@@ -18,7 +18,7 @@
     border-radius: 10px;
     position: sticky;
     top: 10px;
-    height: max-content;
+    height: fit-content;
   }
   
   .lsTitle{
@@ -32,6 +32,7 @@
     flex-direction: column;
     gap: 5px;
     margin-bottom: 10px;
+    height: auto;
   }
   
   .lsItem>label{
@@ -84,8 +85,9 @@
 
   .dropdown {
     background-color: white;
-    flex-direction: column;
+    height: fit-content;
     cursor: pointer;
+    margin-top: 0px;
   }
 
   .dropdown-row:hover {

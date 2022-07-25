@@ -7,10 +7,12 @@ import { format } from "date-fns";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom";
+import destData from '../../destinations.json';
 
 const Header = ({type}) => {
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
+  const [filteredDest, setFilteredDest] = useState([])
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -36,6 +38,26 @@ const Header = ({type}) => {
   const handleSearch = () => {
     navigate("/hotelsearch", { state: { destination, date, options } });
   };
+  const searchDest = (event) => {
+    const userSearch = event
+    const lowercase = userSearch.toLowerCase()
+    setDestination(userSearch)
+    const filterDest = destData.filter((item) => {
+      const destTerm = item.term.toLowerCase()
+      return lowercase && destTerm.startsWith(lowercase) && destTerm !== lowercase
+    })
+    if (userSearch === '') {
+      setFilteredDest([])
+    } else {setFilteredDest(filterDest.slice(0, 10))}
+  }
+  function getUID(value, file) {
+    for (var i=0; i<file.length; i++) {
+      var obj = file[i]
+      if (value === obj.term) {
+        return obj.uid
+      }
+    }
+  }
   return (
     <div className='header'>
         <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
@@ -73,7 +95,12 @@ const Header = ({type}) => {
             <div className="headerSearch"> 
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} /> 
-                    <input type="text" placeholder='Where are you going?' className='headerSearchInput' onChange={(e) => setDestination(e.target.value)}/>
+                    <input type="text" placeholder='Where are you going?' className='headerSearchInput' value={destination} onChange={(e) => searchDest(e.target.value)}/>
+                    <div className='dropdown'>
+                      {filteredDest.map((item) => {return (
+                        <div className='dropdown-row' style={{color:'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
+                      )})}
+                    </div>
                 </div>
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faCalendarDays} />
