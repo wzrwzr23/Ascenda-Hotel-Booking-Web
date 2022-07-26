@@ -18,12 +18,19 @@ const HotelSearch = () => {
   const [options, setOptions] = useState(location.state.options);
 
 
-  const [value, setValue] = useState('')
-  const onChange = (event) => {
-    setValue(event.target.value)
-  }
-  const onSearch = (searchDest) => {
-    setValue(searchDest)
+  const [userDest, setUserDest] = useState('')
+  const [filteredDest, setFilteredDest] = useState([])
+  const filterDest = (event) => {
+    const userSearch = event 
+    const lowercase = userSearch.toLowerCase()
+    setUserDest(userSearch)
+    const Filter = destData.filter((item) => {
+      const destTerm = item.term.toLowerCase()
+      return lowercase && destTerm.startsWith(lowercase) && destTerm !== lowercase
+    })
+    if (userSearch === '') {
+      setFilteredDest([])
+    } else {setFilteredDest(Filter.slice(0,10))}
   }
 
   function getUID(value, file) {
@@ -45,17 +52,11 @@ const HotelSearch = () => {
               <h1 className="lsTitle">Search</h1>
               <div className="lsItem">
                 <label>Destination</label>
-                <input placeholder={destination} type="text" value={value} onChange={onChange}/>
+                <input placeholder={destination} type="text" value={userDest} onChange={(e) => filterDest(e.target.value)}/>
               </div>
               <div className='dropdown'>
-                {destData.filter(item => {
-                  const searchDest = value.toLowerCase()
-                  const destTerm = item.term.toLowerCase()
-                  return searchDest && destTerm.startsWith(searchDest) && destTerm !== searchDest
-                })
-                    .map((item) => (
-                        <div onClick={()=>onSearch(item.term, item.uid)} className='dropdown-row'>{item.term}</div>))}
-              </div>
+            {filteredDest.map((item) => {return (<div className='dropdown-row' style={{color:'black'}} onClick={() => filterDest(item.term)}>{item.term}</div>)})}
+          </div>
               <div className="lsItem">
                 <label>Check-in Date</label>
                 <span onClick={() => setOpenDate(!openDate)}>{`${format(
@@ -114,7 +115,7 @@ const HotelSearch = () => {
                   </div>
                 </div>
               </div>
-              <button onClick={() => console.log(getUID(value, destData))}>Search</button>
+              <button onClick={() => console.log(getUID(userDest, destData))}>Search</button>
             </div>
             <div className="listResult">
               <SearchItem/>
