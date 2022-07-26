@@ -18,23 +18,33 @@ describe('Destination search input: Typing', () => {
     });
 })
 
-describe('Destination Result List: Clicking', () => {
-    test('results on the dropdown list can be clicked', () => {
-        const onSearch = jest.fn();
-        const {getByTestId} = render(<DestinationSearch onSearch={onSearch}/>);
-        fireEvent.click(getByTestId('filter-dest'));
-        expect(onSearch).toHaveBeenCalled;
-
+describe('Search button', () => {
+    test('empty destination does not trigger search(to give uid)', () => {
+        const getUID = jest.fn()
+        const {getByTestId, queryByPlaceholderText} = render(<DestinationSearch getUID={getUID}/>)
+        fireEvent.click(getByTestId('submit'))
+        expect(getUID).not.toHaveBeenCalled()
     })
 })
 
-describe('Destination search input: Empty input', () => {
-    test('does not show any destinations', () => {
-        const {getByTestId} = render(<DestinationSearch/>);
-        fireEvent.change(getByTestId('searchinput'), {target: {value: ""}});
-        expect(getByTestId('filter-dest')).not.toHaveBeenCalled;
-    })
-})
+// describe('Destination Result List: Clicking', () => {
+//     test('results on the dropdown list can be clicked', () => {
+//         const onSearch = jest.fn();
+//         const {getByTestId} = render(<DestinationSearch onSearch={onSearch}/>);
+//         fireEvent.click(getByTestId('filter-dest'));
+//         expect(onSearch).toHaveBeenCalled;
+
+//     })
+// })
+
+// describe('Destination search input: Empty input', () => {
+//     test('does not show any destinations', () => {
+//         const onSearch = jest.fn()
+//         const {getByTestId} = render(<DestinationSearch/>);
+//         fireEvent.change(getByTestId('searchinput'), {target: {value: ""}});
+//         expect(onSearch).not.toHaveBeenCalled;
+//     })
+// })
 
 // describe('Destination search input: Destination clicked', () => {
 //     test('search box updates', () => {

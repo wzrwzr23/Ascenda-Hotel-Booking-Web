@@ -5,10 +5,11 @@ import React from 'react'
 import { useState } from 'react'
 import destData from '../../destinations.json'
 import './DestinationSearch.css'
+import { set } from 'date-fns'
 
 // import './DestinationSearch.css'
 
-const DestinationSearch = () => {
+const DestinationSearch = ({getUID}) => {
   const [userDest, setUserDest] = useState('')
   const [filteredDest, setFilteredDest] = useState([])
   const [checkInDate, setCheckInDate] = useState(null)
@@ -28,6 +29,18 @@ const DestinationSearch = () => {
     if (userSearch === '') {
       setFilteredDest([])
     } else {setFilteredDest(filterDest.slice(0, 10))}
+  }
+  // function onSearch(userDest) {
+  //   if (userDest === '') {
+  //     alert('please fill in all input fields.')
+  //   } else {
+  //     return getUID(userDest, destData)
+  //   }
+  // }
+  const onSearch = () => {
+    if (userDest) {
+      getUID(userDest, destData)
+    }
   }
 
   function getUID(value, file) {
@@ -64,7 +77,7 @@ const DestinationSearch = () => {
           </div>
           <input type='number' placeholder='Number of Rooms' className='room' min='1' value={numRoom} onChange={(e) => setNumRoom(e.target.value)}/>
         </form>
-        <button type='Submit' className='submitDest' data-testid='submit' onClick={() => console.log(numChild)}>Search</button>
+        <button type='Submit' className='submitDest' data-testid='submit' onClick={() => onSearch(userDest)}>Search</button>
       </div>
     </section>
   ) 
