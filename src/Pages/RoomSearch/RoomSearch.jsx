@@ -52,7 +52,10 @@ function RoomSearch() {
             }).catch(error => console.error(`Error: ${error}`));
     }
     useEffect(() => {
-        fetchData("diH7");
+        const url = window.location.href.toString()
+        const hotel_id = url.substring(url.lastIndexOf("/") + 1, url.length);
+        console.log(hotel_id)
+        fetchData(hotel_id);
     }, []);
 
     /*    set_Img_link(image_prefix+default_image_index+image_suffix);

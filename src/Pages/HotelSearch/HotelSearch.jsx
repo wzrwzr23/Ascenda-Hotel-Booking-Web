@@ -77,7 +77,8 @@ class HotelSearch extends React.Component {
           {
             this.state.list.map((item, index) => {
               return (
-                  <a href={`/detail?id=${item.id}`} key={index}>
+                  /*<a href={`/detail?id=${item.id}`} key={index}>*/
+                  <a href={`/roomsearch/`+item.id} key={index}>
                     <img src={`${item.image_details.prefix}${item.default_image_index}${item.image_details.suffix}`} alt={item.name} />
                     <div>
                       <div>

@@ -16,8 +16,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage/>}/>
-        <Route path="/destinationsearch" element={<Feature1/>}/>
+        {/*<Route path="/" element={<Homepage/>}/>
+        <Route path="/destinationsearch" element={<Feature1/>}/>*/}
+        <Route path="/" element={<Feature1/>}/>
         <Route path="/hotelsearch/:id" element={<Feature2/>}/>
         <Route path="/roomsearch/:id" element={<Feature3/>}/>
         <Route path="/booking" element={<Feature4/>}/>
