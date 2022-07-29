@@ -1,11 +1,11 @@
 import './SearchItem.css';
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const SearchItem = () => {
   const navigate = useNavigate();
   const id = 233;
   const handleClicked = () => {
-    navigate(`/hotelsearch/id`, { state: { id } });
+    navigate(`/hotelsearch/:id`, { state: { id } });
   };
   return (
     <div className="searchItem">

@@ -9,7 +9,7 @@ import { set } from 'date-fns'
 
 // import './DestinationSearch.css'
 
-const DestinationSearch = ({getUID}) => {
+const DestinationSearch = () => {
   const [userDest, setUserDest] = useState('')
   const [filteredDest, setFilteredDest] = useState([])
   const [checkInDate, setCheckInDate] = useState(null)
@@ -17,6 +17,7 @@ const DestinationSearch = ({getUID}) => {
   const [numChild, setNumChild] = useState()
   const [numAdult, setNumAdult] = useState()
   const [numRoom, setNumRoom] = useState()
+  const [destId, setDestId] = useState()
 
   const searchDest = (event) => {
     const userSearch = event
@@ -47,10 +48,12 @@ const DestinationSearch = ({getUID}) => {
     for (var i=0; i<file.length; i++) {
       var obj = file[i]
       if (value === obj.term) {
-        return obj.uid
+        setDestId(obj.uid)
       }
     }
   }
+
+
   return (
     // <div>Destination Search</div>
     <section className='destform'>
@@ -77,7 +80,9 @@ const DestinationSearch = ({getUID}) => {
           </div>
           <input type='number' placeholder='Number of Rooms' className='room' min='1' value={numRoom} onChange={(e) => setNumRoom(e.target.value)}/>
         </form>
-        <button type='Submit' className='submitDest' data-testid='submit' onClick={() => onSearch(userDest)}>Search</button>
+        {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
+        <a href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+        {/*</button>*/}
       </div>
     </section>
   ) 
