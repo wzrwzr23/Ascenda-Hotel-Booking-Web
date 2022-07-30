@@ -52,7 +52,8 @@ const Booking = () => {
                 <textarea classname="Text1" cols="40" rows="5"></textarea>
               </div>
             </div>
-            <input className='submitBtn' type="submit"/>
+            {/*<input className='submitBtn' type="submit"/>*/}
+            <a href={`/booking/`}></a>
         </form>
       </div>
     </div>
