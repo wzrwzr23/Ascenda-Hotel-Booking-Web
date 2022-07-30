@@ -18,6 +18,7 @@ const HotelSearch = () => {
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
+  const [input, setInput] = useState("");
 
   // const [value, setValue] = useState('')
   // const onChange = (event) => {
@@ -29,12 +30,23 @@ const HotelSearch = () => {
 
   const { data, loading, error, reFetch } = useFetch(
     `/hotels?city=${destination}`
+    //setDestination(destination);
   );
   console.log(data);
+
+  const handleOption = (name, value) => {
+    setOptions((prev) => {
+      return {
+        ...prev,
+        [name]: value
+      };
+    });
+  };
 
   //const {dates} = useContext(SearchContext);
 
   const handleClick = () => {
+    //setDestination();
     reFetch();
   };
 
@@ -50,7 +62,7 @@ const HotelSearch = () => {
           <h1 className="lsTitle">Search</h1>
           <div className="lsItem">
             <label>Destination</label>
-            <input placeholder={destination} type="text" />
+            <input placeholder={destination} type="text" onChange={(e) => setDestination(e.target.value)} />
             {/* <input placeholder={destination} type="text" value={value} onChange={onChange}/> */}
           </div>
           {/* <div className='dropdown'>
@@ -86,6 +98,9 @@ const HotelSearch = () => {
                     min={1}
                     className="lsOptionInput"
                     placeholder={options.adult}
+                    onChange={(e) => {console.log(e.target.value);
+                      setOptions(options=>({adult: e.target.value, ...options}))
+                    }}
                   />
                 </div>
                 <div className="lsOptionItem">
@@ -104,6 +119,7 @@ const HotelSearch = () => {
                     min={1}
                     className="lsOptionInput"
                     placeholder={options.room}
+                    onChange={(e) => handleOption("room", e.target.value)}
                   />
                 </div>
               </div>

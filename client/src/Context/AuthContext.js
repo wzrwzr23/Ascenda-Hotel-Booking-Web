@@ -4,7 +4,7 @@ import { createContext, useEffect, useReducer } from "react";
 //must change the user part of initial state
 
 const INITIAL_STATE = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   loading: false,
   error: null,
 };
@@ -44,7 +44,7 @@ const AuthReducer = (state, action) => {
 
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
-  console.log(JSON.stringify(state.user))
+  console.log("here", JSON.stringify(state.user))
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(state.user));

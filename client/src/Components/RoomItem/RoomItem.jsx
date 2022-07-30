@@ -102,7 +102,7 @@ const RoomItem = ({item}) => {
       {loading ? (
         "loading"
       ) : (<>
-        <img src="https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768" className="riImg" />
+        <img src={"https://pix10.agoda.net/hotelImages/18391689/0/2c6de0f77a916b78928c57f088f08fc6.jpg?ca=19&ce=1&s=1024x768"} className="riImg" />
         <div className="riDesc">
             <h1 className="riTitle">{item.title}</h1>
             <div className="riRating">

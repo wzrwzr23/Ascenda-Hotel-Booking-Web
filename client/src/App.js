@@ -13,6 +13,7 @@ import Feature2 from "./Pages/HotelSearch/HotelSearch";
 import Feature3 from "./Pages/RoomSearch/RoomSearch";
 import Feature4 from "./Pages/Booking/Booking";
 import Login from "./Pages/Login/Login";
+import Payment from './Pages/Payment/Payment'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/hotels" element={<Feature2/>}/>
         <Route path="/hotels/:id" element={<Feature3/>}/>
         <Route path="/booking" element={<Feature4/>}/>
+        <Route path="/payment" element={<Payment/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>

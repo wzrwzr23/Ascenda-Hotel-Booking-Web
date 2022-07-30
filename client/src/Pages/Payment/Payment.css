@@ -1,0 +1,67 @@
+.bookingUserDetails{
+    padding-left: 40px;
+    margin-bottom: 20px;
+    font-size: 17px;
+}
+
+.detailsTitle{
+    color: #0071c2;
+}
+
+.user{
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    background-color: #febb02;
+    border-radius: 10px;
+    width: 750px;
+}
+
+.userName{
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+}
+
+.salutation{
+    border-color: #0071c2;
+    width: 50px;
+}
+
+.inputBox{
+    border-color: #0071c2;
+}
+
+.Text1{
+    border-color: #0071c2;
+}
+
+.phoneNumber{
+    padding-top: 20px;
+}
+
+.emailAddress{
+    padding-top: 20px;
+}
+
+.specials{
+    padding-top: 20px;
+}
+
+.billingAddress{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.require{
+    color: red;
+}
+
+.submitBtn{
+    background-color: #0071c2;
+    color: white;
+    font-weight: 500;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}

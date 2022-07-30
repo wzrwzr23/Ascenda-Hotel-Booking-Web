@@ -1,13 +1,12 @@
-import './Booking.css'
+import './Payment.css'
+
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
-import { useNavigate } from 'react-router-dom';
+
+const Payment = () => {
 
 
-const Booking = () => {
-
-  const navigate = useNavigate();
   
   return (
     <>
@@ -65,4 +64,4 @@ const Booking = () => {
   );
 }
 
-export default Booking
+export default Payment
