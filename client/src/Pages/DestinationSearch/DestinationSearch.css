@@ -1,0 +1,40 @@
+h2 {
+    color: white;
+    margin: 10px 10px 10px 10px;
+}
+span {
+    color: white;
+    margin: 10px 10px 10px 10px;
+}
+.dest-container {
+    background-color: #febb02;
+    width: max-content;
+    align-items: center;
+    justify-content: center;
+}
+
+/* #usersearch input {
+    width: 100%;
+} */
+
+input {
+    width: 40%;
+    margin: 10px 10px 10px 10px;
+    height: 30px;
+    padding-left: 10px;
+}
+.usersearch input{
+    width: 90%;
+}
+button {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #bc9a39;
+}
+button:hover {
+    background-color: #e4d2a0;
+}

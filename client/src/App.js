@@ -19,10 +19,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Homepage/>}/>
+        {/* <Route path="/" element={<Homepage/>}/> */}
         <Route path="/destinationsearch" element={<Feature1/>}/>
-        <Route path="/hotels" element={<Feature2/>}/>
-        <Route path="/hotels/:id" element={<Feature3/>}/>
+        <Route path="/hotelsearch/:id" element={<Feature2/>}/>
+        <Route path="/roomsearch/:id" element={<Feature3/>}/>
         <Route path="/booking" element={<Feature4/>}/>
         <Route path="/payment" element={<Payment/>}/>
         <Route path="/login" element={<Login/>}/>

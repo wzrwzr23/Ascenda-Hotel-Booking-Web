@@ -1,92 +1,122 @@
 import Footer from '../../Components/Footer/Footer'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
+import RoomItem from '../../Components/RoomItem/RoomItem'
 import './RoomSearch.css'
-import React, {useState, useContext} from "react";
-import { useLocation, useNavigate } from 'react-router-dom'
-import useFetch from '../../hooks/useFetch'
-import { SearchContext } from '../../Context/SearchContext'
+import React, {useEffect, useState} from "react";
+import axios from 'axios'
+import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
 import Rooms from '../../Components/Rooms/Rooms'
 
-const RoomSearch = () => {
+
+function RoomSearch() {
 
     const [description, setDescription] = useState("Description");
-    // const [long, setLong] = useState("103.8198");
-    // const [lat, setLat] = useState("1.3521");
-    // const [map, setMap] = useState();
-    // const [name, setName] = useState("Hotel Name");
-    // const [address, setAddress] = useState("Address");
-    // const [rating, setRating] = useState("Rating");
-    // const [amenities_ratings, setAmenities_Ratings] = useState([]);
-    const location = useLocation();
-    const id = location.pathname.split("/")[2];
-    const navigate = useNavigate();
-    // const [amenities, setAmenities] = useState("Amenities");
-    // const [image, setImage] = useState("Image Link");
+    const [long, setLong] = useState(10);
+    const [lat, setLat] = useState(10);
+    const [name, setName] = useState("Hotel Name");
+    const [address, setAddress] = useState("Address");
+    const [rating, setRating] = useState("Rating");
+    const [amenities_ratings, setAmenities_Ratings] = useState([]);
+    const [amenities, setAmenities] = useState("Amenities");
+    const [image_detail, setImage_detail] = useState("Image Prefix");
+    const [hires_image_index, setHires_image_index] = useState("hires_image_index");
+    const [default_image_index, setDefault_image_index] = useState(1);
 
-    // const fetchData = async (hotelID) => {
-    //     await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${hotelID}`)
-    //         .then((response) => {
-    //             setName(response.data.name);
-    //             setAddress(response.data.address);
-    //             setDescription(response.data.description);
-    //             setRating(response.data.rating);
-    //             setLong(response.data.longitude);
-    //             setLat(response.data.latitude);
-    //             //setAmenities(response.data.amenities);
-    //             setAmenities_Ratings(response.data.amenities_ratings);
-    //         }).catch(error => console.error(`Error: ${error}`));
-    // }
-    // useEffect(() => {
-    //     fetchData("diH7");
-    // }, []);
+    const fetchData = async (hotelID) => {
 
-    const {data, loading, error} = useFetch(`/hotels/find/${id}`);
+        await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${hotelID}`)
+            .then((response) => {
+                setName(response.data.name);
+                setAddress(response.data.address);
+                setDescription(response.data.description);
+                setRating(response.data.rating);
+                setLong(response.data.longitude);
+                setLat(response.data.latitude);
+                setAmenities(response.data.amenities);
+                setAmenities_Ratings(response.data.amenities_ratings);
+                setImage_detail(response.data.image_details);
+                setDefault_image_index(response.data.default_image_index);
 
-    const {dates,options} = useContext(SearchContext);
+                console.log(image_detail);
+                /* setHires_image_index(response.data.hires_image_index);
+                */
 
-    const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
-    function dayDifference(date1, date2) {
-      const timeDiff = Math.abs(date2.getTime() - date1.getTime());
-      const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
-      return diffDays;
+                /*let arr = hires_image_index ? hires_image_index.split(',') : [default_image_index], newSwiperList = []
+                arr.forEach((v, i) => {
+                    newSwiperList.push({
+                        name: name,
+                        imgs: {${image_prefix}${v}${image_suffix}}
+                    })
+                })*/
+
+            }).catch(error => console.error(`Error: ${error}`));
     }
+    useEffect(() => {
+        const url = window.location.href.toString()
+        const hotel_id = url.substring(url.lastIndexOf("/") + 1, url.length);
+        console.log(hotel_id)
+        fetchData(hotel_id);
+    }, []);
 
-    const days = dayDifference(dates[0].endDate, dates[0].startDate)
+    /*    set_Img_link(image_prefix+default_image_index+image_suffix);
+        console.log(img_link);*/
 
-    // const mapStyles = {
-    //     width: '100%',
-    //     height: '100%',
-    // };
-  return (
-    <div className="roomSearch">
-      <Navbar/>
-      <Header type="list"/>
-      {loading ? (
-        "loading"
-      ) : (
-      <div className="hotel">
-        <div className="hotelDetails">
-          <div className="hotelDesc">
-            <div className="hotelTitle">{data.name}</div>
-            <div className="hotelDesc">
-                <div className="rating">Overall rating : 3.5</div>
-                <div className='hotelAddress'>Hotel address: {data.address}</div>
-                <div className="desc">{data.title}</div>
-                <div className="numberOfDays">Book for {options.room} room now! Perfect for {days} days!</div>
+    /*
+        setImage_suffix(imd);
+        console.log(image_suffix);*/
+
+    const mapStyles = {
+        height: "100vh",
+        width: "100%"
+    };
+
+    const defaultCenter = {
+        lat: parseFloat(lat), lng: parseFloat(long)
+    }
+    return (
+        <div className="roomSearch">
+            <Navbar/>
+            <Header type="list"/>
+            <div className="hotel">
+                <div className="hotelDetails">
+                    <div className="hotelDesc">
+                        <div className="hotelTitle">{name}</div>
+                        <div className="hotelDesc">
+                            <div dangerouslySetInnerHTML={{__html: description}}/>
+                            <div>Overall rating: {rating}</div>
+                            <div>
+                                <ul>
+                                    {amenities_ratings.map(item =>
+                                        <li key={item.name}>{item.name}: {item.score}</li>
+                                    )}
+                                </ul>
+                            </div>
+                            <div>Hotel address: {address}</div>
+                        </div>
+                    </div>
+                    <img src={image_detail.prefix + default_image_index + image_detail.suffix}
+                         className="hotelImg"/>
+                </div>
+                <div className="hotelRooms">
+                <RoomSearch/>
+                <RoomSearch/>
+                <RoomSearch/>
+                </div>
+                <LoadScript
+                    googleMapsApiKey='AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4'>
+                    <GoogleMap
+                        mapContainerStyle={mapStyles}
+                        zoom={13}
+                        center={defaultCenter}>
+                        <Marker
+                            position={defaultCenter}/>
+                    </GoogleMap>
+                </LoadScript>
             </div>
-          </div>
-          <img src="https://cdn.cnn.com/cnnnext/dam/assets/191212182124-04-singapore-buildings.jpg" className="hotelImg" />
+            <Footer/>
         </div>
-        <div className="hotelRooms">
-        <Rooms/>
-        </div>
-      </div>
-      )}
-      <Footer/>
-    </div>
-  )
+    )
 }
 
 export default RoomSearch
-
