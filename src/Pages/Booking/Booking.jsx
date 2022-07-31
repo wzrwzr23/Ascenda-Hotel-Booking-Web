@@ -8,6 +8,8 @@ import key from '../../secretKey'
 var CryptoJS = require("crypto-js")
 
 const Booking = () => {
+  const [userFirstName, setUserFirstName] = useState('')
+  const [userLastName, setUserLastName] = useState('')
   const [phoneNum, setPhoneNum] = useState('')
   const [emailAdd, setEmailAdd] = useState('')
   const [cardNum, setCardNum] = useState('')
@@ -20,7 +22,7 @@ const Booking = () => {
     var lastPart = cardNo.slice(15)
     var maskedPart = ""
     for (var i = 7; i < 15; i++) {
-      if (cardNo.charAt(i) === "") {continue}
+      if (cardNo.charAt(i) === ' ') {maskedPart += ' '}
       else {maskedPart += 'X'}
     }
     var maskedData = firstPart + maskedPart + lastPart
@@ -40,6 +42,14 @@ const Booking = () => {
     dict['Billing Address'] = encryption(billingAdd)
     dict['Card Number'] = maskData(cardNum)
     alert(JSON.stringify(dict))
+    setUserFirstName('')
+    setUserLastName('')
+    setPhoneNum('')
+    setEmailAdd('')
+    setCardNum('')
+    setCardExpiry('')
+    setCardCvc('')
+    setBillingAdd('')
   }
 
   return (
@@ -62,11 +72,11 @@ const Booking = () => {
               </select>
               <div className="firstName">
                 First Name<span class="require">*</span>
-                <input className='inputBox' type="text" required/>
+                <input className='inputBox' type="text" value={userFirstName} onChange={(e) => setUserFirstName(e.target.value)} required/>
               </div>
               <div className="lastName">
                 Last Name<span class="require">*</span>
-                <input className='inputBox' type="text" required/>
+                <input className='inputBox' type="text" value={userLastName} onChange={(e) => setUserLastName(e.target.value)} required/>
               </div>
             </div>
             <div className="phoneNumber">
