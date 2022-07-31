@@ -22,6 +22,8 @@ class HotelSearch extends React.Component {
     current: 1,  //当前页码
     pageSize: 10, //每页显示条数
     totalPage: 0,  //总页数
+    hotels:[],
+    hotelActual:[]
   }
   /*getQueryVariable = (variable) => {
     // 从?开始获取后面的所有数据
@@ -37,20 +39,58 @@ class HotelSearch extends React.Component {
     }
     return false
   }*/
+  timeout = (delay: number) => {
+    return new Promise( res => setTimeout(res, delay) );
+  }
 
+  fetch_data = async () => {
+    let list = await Promise.all(this.state.hotels.map(async (item) => {
+      let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`)
+      return res.data
+    }))
+    return list
+  }
 
   initData = async (dest_id) => {
     console.log(dest_id)
-    const res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${dest_id}`)
-    //const res = await axios.get(url)
+    //const res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${dest_id}`)
+    let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-24&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
+    await this.timeout(3000)
+    res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-24&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`)
     this.setState({
-      list: res.data.slice(0, this.state.pageSize),
-      totalList: res.data,
-      totalPage: Math.ceil(res.data.length / this.state.pageSize),
+      hotels:res.data.hotels
     })
-    // const res = axios.get(``)
-    // https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=RsBU&checkin=2021-03-31&checkout=2021-04-01&lang=en_US&currency=SGD&landing_page=&partner_id=16&country_code=SG&guests=2
-    // https://hotelapi.loyalty.dev/api/hotels/diH7/price?destination_id=RsBU&checkin=2021-03-31&checkout=2021-04-01&lang=en_US&currency=SGD&partner_id=16&country_code=SG&guests=2
+    console.log(this.state.hotels[0])
+    let list = await this.fetch_data()
+    //let list = []
+    /*console.log(this.state.hotels)
+    this.state.hotels.map(async (item) => {
+      const hotelRes = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`).then(
+      list.push(hotelRes.data)
+      //console.log(list)
+      )
+    })
+*/
+    console.log(list.length)
+    const sublist = list.slice(0, this.state.pageSize)
+    console.log(sublist)
+    await this.setState({
+      //hotelActual: list,
+      list: sublist,
+      totalPage: Math.ceil(list.length / this.state.pageSize),
+    }, async () => {
+      console.log(this.state.list);
+    })
+/*    let another_list = []
+    another_list = */
+/*    await this.setState({
+
+    }, () => {
+      console.log(this.state.list)
+    })*/
+
+
+
   }
 
   loadmore = () => {
@@ -66,7 +106,7 @@ class HotelSearch extends React.Component {
   componentDidMount () {
     const url = window.location.href.toString()
     const dest_id = url.substring(url.lastIndexOf("/") + 1, url.length);
-    console.log(dest_id)
+    //console.log(dest_id)
         //const destination_id = this.getQueryVariable('destination_id')
     this.initData(dest_id);
   }
