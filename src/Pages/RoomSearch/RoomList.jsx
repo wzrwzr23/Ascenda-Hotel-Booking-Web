@@ -36,15 +36,16 @@ class RoomList extends React.Component {
         console.log("---------------------------------------------")
         // this.pageNext(this.state.goValue, this.state.totalList)
     }
+    handleClicked = () => {
+        const room = 233;
+        this.navigate(`/booking`, { state: { room } });
+    };
+
     componentDidMount () {
         const url = window.location.href.toString()
         const hotel_id = url.substring(url.lastIndexOf("/") + 1, url.length);
         const params = url.split("/")
         const dest_id = params[4]
-        console.log("********************")
-        console.log(hotel_id)
-        console.log("----------------------")
-        console.log(dest_id)
         this.initData(hotel_id, dest_id);
     }
     render() {
@@ -55,9 +56,11 @@ class RoomList extends React.Component {
                     this.state.rooms.map((item, index) => {
                         return (
                             <div>
-                                <span className="riPrice">Key: {item.key}</span>
+                                {/*<span className="riPrice">Key: {item.key}</span>*/}
                                 <h1 className="riTitle">{item.price_type} room</h1>
                                 <span className="riPrice">Price: {item.converted_price}</span>
+                                <span className="riSubtitle">{item.description}</span>
+                                <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button>
                             </div>
                         )
                     })
