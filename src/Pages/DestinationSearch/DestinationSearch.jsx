@@ -1,6 +1,6 @@
-import Footer from '../../Components/Footer/Footer'
-import Header from '../../Components/Header/Header'
-import Navbar from '../../Components/Navbar/Navbar'
+// import Footer from '../../Components/Footer/Footer'
+// import Header from '../../Components/Header/Header'
+// import Navbar from '../../Components/Navbar/Navbar'
 import React from 'react'
 import { useState } from 'react'
 import destData from '../../destinations.json'
@@ -57,30 +57,32 @@ const DestinationSearch = () => {
   return (
     // <div>Destination Search</div>
     <section className='destform'>
-      <div className='dest-container'>
-        <h2>Enjoy Your Stay</h2>  
-        <span>Search and Book Hotel</span>
+      <div id='destwrap'>
+        <div className='dest-container'>
+          <h2>Enjoy Your Stay</h2>  
+          <span>Search and Book Hotel</span>
 
-        <form action=''>
-          <div className='usersearch'>
-            <input type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => searchDest(e.target.value)} data-testid='searchinput'/>
-          </div>
-          <div className='dropdown' data-testid="filter-dest">
-            {filteredDest.map((item) => {return (
-              <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
-            )})}
-          </div>
-          <div className='data-space'>
-            <input type='date' placeholder='Check In' value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)}/>
-            <input type='date' placeholder='Check Out' value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)}/>
-          </div>
-          <div className='data-space'>
-            <input type='number' placeholder='Number of Children' min='0' value={numChild} onChange={(e) => setNumChild(e.target.value)}/>
-            <input type='number' placeholder='Number of Adults' min='0' value={numAdult} onChange={(e) => setNumAdult(e.target.value)}/>
-          </div>
-          <input type='number' placeholder='Number of Rooms' className='room' min='1' value={numRoom} onChange={(e) => setNumRoom(e.target.value)}/>
-        </form>
-        <a href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+          <form action=''>
+            <div>
+              <input id='usersearch' type='text' placeholder='Search City' name='' value={userDest} onChange={(e) => searchDest(e.target.value)} data-testid='searchinput'/>
+            </div>
+            <div className='dropdown' data-testid="filter-dest">
+              {filteredDest.map((item) => {return (
+                <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
+              )})}
+            </div>
+            <div className='data-space'>
+              <input type='date' placeholder='Check In' value={checkInDate} onChange={(e) => setCheckInDate(e.target.value)}/>
+              <input type='date' placeholder='Check Out' value={checkOutDate} onChange={(e) => setCheckOutDate(e.target.value)}/>
+            </div>
+            <div className='data-space'>
+              <input type='number' placeholder='Number of Children' min='0' value={numChild} onChange={(e) => setNumChild(e.target.value)}/>
+              <input type='number' placeholder='Number of Adults' min='0' value={numAdult} onChange={(e) => setNumAdult(e.target.value)}/>
+            </div>
+            <input type='number' placeholder='Number of Rooms' className='room' min='1' value={numRoom} onChange={(e) => setNumRoom(e.target.value)}/>
+          </form>
+          <a href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+        </div>
       </div>
     </section>
   ) 

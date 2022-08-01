@@ -10,54 +10,54 @@ import { useNavigate } from "react-router-dom";
 import destData from '../../destinations.json';
 
 const Header = ({type}) => {
-  const [destination, setDestination] = useState("");
-  const [openDate, setOpenDate] = useState(false);
-  const [filteredDest, setFilteredDest] = useState([])
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
-  const [openOptions, setOpenOptions] = useState(false);
-  const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
-    room: 1,
-  });
-  const handleOption = (name, operation) => {
-    setOptions((prev) => {
-      return {
-        ...prev,
-        [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
-      };
-    });
-  };
-  const navigate = useNavigate();
-  const handleSearch = () => {
-    navigate("/hotelsearch", { state: { destination, date, options } });
-  };
-  const searchDest = (event) => {
-    const userSearch = event
-    const lowercase = userSearch.toLowerCase()
-    setDestination(userSearch)
-    const filterDest = destData.filter((item) => {
-      const destTerm = item.term.toLowerCase()
-      return lowercase && destTerm.startsWith(lowercase) && destTerm !== lowercase
-    })
-    if (userSearch === '') {
-      setFilteredDest([])
-    } else {setFilteredDest(filterDest.slice(0, 10))}
-  }
-  function getUID(value, file) {
-    for (var i=0; i<file.length; i++) {
-      var obj = file[i]
-      if (value === obj.term) {
-        return obj.uid
-      }
-    }
-  }
+  // const [destination, setDestination] = useState("");
+  // const [openDate, setOpenDate] = useState(false);
+  // const [filteredDest, setFilteredDest] = useState([])
+  // const [date, setDate] = useState([
+  //   {
+  //     startDate: new Date(),
+  //     endDate: new Date(),
+  //     key: "selection",
+  //   },
+  // ]);
+  // const [openOptions, setOpenOptions] = useState(false);
+  // const [options, setOptions] = useState({
+  //   adult: 1,
+  //   children: 0,
+  //   room: 1,
+  // });
+  // const handleOption = (name, operation) => {
+  //   setOptions((prev) => {
+  //     return {
+  //       ...prev,
+  //       [name]: operation === "i" ? options[name] + 1 : options[name] - 1,
+  //     };
+  //   });
+  // };
+  // const navigate = useNavigate();
+  // const handleSearch = () => {
+  //   navigate("/hotelsearch", { state: { destination, date, options } });
+  // };
+  // const searchDest = (event) => {
+  //   const userSearch = event
+  //   const lowercase = userSearch.toLowerCase()
+  //   setDestination(userSearch)
+  //   const filterDest = destData.filter((item) => {
+  //     const destTerm = item.term.toLowerCase()
+  //     return lowercase && destTerm.startsWith(lowercase) && destTerm !== lowercase
+  //   })
+  //   if (userSearch === '') {
+  //     setFilteredDest([])
+  //   } else {setFilteredDest(filterDest.slice(0, 10))}
+  // }
+  // function getUID(value, file) {
+  //   for (var i=0; i<file.length; i++) {
+  //     var obj = file[i]
+  //     if (value === obj.term) {
+  //       return obj.uid
+  //     }
+  //   }
+  // }
   return (
     <div className='header'>
         <div className={type === "list" ? "headerContainer listMode" : "headerContainer"}>
@@ -92,7 +92,7 @@ const Header = ({type}) => {
             <h1 className="headerTitle">Ascenda Hotel Booking</h1>
             <p className="headerDesc">The place you come to explore all options</p>
             <button className="headerBtn">Sign In / Register</button>
-            <div className="headerSearch"> 
+            {/* <div className="headerSearch"> 
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} /> 
                     <input type="text" placeholder='Where are you going?' className='headerSearchInput' value={destination} onChange={(e) => searchDest(e.target.value)}/>
@@ -199,7 +199,7 @@ const Header = ({type}) => {
                 <div className="headerSearchItem">
                     <button className="headerBtn" onClick={handleSearch}>Search</button>
                 </div>
-            </div>
+            </div> */}
             </>
             }
         </div>
