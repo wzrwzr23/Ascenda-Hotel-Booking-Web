@@ -80,9 +80,7 @@ const DestinationSearch = () => {
           </div>
           <input type='number' placeholder='Number of Rooms' className='room' min='1' value={numRoom} onChange={(e) => setNumRoom(e.target.value)}/>
         </form>
-        {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
         <a href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
-        {/*</button>*/}
       </div>
     </section>
   ) 

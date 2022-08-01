@@ -2,6 +2,7 @@ import Footer from '../../Components/Footer/Footer'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import RoomItem from '../../Components/RoomItem/RoomItem'
+import RoomList from "./RoomList";
 import './RoomSearch.css'
 import React, {useEffect, useState} from "react";
 import axios from 'axios'
@@ -98,9 +99,10 @@ function RoomSearch() {
                          className="hotelImg"/>
                 </div>
                 <div className="hotelRooms">
+                    {/*<RoomItem/>
                     <RoomItem/>
-                    <RoomItem/>
-                    <RoomItem/>
+                    <RoomItem/>*/}
+                    <RoomList/>
                 </div>
                 <LoadScript
                     googleMapsApiKey='AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4'>
