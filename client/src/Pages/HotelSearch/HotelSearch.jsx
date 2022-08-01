@@ -2,16 +2,17 @@ import './HotelSearch.css'
 import { Button } from 'antd'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
+import Footer from '../../Components/Footer/Footer'
 import {useLocation, useParams} from "react-router-dom";
 import destData from "../../destinations.json"
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
-import Footer from '../../Components/Footer/Footer';
 import React from "react";
 import axios from "axios";
 import DestinationSearch from '../DestinationSearch/DestinationSearch';
 import { Link } from 'react-router-dom';
+import LoadingSpinner from "./../../Components/Loading/Loading";
 
 /*function withParams(Component) {
   return props => <Component {...props} params={useParams()} />;
@@ -26,31 +27,37 @@ class HotelSearch extends React.Component {
     totalPage: 0,  //总页数
     hotels:[],
     prices: [],
-    dest_id: ""
+    dest_id: "",
+    loading: false
   }
   timeout = (delay: number) => {
     return new Promise( res => setTimeout(res, delay) );
   }
 
   fetch_data = async () => {
+    this.state.loading = true;
     return await Promise.all(this.state.hotels.slice(0, this.state.current_index).map(async (item) => {
       let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`)
       this.setState(() => {
         this.state.prices.push(item.converted_price)})
+      this.state.loading = false;
       return res.data
     }))
   }
 
   fetch_data_more = async () => {
+    this.state.loading = true;
     return await Promise.all(this.state.hotels.slice(this.state.current_index, this.state.current_index+10).map(async (item) => {
       let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`)
       this.setState(() => {
         this.state.prices.push(item.converted_price)})
+      this.state.loading = false;
       return res.data
     }))
   }
 
   initData = async (dest_id) => {
+    this.state.loading = true;
     console.log(dest_id)
     //const res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${dest_id}`)
     let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-25&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
@@ -64,11 +71,12 @@ class HotelSearch extends React.Component {
 
     await this.setState({
       list: hotel_list,
-
     })
+    this.state.loading = false;
   }
 
   loader = async () => {
+    this.state.loading = true;
     await this.timeout(6500)
     let hotel_list_more = await this.fetch_data_more()
     await this.setState({
@@ -77,9 +85,11 @@ class HotelSearch extends React.Component {
       current_page: this.state.current_page + 1,
     })
     console.log("---------------------------------------------")
+    this.state.loading = false;
     // this.pageNext(this.state.goValue, this.state.totalList)
   }
   componentDidMount () {
+    this.state.loading = true;
     const url = window.location.href.toString()
     const dest_id = url.substring(url.lastIndexOf("/") + 1, url.length);
     this.setState({
@@ -100,49 +110,23 @@ class HotelSearch extends React.Component {
         <div className="listSearch">
           <DestinationSearch/>
           </div>
-        <div className="listResult">
-          {
-            this.state.list.map((item, index) => {
-              return (
-                  <div className="searchItem">
-                  <img src={`${item.image_details.prefix}${item.default_image_index}${item.image_details.suffix}`} className="siImg"  alt={item.name}/>
-                  <div className="siDesc">
-                      <h1 className="siTitle">{item.name}</h1>
-                      <span className="siAddress">{item.address}</span>
-                      <span className="siCity">{item.original_metadata.city}</span>
-                      <span className="siCountry">{item.original_metadata.country}</span>
-                      <span className="siTaxiOp">Airport taxi with 10% off</span>
-                      <span className="siSubtitle">
-                      {item.title}
-                      </span>
-                      <span className="siFeatures">
-                      Entire studio • 1 bathroom • 21m² 1 full bed
-                      </span>
-                      <span className="siCancelOp">Cancellation  with refund!</span>
-                      <span className="siCancelOpSubtitle">
-                      You can cancel later, so lock in this great price today!
-                      </span>
-                  </div>
-                  <div className="siDetails">
-                      <div className="siRating">
-                      <span>Excellent</span>
-                      <button>{item.rating}</button>
-                      </div>
-                      <div className="siDetailTexts">
-                      <span className="siPrice">S$ {this.state.prices[(index*2)+this.state.current_index]}</span>
-                      <span className="siTaxOp">Includes taxes and fees</span>
-                      <Link to={/hotelsearch/+this.state.dest_id+/roomsearch/+item.id}>
-                        <button className="siCheckButton">See availability</button>
-                      </Link>
-                      </div>
-                  </div>
-              </div>
-              )
-            })
-          }
+          <div className="listResult"> 
+          {this.state.loading ? (
+              <LoadingSpinner /> 
+            ) : (
+              <>
+                {this.state.list.map((item, index) => (
+                  <SearchItem item={item} price={this.state.prices[(index*2)+this.state.current_index]} id={this.state.dest_id} />
+                ))}
+              </>
+          )}
+          <div className="Center" align='center'>
+            {this.state.current_page >= this.state.totalPage ? null : <Button type='primary' onClick={this.loader}>More</Button>}
           </div>
-          </div>
-          </div>
+        </div>
+        </div>
+        </div>
+        <Footer/>
         </>
     )
   }

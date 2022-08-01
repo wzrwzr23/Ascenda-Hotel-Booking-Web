@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import { DateRange } from 'react-date-range'
 import { SearchContext } from '../../Context/SearchContext'
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 // import './DestinationSearch.css'
 
@@ -47,8 +48,14 @@ const DestinationSearch = () => {
 
   const {dispatch} = useContext(SearchContext)
   const navigate = useNavigate();
-  const handleSearch = () => {
-    const url = "/hotelsearch/"+destId;
+
+  const handleSearch = async () => {
+    // await this.timeout(6500)
+    const uid = onSearch()
+    setDestId("yo", uid);
+    console.log(uid)
+    const url = `/hotelsearch/${uid}`;
+    // const url = "/login"
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     navigate(url, { state: { destination, dates, options } });
   };
@@ -72,10 +79,18 @@ const DestinationSearch = () => {
   //     return getUID(userDest, destData)
   //   }
   // }
-  const onSearch = () => {
+  // const onSearch = () => {
+  //   if (userDest) {
+  //     getUID(userDest, destData)
+  //   }
+  // }
+
+  function onSearch(){
+    var uid;
     if (userDest) {
-      getUID(userDest, destData)
+      uid = getUID(userDest, destData)
     }
+    return uid
   }
 
   function getUID(value, file) {
@@ -83,8 +98,11 @@ const DestinationSearch = () => {
       var obj = file[i]
       if (value === obj.term) {
         setDestId(obj.uid)
+        console.log("nami",destId)
+        return obj.uid;
       }
     }
+    return null;
   }
 
 
@@ -188,9 +206,12 @@ const DestinationSearch = () => {
               </div>
             </div>
           </div>
-          <button onClick={handleSearch}>Search</button>
+          {/* <Link to={`/hotelsearch/${destId}`}>
+              <button className="siCheckButton" onClick={handleSearch}>See availability</button>
+          </Link> */}
+          {/* <button onClick={handleSearch}>Search</button> */}
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      <a href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
         {/*</button>*/}
         </div>
         </div>

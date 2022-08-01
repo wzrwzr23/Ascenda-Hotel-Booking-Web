@@ -7,6 +7,8 @@ import React, {useEffect, useState} from "react";
 import axios from 'axios'
 import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
 import Rooms from '../../Components/Rooms/Rooms'
+import {SearchContext} from './../../Context/SearchContext'
+import { useContext } from 'react'
 
 
 function RoomSearch() {
@@ -22,6 +24,7 @@ function RoomSearch() {
     const [image_detail, setImage_detail] = useState("Image Prefix");
     const [hires_image_index, setHires_image_index] = useState("hires_image_index");
     const [default_image_index, setDefault_image_index] = useState(1);
+    const {dates,options} = useContext(SearchContext);
 
     const fetchData = async (hotelID) => {
 

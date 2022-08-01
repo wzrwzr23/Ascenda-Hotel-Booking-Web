@@ -23,6 +23,15 @@ span {
     width: 100%;
 } */
 
+.searchBtn{
+    display: flex;
+    justify-content: center;
+    background-color: #bc9a39;  
+    color: #e4d2a0;
+    text-decoration: none;
+    padding:6px;
+}
+
 .searchItems{
     flex: 1;
     background-color: #febb02;
