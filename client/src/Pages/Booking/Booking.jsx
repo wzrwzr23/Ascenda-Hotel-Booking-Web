@@ -18,7 +18,7 @@ const Booking = () => {
       <div className="bookingUserDetails">
         <h1 className="detailsTitle">BOOKING</h1>
         <h2 className="detailsSubTitle">User Details</h2>
-        <form className='user'>
+        <form className='user' action='/payment'>
             <br/>
             <br/>
             <div className="userName">

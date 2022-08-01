@@ -45,6 +45,9 @@
 
 .hotelRooms{
     display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
 .numberOfDays{
     padding-top: 40px;

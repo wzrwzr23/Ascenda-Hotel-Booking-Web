@@ -18,8 +18,12 @@
   .logo{
     font-weight: 500;
   }
+
+  .navItems{
+    display: flex;
+  }
   
-  .navButton{
+  .navButtons{
     margin-left: 20px;
     border: none;
     padding: 5px 10px;

@@ -75,7 +75,6 @@ const Header = ({type}) => {
               <>
             <h1 className="headerTitle">Ascenda Hotel Booking</h1>
             <p className="headerDesc">The place you come to explore all options</p>
-            <button className="headerBtn">Sign In / Register</button>
             <div className="headerSearch"> 
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} /> 

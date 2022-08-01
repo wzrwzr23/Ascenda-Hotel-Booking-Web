@@ -1,11 +1,31 @@
+/* .roomItems{
+  overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+} */
+
+.riDes{
+  /* overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap; */
+  display: flex;
+  overflow-x: scroll;
+  flex-direction: row;
+  padding: 10px;
+}
+
 .roomItem {
     border: 1px solid lightgray;
     padding: 10px;
     border-radius: 5px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    gap: 20px;
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    width: 300px;
   }
   
   .riImg {
@@ -29,6 +49,7 @@
   .riSubtitle{
     font-size: 12px;
     font-weight: bold;
+    padding-bottom: 10px;
   }
   
   .riFeatures{
@@ -36,7 +57,7 @@
   }
   
   .riPrice{
-    font-size: 16px;
+    font-size: 20px;
     color: #008009;
     font-weight: bold;
   }

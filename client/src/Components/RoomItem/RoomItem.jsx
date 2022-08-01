@@ -89,17 +89,23 @@ class RoomList extends React.Component {
     }
     render() {
         return (
-            <div className="roomItem">
-                <div className="riDesc">
+            <div className="roomItems">
+                <div className="riDes">
                 {
                     this.state.rooms.map((item, index) => {
                         return (
-                            <div>
-                                {/*<span className="riPrice">Key: {item.key}</span>*/}
-                                <h1 className="riTitle">{item.price_type} room</h1>
-                                <span className="riPrice">Price: {item.converted_price}</span>
-                                <span className="riSubtitle">{item.description}</span>
-                                <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button>
+                            <div className="roomItem">
+                                <div className="riDesc">
+                                    <h1 className="riTitle">{item.price_type} room</h1>
+                                </div>
+                                <div className="riSubtitle">
+                                    {item.description}
+                                </div>
+                                <div className="riPrice">S${item.converted_price}</div>
+                                {/* <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button> */}
+                                <form action="/booking">
+                                    <button className="riCheckButton">Book Now!</button>
+                                </form>
                             </div>
                         )
                     })

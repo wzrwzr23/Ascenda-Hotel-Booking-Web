@@ -101,10 +101,8 @@ function RoomSearch() {
                     <img src={image_detail.prefix + default_image_index + image_detail.suffix}
                          className="hotelImg"/>
                 </div>
+                <h1>Rooms</h1>
                 <div className="hotelRooms">
-                {/* <RoomSearch/>
-                <RoomSearch/>
-                <RoomSearch/> */}
                 <RoomItem/>
                 </div>
                 <LoadScript

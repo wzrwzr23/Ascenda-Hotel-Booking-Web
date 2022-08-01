@@ -10,8 +10,8 @@ const Navbar = () => {
           <span className="logo">Ascenda Hotel Booking</span>
         </Link>
         <div className="navItems">
-          <button className="navButton">Register</button>
-          <button className="navButton">Login</button>
+          <button className="navButtons">Register</button>
+          <button className="navButtons">Login</button>
         </div>
       </div>
     </div>
