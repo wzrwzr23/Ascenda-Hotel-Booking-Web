@@ -14,15 +14,16 @@ import Feature3 from "./Pages/RoomSearch/RoomSearch";
 import Feature4 from "./Pages/Booking/Booking";
 import Login from "./Pages/Login/Login";
 import Payment from './Pages/Payment/Payment'
+import React from 'react'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Homepage/>}/> */}
+        <Route path="/" element={<Homepage/>}/>
         <Route path="/destinationsearch" element={<Feature1/>}/>
         <Route path="/hotelsearch/:id" element={<Feature2/>}/>
-        <Route path="/roomsearch/:id" element={<Feature3/>}/>
+        <Route path="/hotelsearch/:id/roomsearch/:id" element={<Feature3/>}/>
         <Route path="/booking" element={<Feature4/>}/>
         <Route path="/payment" element={<Payment/>}/>
         <Route path="/login" element={<Login/>}/>

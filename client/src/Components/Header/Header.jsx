@@ -8,6 +8,7 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from '../../Context/SearchContext'
+import React from 'react'
 
 const Header = ({type}) => {
   const [destination, setDestination] = useState("");

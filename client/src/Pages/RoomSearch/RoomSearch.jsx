@@ -99,9 +99,10 @@ function RoomSearch() {
                          className="hotelImg"/>
                 </div>
                 <div className="hotelRooms">
+                {/* <RoomSearch/>
                 <RoomSearch/>
-                <RoomSearch/>
-                <RoomSearch/>
+                <RoomSearch/> */}
+                <RoomItem/>
                 </div>
                 <LoadScript
                     googleMapsApiKey='AIzaSyAuJMYJIl64s1kC9TuYU0OGIDPAf1Ybus4'>

@@ -4,6 +4,7 @@ import { SearchContext } from '../../Context/SearchContext';
 import useFetch from '../../hooks/useFetch';
 import RoomItem from '../RoomItem/RoomItem';
 import './Rooms.css'
+import React from 'react';
 
 const Rooms = () => {
   const location = useLocation();

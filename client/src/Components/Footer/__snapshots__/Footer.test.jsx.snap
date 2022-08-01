@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="footer"
+  data-testid="footer"
+>
+  <div
+    className="fLists"
+  >
+    <ul
+      className="fList"
+    >
+      <li
+        className="fListItem"
+      >
+        Countries
+      </li>
+      <li
+        className="fListItem"
+      >
+        Regions
+      </li>
+      <li
+        className="fListItem"
+      >
+        Cities
+      </li>
+      <li
+        className="fListItem"
+      >
+        Districts
+      </li>
+      <li
+        className="fListItem"
+      >
+        Airports
+      </li>
+      <li
+        className="fListItem"
+      >
+        Hotels
+      </li>
+    </ul>
+    <div
+      className="fBox"
+    >
+      <div
+        className="fBoxItem"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-location-crosshairs "
+          data-icon="location-crosshairs"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M176 256C176 211.8 211.8 176 256 176C300.2 176 336 211.8 336 256C336 300.2 300.2 336 256 336C211.8 336 176 300.2 176 256zM256 0C273.7 0 288 14.33 288 32V66.65C368.4 80.14 431.9 143.6 445.3 224H480C497.7 224 512 238.3 512 256C512 273.7 497.7 288 480 288H445.3C431.9 368.4 368.4 431.9 288 445.3V480C288 497.7 273.7 512 256 512C238.3 512 224 497.7 224 480V445.3C143.6 431.9 80.14 368.4 66.65 288H32C14.33 288 0 273.7 0 256C0 238.3 14.33 224 32 224H66.65C80.14 143.6 143.6 80.14 224 66.65V32C224 14.33 238.3 0 256 0zM128 256C128 326.7 185.3 384 256 384C326.7 384 384 326.7 384 256C384 185.3 326.7 128 256 128C185.3 128 128 185.3 128 256z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+        <span>
+          <h2>
+            Address
+          </h2>
+        </span>
+        <br />
+        <br />
+      </div>
+      205 Fida Walinton, Tongo Street Front The USA
+      <div
+        className="fBoxItem"
+        data-testid="phone"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-phone "
+          data-icon="phone"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+        <span>
+          <h2>
+            Phone
+          </h2>
+        </span>
+        <br />
+        <br />
+      </div>
+      +123 456 7898
+      <div
+        className="fBoxItem"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-at "
+          data-icon="at"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+        <span>
+          <h2>
+            Email
+          </h2>
+        </span>
+        <br />
+        <br />
+      </div>
+      hello@ecorik.com
+    </div>
+  </div>
+  <div
+    className="fText"
+  >
+    Copyright © 2022 Ascenda Hotel Booking
+  </div>
+</div>
+`;

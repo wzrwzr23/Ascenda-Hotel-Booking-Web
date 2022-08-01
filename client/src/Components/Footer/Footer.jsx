@@ -1,10 +1,11 @@
 import { faAddressBook, faAt, faLocation, faMailForward, faPhone, faVoicemail } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Footer.css'
+import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer" data-testid="footer">
         <div className="fLists">
             <ul className="fList">
                 <li className="fListItem">Countries</li>
@@ -20,7 +21,7 @@ const Footer = () => {
                     <span><h2>Address</h2></span><br/><br />
                 </div>
                 205 Fida Walinton, Tongo Street Front The USA
-                <div className="fBoxItem">
+                <div className="fBoxItem" data-testid="phone">
                     <FontAwesomeIcon icon={faPhone} />
                     <span><h2>Phone</h2></span><br/><br />
                 </div>

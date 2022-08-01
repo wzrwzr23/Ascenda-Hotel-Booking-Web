@@ -1,13 +1,11 @@
 import './Payment.css'
-
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
+import React from 'react';
+import ReactDOM  from 'react-dom';
 
 const Payment = () => {
-
-
-  
   return (
     <>
     <Navbar/>

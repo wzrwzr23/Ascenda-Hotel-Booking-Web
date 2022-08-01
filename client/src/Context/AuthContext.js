@@ -1,4 +1,5 @@
 import { createContext, useEffect, useReducer } from "react";
+import React from 'react';
 
 
 //must change the user part of initial state
