@@ -7,13 +7,15 @@ import './ImageSlide.css';
 export class ImageSlide extends Component {
     render() {
         var settings = {
-            dots: true,
+            dots: false,
             infinite: true,
             autoplay: true,
-            speed: 500,
+            speed: 400,
             centerMode: true,
             slidesToShow: 1,
-            slidesToScroll: 1
+            slidesToScroll: 1,
+            removeClippedSubviews: false,
+            useTransform: false
         };
         return (
             <div>

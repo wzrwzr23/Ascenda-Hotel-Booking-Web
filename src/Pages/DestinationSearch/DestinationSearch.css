@@ -19,7 +19,7 @@ span {
     height: 380px;
     left: 150px;
     top: 480px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 /* #usersearch input {
@@ -33,9 +33,23 @@ input {
     padding-left: 10px;
 }
 #usersearch{
-    width: 90%;
+    width: 85%;
 }
-.submitDest {
+a {
+    text-decoration: none;
+    color: white;
+    background-color: #7b5c06;
+    width: 100%;
+    height: 45px;
+    margin-top: 3px;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/* .submitDest {
     width: 100%;
     height: 45px;
     margin-top: 32px;
@@ -44,8 +58,8 @@ input {
     color: white;
     background-color: #bc9a39;
 
-}
-.submitDest:hover {
-    background-color: #e4d2a0;
+} */
+a:hover {
+    background-color: #003580;
 }
 
