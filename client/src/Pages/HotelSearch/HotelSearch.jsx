@@ -72,7 +72,10 @@ class HotelSearch extends React.Component {
     const options = this.context.options
     let guest;
     try{
-      guest = options.guehst
+      guest = options.guest
+      if (guest === undefined){
+        guest = "1"
+      }
     }catch (e) {
       guest = "1"
     }
