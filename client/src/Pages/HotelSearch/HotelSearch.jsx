@@ -98,7 +98,7 @@ class HotelSearch extends React.Component {
     //console.log(dest_id)
         //const destination_id = this.getQueryVariable('destination_id')
     this.initData(dest_id);
-    this.state.loading = false;
+    
   }
 
   render() {
