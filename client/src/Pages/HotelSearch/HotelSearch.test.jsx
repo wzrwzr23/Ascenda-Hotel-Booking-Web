@@ -4,9 +4,10 @@ import {act} from "react-dom/test-utils";
 import HotelSearch from "./HotelSearch";
 import TestRenderer from 'react-test-renderer';
 import Navbar from "../../Components/Navbar/Navbar";
-import { render, fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import DestinationSearch from "./../DestinationSearch/DestinationSearch"
+import ReactDOM from 'react-dom'
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 
 
 let container = null;
@@ -21,7 +22,14 @@ afterEach(() => {
     unmountComponentAtNode(container);
     container.remove();
     container = null;
+    cleanup
 });
+
+it("renders without crashing", ()=>{
+    const div = document.createElement("div")
+    render(<BrowserRouter><HotelSearch/></BrowserRouter>, div)
+    ReactDOM.unmountComponentAtNode(div)
+})
 
 it("renders hotel data", async () => {
     const fakeHotelN = {
@@ -44,8 +52,12 @@ it("renders hotel data", async () => {
             json: () => Promise.resolve(fakeHotelN)
         })
     );
+    console.log(fakeHotelN)
     const testRenderer = TestRenderer.create(<BrowserRouter><HotelSearch/></BrowserRouter>)
     const testInstance = testRenderer.root;
+
+    // const button = screen.getByText('More');
+    // expect(button).toBeInTheDocument();
 
     // expect(testInstance.findByProps({className: "HotelSearch"})).toContain(Navbar);
 

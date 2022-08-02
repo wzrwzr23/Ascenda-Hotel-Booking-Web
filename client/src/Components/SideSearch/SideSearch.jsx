@@ -1,3 +1,6 @@
+import Footer from '../../Components/Footer/Footer'
+import Header from '../../Components/Header/Header'
+import Navbar from '../../Components/Navbar/Navbar'
 import React from 'react'
 import { useContext, useState } from 'react'
 import destData from '../../destinations.json'
@@ -30,8 +33,8 @@ const SideSearch = () => {
   ]);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
+    guest: 1,
+    // children: 0,
     room: 1,
   });
   const handleOption = (name, operation) => {
@@ -53,7 +56,7 @@ const SideSearch = () => {
     console.log(uid)
     const url = `/hotelsearch/${uid}`;
     // const url = "/login"
-    // dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
+    dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     navigate(url, { state: { destination, dates, options } });
   };
 
@@ -84,11 +87,20 @@ const SideSearch = () => {
 
   function onSearch(){
     var uid;
+    var dict = {};
     if (userDest) {
       uid = getUID(userDest, destData)
     }
-    // dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
-    return uid
+    
+    var checkindate = JSON.stringify(dates[0].startDate).slice(1, 11)
+    var checkoutdate = JSON.stringify(dates[0].endDate).slice(1, 11)
+    var numguest = options.guest
+    var numroom = options.room
+    dict['Check-In Date'] = checkindate
+    dict['Check-Out Date'] = checkoutdate
+    dict['Number of Guests'] = numguest
+    dict['Number of Rooms'] = numroom
+    alert(JSON.stringify(dict))
   }
 
   function getUID(value, file) {
@@ -113,7 +125,7 @@ const SideSearch = () => {
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
@@ -141,37 +153,37 @@ const SideSearch = () => {
           </div>
           <div className="options">
             <div className="optionItem">
-              <span className="optionText">Adult</span>
+              <span className="optionText">Guests</span>
               <div className="optionCounter">
                 <button
-                  disabled={options.adult <= 1}
+                  disabled={options.guest <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption("adult", "d")}
+                  onClick={() => handleOption("guest", "d")}
                 >
                   -
                 </button>
                 <span className="optionCounterNumber">
-                  {options.adult}
+                  {options.guest}
                 </span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption("adult", "i")}
+                  onClick={() => handleOption("guest", "i")}
                 >
                   +
                 </button>
               </div>
             </div>
-            <div className="optionItem">
+            {/* <div className="optionItem">
               <span className="optionText">Children</span>
-              <div className="optionCounter">
-                <button
+              <div className="optionCounter"> */}
+                {/* <button
                   disabled={options.children <= 0}
                   className="optionCounterButton"
                   onClick={() => handleOption("children", "d")}
                 >
                   -
-                </button>
-                <span className="optionCounterNumber">
+                </button> */}
+                {/* <span className="optionCounterNumber">
                   {options.children}
                 </span>
                 <button
@@ -181,7 +193,7 @@ const SideSearch = () => {
                   +
                 </button>
               </div>
-            </div>
+            </div> */}
             <div className="optionItem">
               <span className="optionText">Room</span>
               <div className="optionCounter">
@@ -209,7 +221,7 @@ const SideSearch = () => {
           </Link> */}
           {/* <button onClick={handleSearch}>Search</button> */}
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      <a className='searchBtn' data-testid="submit" href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
         {/*</button>*/}
         </div>
         </div>

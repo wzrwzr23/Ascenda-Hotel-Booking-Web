@@ -1,65 +1,73 @@
 import './Payment.css'
+import React from 'react';
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
-import React from 'react';
-import ReactDOM  from 'react-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const Payment = () => {
-  return (
-    <>
-    <Navbar/>
-    <Header type="list"/>
-    <div className="booking">
-      <div className="bookingUserDetails">
-        <h1 className="detailsTitle">BOOKING</h1>
-        <h2 className="detailsSubTitle">User Details</h2>
-        <form className='user'>
-            <br/>
-            <br/>
-            <div className="userName">
-              <select name="salutation" className="salutation">
-                  <option value="select">Select an option</option>
-                  <option value="mr">Mr</option>
-                  <option value="mrs">Mrs</option>
-                  <option value="miss">Miss</option>
-              </select>
-              <div className="firstName">
-                First Name<span class="require">*</span>
-                <input className='inputBox' type="text" required/>
-              </div>
-              <div className="lastName">
-                Last Name<span class="require">*</span>
-                <input className='inputBox' type="text" required/>
-              </div>
-            </div>
-            <div className="phoneNumber">
-              Phone Number<span class="require">*</span>
-              <input className='inputBox' type="tel" required/>
-            </div>
-            <div className="emailAddress">
-              Email Address<span class="require">*</span>
-              <input className='inputBox' type="email" required/>
-            </div>
-            <div className="specials">
-              Special Requests:
-              <div className="textBox">
-                <textarea classname="Text1" cols="40" rows="5"></textarea>
-              </div>
-            </div>
-            <div className="billingAddress">
-              Billing Address<span class="require">*</span>
-              <div className="textBox">
-                <textarea classname="Text1" cols="40" rows="5"></textarea>
-              </div>
-            </div>
-            <input className='submitBtn' type="submit"/>
-        </form>
-      </div>
-    </div>
-    <Footer/>
-    </>
-  );
-}
+    return (
+        
+<>
+<Navbar/>
+<Header type="list"/>
+      <div className="row">
+        <div className="col-75">
+          <div className="container">
+            <form>
+              <div className="row">
+                
+                <div className="col-50">
+                  <h3>Payment</h3>
+                  <label htmlFor="fname">Accepted Cards</label>
+                  <div className="icon-container">
+                    <i className="fa fa-cc-visa" style={{color: 'navy'}} />
+                    <i className="fa fa-cc-amex" style={{color: 'blue'}} />
+                    <i className="fa fa-cc-mastercard" style={{color: 'red'}} />
+                    <i className="fa fa-cc-discover" style={{color: 'orange'}} />
+                  </div>
 
-export default Payment
+                  <label htmlFor="cname">Name on Card</label>
+                  <input type="text" id="cname" name="cardname" placeholder="John More Doe"  required/>
+                  <label htmlFor="ccnum">Credit card number</label>
+                  <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" required />
+                  <label htmlFor="expmonth">Exp Month</label>
+                  <input type="text" id="expmonth" name="expmonth" placeholder="September" required />
+                  <div className="row">
+                    <div className="col-50">
+                      <label htmlFor="expyear">Exp Year</label>
+                      <input type="text" id="expyear" name="expyear" placeholder={2018} required /> 
+                    </div>
+                    <div className="col-50">
+                      <label htmlFor="cvv">CVV</label>
+                      <input type="text" id="cvv" name="cvv" placeholder={352} required/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <input type="submit" defaultValue="Continue to checkout" className="btn" />
+            </form>
+          </div>
+        </div>
+        <div className="col-25">
+          <div className="container">
+            
+            <p>Total <span className="price" style={{color: 'black'}}><b>$30</b></span></p>
+          </div>
+        </div>
+      </div>
+
+<Footer/>
+</>
+
+
+
+
+
+    );
+    }
+
+
+export default Payment 
