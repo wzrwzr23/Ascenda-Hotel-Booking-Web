@@ -33,8 +33,8 @@ const DestinationSearch = () => {
   ]);
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
-    adult: 1,
-    children: 0,
+    guest: 1,
+    // children: 0,
     room: 1,
   });
   const handleOption = (name, operation) => {
@@ -87,10 +87,20 @@ const DestinationSearch = () => {
 
   function onSearch(){
     var uid;
+    var dict = {};
     if (userDest) {
       uid = getUID(userDest, destData)
     }
-    return uid
+    
+    var checkindate = JSON.stringify(dates[0].startDate).slice(1, 11)
+    var checkoutdate = JSON.stringify(dates[0].endDate).slice(1, 11)
+    var numguest = options.guest
+    var numroom = options.room
+    dict['Check-In Date'] = checkindate
+    dict['Check-Out Date'] = checkoutdate
+    dict['Number of Guests'] = numguest
+    dict['Number of Rooms'] = numroom
+    alert(JSON.stringify(dict))
   }
 
   function getUID(value, file) {
@@ -143,37 +153,37 @@ const DestinationSearch = () => {
           </div>
           <div className="options">
             <div className="optionItem">
-              <span className="optionText">Adult</span>
+              <span className="optionText">Guests</span>
               <div className="optionCounter">
                 <button
-                  disabled={options.adult <= 1}
+                  disabled={options.guest <= 1}
                   className="optionCounterButton"
-                  onClick={() => handleOption("adult", "d")}
+                  onClick={() => handleOption("guest", "d")}
                 >
                   -
                 </button>
                 <span className="optionCounterNumber">
-                  {options.adult}
+                  {options.guest}
                 </span>
                 <button
                   className="optionCounterButton"
-                  onClick={() => handleOption("adult", "i")}
+                  onClick={() => handleOption("guest", "i")}
                 >
                   +
                 </button>
               </div>
             </div>
-            <div className="optionItem">
+            {/* <div className="optionItem">
               <span className="optionText">Children</span>
-              <div className="optionCounter">
-                <button
+              <div className="optionCounter"> */}
+                {/* <button
                   disabled={options.children <= 0}
                   className="optionCounterButton"
                   onClick={() => handleOption("children", "d")}
                 >
                   -
-                </button>
-                <span className="optionCounterNumber">
+                </button> */}
+                {/* <span className="optionCounterNumber">
                   {options.children}
                 </span>
                 <button
@@ -183,7 +193,7 @@ const DestinationSearch = () => {
                   +
                 </button>
               </div>
-            </div>
+            </div> */}
             <div className="optionItem">
               <span className="optionText">Room</span>
               <div className="optionCounter">
