@@ -7,6 +7,10 @@ import renderer from "react-test-renderer"
 
 afterEach(cleanup);
 
+it("renders",()=>{
+    render(<SearchItem/>)
+})
+
 // it("renders without crashing", ()=>{
 //     const div = document.createElement("div")
 //     render(

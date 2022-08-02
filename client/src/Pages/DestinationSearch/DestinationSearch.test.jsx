@@ -8,7 +8,7 @@ import user from '@testing-library/user-event'
 
 it('renders correctly', () => {
     const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
-    expect(getByTestId('submit')).toBeTruthy;
+    // expect(getByTestId('submit')).toBeTruthy;
     expect(queryByPlaceholderText('Search City')).toBeTruthy;
 })
 
