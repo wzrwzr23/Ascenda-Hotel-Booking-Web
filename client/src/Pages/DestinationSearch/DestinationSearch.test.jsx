@@ -1,16 +1,17 @@
 import React from "react";
 import DestinationSearch from "./DestinationSearch";
 import { render, fireEvent, queryByTestId} from "@testing-library/react"
+import { BrowserRouter } from "react-router-dom";
 
 it('renders correctly', () => {
-    const {getByTestId, queryByPlaceholderText} = render(<DestinationSearch/>);
+    const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
     expect(getByTestId('submit')).toBeTruthy;
     expect(queryByPlaceholderText('Search City')).toBeTruthy;
 })
 
 describe('Destination search input: Typing', () => {
     test('search box updates on change', () => {
-        const {queryByPlaceholderText} = render(<DestinationSearch />);
+        const {queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
         const searchInput = queryByPlaceholderText('Search City');
         fireEvent.change(searchInput, {target: {value: "test"}});
         // userEvent.type(searchInput, 'test')
@@ -21,7 +22,7 @@ describe('Destination search input: Typing', () => {
 describe('Search button', () => {
     test('empty destination does not trigger search(to give uid)', () => {
         const getUID = jest.fn()
-        const {getByTestId, queryByPlaceholderText} = render(<DestinationSearch getUID={getUID}/>)
+        const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch getUID={getUID}/></BrowserRouter>)
         fireEvent.click(getByTestId('submit'))
         expect(getUID).not.toHaveBeenCalled()
     })

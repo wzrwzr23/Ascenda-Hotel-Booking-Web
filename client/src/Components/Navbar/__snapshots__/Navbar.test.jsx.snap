@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="navbar"
+>
+  <div
+    className="navContainer"
+  >
+    <div>
+      <h2>
+        Something went wrong.
+      </h2>
+      <details
+        style={
+          Object {
+            "whiteSpace": "pre-wrap",
+          }
+        }
+      >
+        Error: useHref() may be used only in the context of a &lt;Router&gt; component.
+        <br />
+        
+    at LinkWithRef (/Users/namitha.justine/Desktop/50.003/ascenda_v2/packages/react-router-dom/index.tsx:264:7)
+    at ErrorBoundary (/Users/namitha.justine/Desktop/50.003/ascenda_v2/client/src/Components/Navbar/Navbar.jsx:7:5)
+    at div
+    at div
+    at Navbar
+      </details>
+    </div>
+    <div
+      className="navItems"
+    >
+      <button
+        className="navButtons"
+        data-testid="navRegister"
+      >
+        Register
+      </button>
+      <button
+        className="navButtons"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+`;
