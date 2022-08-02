@@ -95,12 +95,17 @@ const DestinationSearch = () => {
     var checkindate = JSON.stringify(dates[0].startDate).slice(1, 11)
     var checkoutdate = JSON.stringify(dates[0].endDate).slice(1, 11)
     var numguest = options.guest
+    setNumAdult(numguest)
     var numroom = options.room
+    setNumRoom(numroom)
     dict['Check-In Date'] = checkindate
     dict['Check-Out Date'] = checkoutdate
     dict['Number of Guests'] = numguest
     dict['Number of Rooms'] = numroom
     alert(JSON.stringify(dict))
+
+    dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
+    navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
   }
 
   function getUID(value, file) {
@@ -125,7 +130,7 @@ const DestinationSearch = () => {
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
@@ -175,27 +180,6 @@ const DestinationSearch = () => {
                 </button>
               </div>
             </div>
-            {/* <div className="optionItem">
-              <span className="optionText">Children</span>
-              <div className="optionCounter"> */}
-                {/* <button
-                  disabled={options.children <= 0}
-                  className="optionCounterButton"
-                  onClick={() => handleOption("children", "d")}
-                >
-                  -
-                </button> */}
-                {/* <span className="optionCounterNumber">
-                  {options.children}
-                </span>
-                <button
-                  className="optionCounterButton"
-                  onClick={() => handleOption("children", "i")}
-                >
-                  +
-                </button>
-              </div>
-            </div> */}
             <div className="optionItem">
               <span className="optionText">Room</span>
               <div className="optionCounter">
@@ -223,7 +207,7 @@ const DestinationSearch = () => {
           {/* <Link to={`/hotelsearch/${destId}`}>
               <button className="siCheckButton" onClick={handleSearch}>See availability</button>
           </Link> */}
-          {/* <button onClick={handleSearch}>Search</button> */}
+           <button onClick={onSearch}>Search</button>
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
       <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>
         {/*</button>*/}

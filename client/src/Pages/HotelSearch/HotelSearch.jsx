@@ -8,6 +8,7 @@ import React from "react";
 import axios from "axios";
 import DestinationSearch from '../DestinationSearch/DestinationSearch';
 import LoadingSpinner from "./../../Components/Loading/Loading";
+import {SearchContext} from "../../Context/SearchContext";
 
 class HotelSearch extends React.Component {
   state = {
@@ -20,6 +21,9 @@ class HotelSearch extends React.Component {
     dest_id: "",
     loading: false
   }
+
+  static contextType = SearchContext
+
   timeout = (delay: number) => {
     return new Promise( res => setTimeout(res, delay) );
   }
@@ -42,12 +46,54 @@ class HotelSearch extends React.Component {
     }))
   }
 
+  getStartDate () {
+    const dates = this.context.dates
+    let start;
+    try{
+      start = JSON.stringify(dates[0].startDate).slice(1, 11)
+    } catch(e){
+      start = "2022-09-23"
+    }
+    return start
+  }
+
+  getEndDate () {
+    const dates = this.context.dates
+    let end;
+    try{
+      end = JSON.stringify(dates[0].endDate).slice(1, 11)
+    } catch(e){
+      end = "2022-09-24"
+    }
+    return end
+  }
+
+  getGuest () {
+    const options = this.context.options
+    let guest;
+    try{
+      guest = options.guest
+      if (guest === undefined){
+        guest = "1"
+      }
+    }catch (e) {
+      guest = "1"
+    }
+    return guest
+  }
+
   initData = async (dest_id) => {
+    console.log(this.context)
+    const start = this.getStartDate()
+    console.log(start)
+    const end = this.getEndDate()
+    console.log(end)
+    const guest = this.getGuest()
+    console.log(guest)
     this.state.loading = true;
-    console.log(dest_id)
-    let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-25&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
+    let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=${start}&checkout=${end}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`);
     await this.timeout(3000)
-    res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-25&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`)
+    res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=${start}&checkout=${end}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`);
     this.setState({
       hotels:res.data.hotels,
       totalPage: Math.ceil(res.data.hotels.length / 10),
