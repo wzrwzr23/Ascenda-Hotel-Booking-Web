@@ -4,8 +4,9 @@ import {act} from "react-dom/test-utils";
 import RoomSearch from "./RoomSearch";
 import TestRenderer from 'react-test-renderer';
 import Navbar from "../../Components/Navbar/Navbar";
-import { render, fireEvent, screen } from "@testing-library/react";
-
+import { render, fireEvent, screen, cleanup } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
+import ReactDOM from 'react-dom'
 
 let container = null;
 beforeEach(() => {
@@ -19,7 +20,14 @@ afterEach(() => {
     unmountComponentAtNode(container);
     container.remove();
     container = null;
+    cleanup
 });
+
+it("renders without crashing", ()=>{
+    const div = document.createElement("div")
+    render(<BrowserRouter><RoomSearch/></BrowserRouter>, div)
+    ReactDOM.unmountComponentAtNode(div)
+})
 
 // it("renders hotel data", async () => {
 //     const fakeHotel = {
