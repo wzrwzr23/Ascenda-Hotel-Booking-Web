@@ -10,8 +10,14 @@ span {
 .dest-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    padding-bottom: 20px;
+    /* margin-top: 20px;
+    padding-bottom: 20px; */
+    position: absolute;
+    height: 380px;
+    left: 150px;
+    top: 480px;
+    overflow: auto;
+   
 }
 
 .destWrapper{
@@ -39,7 +45,7 @@ span {
 
 .searchItems{
     flex: 1;
-    background-color: #febb02;
+    background-color: rgba(254, 187, 2, 0.9);
     padding: 10px;
     border-radius: 10px;
     position: sticky;
@@ -80,7 +86,7 @@ button:hover {
 .options {
     flex: 1;
     flex-direction: column;
-    background-color: #febb02;
+    background-color: rgba(254, 187, 2, 0);
     position: sticky;
     width: fit-content;
     box-shadow: none;
@@ -105,7 +111,7 @@ button:hover {
     width: 20px;
     height: 20px;
     border: 1px solid #0071c2;
-    color: #febb02;
+    color: rgba(254, 187, 2, 0.9);
     cursor: pointer;
     background-color: #0071c2;
 }
