@@ -44,12 +44,10 @@ import '../../Components/RoomItem/RoomItem.css'
 class RoomList extends React.Component {
     state = {
         list: [],
-        totalList: [],
-        current_page: 1,  //当前页码
+        current_page: 1,  //current number of page
         current_index: 10, //current index of hotel_list
-        totalPage: 0,  //总页数
+        totalPage: 0,  //total number of page
         rooms:[],
-        prices: [],
         keys: [],
     }
     timeout = (delay: number) => {
@@ -92,7 +90,7 @@ class RoomList extends React.Component {
             <div className="roomItems">
                 <div className="riDes">
                 {
-                    this.state.rooms.map((item, index) => {
+                    this.state.rooms.map((item) => {
                         return (
                             <div className="roomItem">
                                 <div className="riDesc">

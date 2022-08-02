@@ -1,30 +1,20 @@
 import './HotelSearch.css'
-import { Button } from 'antd'
+import {Button} from 'antd'
 import Header from '../../Components/Header/Header'
 import Navbar from '../../Components/Navbar/Navbar'
 import Footer from '../../Components/Footer/Footer'
-import {useLocation, useParams} from "react-router-dom";
-import destData from "../../destinations.json"
-import { format } from "date-fns";
-import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
 import React from "react";
 import axios from "axios";
 import DestinationSearch from '../DestinationSearch/DestinationSearch';
-import { Link } from 'react-router-dom';
 import LoadingSpinner from "./../../Components/Loading/Loading";
-
-/*function withParams(Component) {
-  return props => <Component {...props} params={useParams()} />;
-}*/
 
 class HotelSearch extends React.Component {
   state = {
     list: [],
-    totalList: [],
-    current_page: 1,  //当前页码
+    current_page: 1,  //current number of page
     current_index: 10, //current index of hotel_list
-    totalPage: 0,  //总页数
+    totalPage: 0,  //total number of page
     hotels:[],
     prices: [],
     dest_id: "",
@@ -38,8 +28,6 @@ class HotelSearch extends React.Component {
     this.state.loading = true;
     return await Promise.all(this.state.hotels.slice(0, this.state.current_index).map(async (item) => {
       let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`)
-      this.setState(() => {
-        this.state.prices.push(item.converted_price)})
       this.state.loading = false;
       return res.data
     }))
@@ -49,8 +37,6 @@ class HotelSearch extends React.Component {
     this.state.loading = true;
     return await Promise.all(this.state.hotels.slice(this.state.current_index, this.state.current_index+10).map(async (item) => {
       let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${item.id}`)
-      this.setState(() => {
-        this.state.prices.push(item.converted_price)})
       this.state.loading = false;
       return res.data
     }))
@@ -59,7 +45,6 @@ class HotelSearch extends React.Component {
   initData = async (dest_id) => {
     this.state.loading = true;
     console.log(dest_id)
-    //const res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels?destination_id=${dest_id}`)
     let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-25&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`);
     await this.timeout(3000)
     res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=2022-08-20&checkout=2022-08-25&lang=en_US&currency=SGD&country_code=SG&guests=2&partner_id=1`)
@@ -68,9 +53,11 @@ class HotelSearch extends React.Component {
       totalPage: Math.ceil(res.data.hotels.length / 10),
     })
     let hotel_list = await this.fetch_data()
+    let price_list = this.getPriceInit()
 
     await this.setState({
       list: hotel_list,
+      prices: price_list
     })
     this.state.loading = false;
   }
@@ -79,24 +66,37 @@ class HotelSearch extends React.Component {
     this.state.loading = true;
     await this.timeout(6500)
     let hotel_list_more = await this.fetch_data_more()
+    let price_list_more = this.getPriceThen()
     await this.setState({
       current_index: this.state.current_index+10,
       list: hotel_list_more,
+      prices: price_list_more,
       current_page: this.state.current_page + 1,
     })
     console.log("---------------------------------------------")
     this.state.loading = false;
-    // this.pageNext(this.state.goValue, this.state.totalList)
   }
+
+  getPriceInit () {
+    return this.state.hotels.slice(0, this.state.current_index).map((item) => (
+        item.converted_price
+    ))
+  }
+  getPriceThen () {
+    return this.state.hotels.slice(this.state.current_index, this.state.current_index + 10).map((item) => (
+        item.converted_price
+    ))
+  }
+
   componentDidMount () {
-    this.state.loading = true;
+    this.setState({
+      loading: true
+    })
     const url = window.location.href.toString()
     const dest_id = url.substring(url.lastIndexOf("/") + 1, url.length);
     this.setState({
       dest_id: dest_id
     })
-    //console.log(dest_id)
-        //const destination_id = this.getQueryVariable('destination_id')
     this.initData(dest_id);
   }
 
@@ -116,7 +116,7 @@ class HotelSearch extends React.Component {
             ) : (
               <>
                 {this.state.list.map((item, index) => (
-                  <SearchItem item={item} price={this.state.prices[(index*2)+this.state.current_index]} id={this.state.dest_id} />
+                  <SearchItem item={item} price={this.state.prices[index]} id={this.state.dest_id} />
                 ))}
               </>
           )}
