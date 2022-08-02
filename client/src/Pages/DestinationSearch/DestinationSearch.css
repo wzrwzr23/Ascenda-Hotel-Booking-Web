@@ -39,6 +39,10 @@ span {
     padding:6px;
 }
 
+.searchcity{
+    width: max-content;
+}
+
 .searchItems{
     flex: 1;
     background-color: rgba(254, 187, 2, 0.9);

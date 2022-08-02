@@ -130,7 +130,7 @@ const DestinationSearch = () => {
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
