@@ -75,7 +75,7 @@ const Header = ({type}) => {
               <>
             <h1 className="headerTitle">Ascenda Hotel Booking</h1>
             <p className="headerDesc">The place you come to explore all options</p>
-            <div className="headerSearch"> 
+            {/* <div className="headerSearch"> 
                 <div className="headerSearchItem">
                     <FontAwesomeIcon icon={faBed} /> 
                     <input type="text" placeholder='Where are you going?' className='headerSearchInput' onChange={(e) => setDestination(e.target.value)}/>
@@ -177,7 +177,7 @@ const Header = ({type}) => {
                 <div className="headerSearchItem">
                     <button className="headerBtn" onClick={handleSearch}>Search</button>
                 </div>
-            </div>
+            </div> */}
             </>
             }
         </div>
