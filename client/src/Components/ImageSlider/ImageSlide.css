@@ -1,0 +1,14 @@
+#imagewrapper{
+    min-width: 800px;
+    overflow: hidden;
+    resize: none;
+}
+
+.wdt {
+    width: 100% !important
+}
+.img {
+    width: 100%;
+    overflow: hidden;
+    height: 500px !important
+}

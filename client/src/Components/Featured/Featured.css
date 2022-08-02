@@ -5,6 +5,11 @@
     justify-content: space-between;
     gap: 20px;
     z-index: 1;
+    position: absolute;
+    height: 380px;
+    left: 150px;
+    top: 480px;
+    overflow: hidden;
   }
   
   .featuredItem{
