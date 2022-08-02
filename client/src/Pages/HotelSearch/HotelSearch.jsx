@@ -10,7 +10,7 @@ import { DateRange } from "react-date-range";
 import SearchItem from '../../Components/SearchItem/SearchItem';
 import React from "react";
 import axios from "axios";
-import DestinationSearch from '../DestinationSearch/DestinationSearch';
+import SideSearch from './../../Components/SideSearch/SideSearch'
 import { Link } from 'react-router-dom';
 import LoadingSpinner from "./../../Components/Loading/Loading";
 
@@ -98,17 +98,18 @@ class HotelSearch extends React.Component {
     //console.log(dest_id)
         //const destination_id = this.getQueryVariable('destination_id')
     this.initData(dest_id);
+    this.state.loading = false;
   }
 
   render() {
     return (
-      <>
+      <div className='HotelSearch'>
       <Navbar/>
       <Header type="list"/>
         <div className='listContainer'>
         <div className="listWrapper">
         <div className="listSearch">
-          <DestinationSearch/>
+          <SideSearch/>
           </div>
           <div className="listResult"> 
           {this.state.loading ? (
@@ -127,7 +128,7 @@ class HotelSearch extends React.Component {
         </div>
         </div>
         <Footer/>
-        </>
+        </div>
     )
   }
 }

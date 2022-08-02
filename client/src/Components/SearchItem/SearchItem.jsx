@@ -5,13 +5,11 @@ import React from 'react';
 const SearchItem = ({item, price, id}) => {
   return (
     <div className="searchItem">
-        <img src={`${item.image_details.prefix}${item.default_image_index}${item.image_details.suffix}`} className="siImg"  alt={"Hotel Pic"}/>
+        <img className="siImg"  src={`${item.image_details.prefix}${item.default_image_index}${item.image_details.suffix}`}  alt={"Hotel Pic"}/>
         <div className="siDesc">
             <h1 className="siTitle">{item.name}</h1>
             <div className="siAddress">{item.address}</div>
             <div className="siCity">{item.original_metadata.city}, {item.original_metadata.country}</div>
-            {/* <span className="siCity">{item.original_metadata.city}</span>
-            <span className="siCountry">{item.original_metadata.country}</span> */}
             <div className="siTaxiOp">Airport taxi with 10% off</div>
             <div className="siSubtitle">
             {item.title}
