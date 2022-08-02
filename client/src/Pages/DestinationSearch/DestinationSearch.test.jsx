@@ -4,6 +4,8 @@ import { render, fireEvent, queryByTestId, getByTestId, getByPlaceholderText} fr
 import { BrowserRouter } from "react-router-dom";
 import user from '@testing-library/user-event'
 
+
+
 it('renders correctly', () => {
     const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
     expect(getByTestId('submit')).toBeTruthy;
@@ -56,25 +58,14 @@ describe('Guest count (-)', () => {
     })
 })
 
-describe('Search button', () => {
-    test('empty destination does not trigger search(to give uid)', () => {
-        const onSearch = jest.fn()
-        const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch onSearch={onSearch}/></BrowserRouter>)
-        fireEvent.click(getByTestId('submit'))
-        expect(onSearch).not.toHaveBeenCalled()
-    })
-})
-
-// DELETE IF DK //
 // describe('Search button', () => {
-//     test('onSearch is called when all fields are filled', () => {
-//         const{queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
-//         const userDest = queryByPlaceholderText('Search City')
-//         user.type(userDest, 'Indochina War Memorial, Frejus, France')
-//         user.click(getByTestId('guest-count'))
+//     test('empty destination does not trigger search(to give uid)', () => {
+//         jest.spyOn(Alert, 'alert')
+//         const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+//         fireEvent.click(getByTestId('submit'))
+//         expect(Alert.alert).toHaveBeenCalled()
 //     })
 // })
-
 
 // describe('Destination Result List: Clicking', () => {
 //     test('results on the dropdown list can be clicked', () => {

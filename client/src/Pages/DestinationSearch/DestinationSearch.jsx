@@ -209,7 +209,7 @@ const DestinationSearch = () => {
           </Link> */}
            <button onClick={onSearch}>Search</button>
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>
+        <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>
         {/*</button>*/}
         </div>
         </div>
