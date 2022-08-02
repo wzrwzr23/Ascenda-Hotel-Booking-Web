@@ -160,18 +160,20 @@ const DestinationSearch = () => {
             <div className="optionItem">
               <span className="optionText">Guests</span>
               <div className="optionCounter">
-                <button
+                <button id='guest-count'
                   disabled={options.guest <= 1}
                   className="optionCounterButton"
+                  data-testid='guestminus'
                   onClick={() => handleOption("guest", "d")}
                 >
                   -
                 </button>
-                <span className="optionCounterNumber">
+                <span className="optionCounterNumber" data-testid='guestno'>
                   {options.guest}
                 </span>
                 <button
                   className="optionCounterButton"
+                  data-testid='guestplus'
                   onClick={() => handleOption("guest", "i")}
                 >
                   +
@@ -184,15 +186,17 @@ const DestinationSearch = () => {
                 <button
                   disabled={options.room <= 1}
                   className="optionCounterButton"
+                  data-testid='roomminus'
                   onClick={() => handleOption("room", "d")}
                 >
                   -
                 </button>
-                <span className="optionCounterNumber">
+                <span className="optionCounterNumber" data-testid='roomno'>
                   {options.room}
                 </span>
                 <button
                   className="optionCounterButton"
+                  data-testid='roomplus'
                   onClick={() => handleOption("room", "i")}
                 >
                   +
@@ -205,7 +209,7 @@ const DestinationSearch = () => {
           </Link> */}
            <button onClick={onSearch}>Search</button>
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-     {/* <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>*/}
+      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>
         {/*</button>*/}
         </div>
         </div>
