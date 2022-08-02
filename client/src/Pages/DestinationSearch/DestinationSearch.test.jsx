@@ -1,7 +1,8 @@
 import React from "react";
 import DestinationSearch from "./DestinationSearch";
-import { render, fireEvent, queryByTestId} from "@testing-library/react"
+import { render, fireEvent, queryByTestId, getByTestId, getByPlaceholderText} from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom";
+import user from '@testing-library/user-event'
 
 it('renders correctly', () => {
     const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
@@ -19,21 +20,68 @@ describe('Destination search input: Typing', () => {
     });
 })
 
-describe('Search button', () => {
-    test('empty destination does not trigger search(to give uid)', () => {
-        const getUID = jest.fn()
-        const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch getUID={getUID}/></BrowserRouter>)
-        fireEvent.click(getByTestId('submit'))
-        expect(getUID).not.toHaveBeenCalled()
+describe('Guest count (+)', () => {
+    test('guest count updates on change', () => {
+        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const guestcount = getByTestId('guestno')
+        fireEvent.click(getByTestId('guestplus'))
+        expect(guestcount.value).not.toBe(1)
     })
 })
 
+describe('Guest count (-)', () => {
+    test('guest count does not updates on change', () => {
+        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const guestcount = getByTestId('guestno')
+        fireEvent.click(getByTestId('guestminus'))
+        expect(guestcount.value).toBe(undefined)
+    })
+})
+
+describe('Room count (+)', () => {
+    test('guest count updates on change', () => {
+        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const guestcount = getByTestId('roomno')
+        fireEvent.click(getByTestId('roomplus'))
+        expect(guestcount.value).not.toBe(1)
+    })
+})
+
+describe('Guest count (-)', () => {
+    test('guest count does not updates on change', () => {
+        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const guestcount = getByTestId('roomno')
+        fireEvent.click(getByTestId('roomminus'))
+        expect(guestcount.value).toBe(undefined)
+    })
+})
+
+describe('Search button', () => {
+    test('empty destination does not trigger search(to give uid)', () => {
+        const onSearch = jest.fn()
+        const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch onSearch={onSearch}/></BrowserRouter>)
+        fireEvent.click(getByTestId('submit'))
+        expect(onSearch).not.toHaveBeenCalled()
+    })
+})
+
+// DELETE IF DK //
+// describe('Search button', () => {
+//     test('onSearch is called when all fields are filled', () => {
+//         const{queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+//         const userDest = queryByPlaceholderText('Search City')
+//         user.type(userDest, 'Indochina War Memorial, Frejus, France')
+//         user.click(getByTestId('guest-count'))
+//     })
+// })
+
+
 // describe('Destination Result List: Clicking', () => {
 //     test('results on the dropdown list can be clicked', () => {
-//         const onSearch = jest.fn();
-//         const {getByTestId} = render(<DestinationSearch onSearch={onSearch}/>);
+//         const searchDest = jest.fn()
+//         const {getByTestId} = render(<BrowserRouter><DestinationSearch searchDest={searchDest}/></BrowserRouter>);
 //         fireEvent.click(getByTestId('filter-dest'));
-//         expect(onSearch).toHaveBeenCalled;
+//         expect(searchDest).toHaveBeenCalled()
 
 //     })
 // })

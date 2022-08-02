@@ -7,7 +7,7 @@ import './ImageSlide.css';
 export class ImageSlide extends Component {
     render() {
         var settings = {
-            dots: false,
+            dots: true,
             infinite: true,
             autoplay: true,
             speed: 400,
@@ -29,13 +29,13 @@ export class ImageSlide extends Component {
                     <section>
                         <Slider {...settings} >
                             <div className="wdt">
-                                <img className="img" src={'Images/hotelimage1.jpeg'}/>
+                                <img className="img" src={'images/hotelimage1.jpg'} alt='image1'/>
                             </div>
                             <div className="wdt">
-                                <img className="img" src={'Images/hotelimage2.jpeg'}/>
+                                <img className="img" src={'images/hotelimage2.jpg'} alt='image2'/>
                             </div>
                             <div className="wdt">
-                                <img className="img" src={'Images/hotelimage3.jpeg'}/>
+                                <img className="img" src={'images/hotelimage3.jpeg'} alt='image3'/>
                             </div>
                         </Slider>
                     </section>
