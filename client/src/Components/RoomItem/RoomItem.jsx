@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 import '../../Components/RoomItem/RoomItem.css'
 import {SearchContext} from "../../Context/SearchContext";
 
@@ -10,6 +11,7 @@ class RoomList extends React.Component {
         current_index: 10, //current index of hotel_list
         totalPage: 0,  //total number of page
         rooms:[],
+        redirect: false,
     }
 
     static contextType = SearchContext
@@ -79,11 +81,13 @@ class RoomList extends React.Component {
         })
         console.log("---------------------------------------------")
     }
-
-    roomKeyPass = async (key) => {
-        let res = axios.put("localhost:8890/roomkey/",{key:key})
-        console.log(res)
-        return res
+    book = async (key) =>{
+        try{
+            const res = axios.post('/Kkeys', {
+                "key": key
+            });
+            return res.data;
+        }catch(err){}
     }
 
     componentDidMount () {
@@ -109,15 +113,19 @@ class RoomList extends React.Component {
                                 </div>
                                 <div className="riPrice">S${item.converted_price}</div>
                                 {/* <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button> */}
-                                {/*<form action="/booking">*/}
-                                    <button className="riCheckButton" onClick={() => this.roomKeyPass(item.key)}>Book Now!</button>
-                                {/*</form>*/}
+                                <form action="/booking">
+                                    <button className="riCheckButton" onClick={() => this.book(item.key)}>Book Now!</button>
+                                </form>
                             </div>
                         )
                     })
                 }
                 </div>
+{/*                {
+                    this.state.redirect && <Navigate to='/some_route' replace={true} {this.state.}/>
+                }*/}
             </div>
+
         );
     }
 }

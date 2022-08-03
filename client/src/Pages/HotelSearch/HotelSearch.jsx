@@ -92,9 +92,14 @@ class HotelSearch extends React.Component {
     const guest = this.getGuest()
     console.log(guest)
     this.state.loading = true;
-    let res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=${start}&checkout=${end}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`);
+    let url = `https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=${start}&checkout=${end}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`;
+    /*let res = await axios.get(url).then(async () => {
+      await this.timeout(3000)
+      await axios.get(url)
+    });*/
+    await axios.get(url);
     await this.timeout(3000)
-    res = await axios.get(`https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=${dest_id}&checkin=${start}&checkout=${end}&lang=en_US&currency=SGD&country_code=SG&guests=${guest}&partner_id=1`);
+    const res = await axios.get(url);
     this.setState({
       hotels:res.data.hotels,
       totalPage: Math.ceil(res.data.hotels.length / 10),

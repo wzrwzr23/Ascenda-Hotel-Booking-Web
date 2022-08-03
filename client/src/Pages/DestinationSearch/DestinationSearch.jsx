@@ -102,7 +102,7 @@ const DestinationSearch = () => {
     dict['Check-Out Date'] = checkoutdate
     dict['Number of Guests'] = numguest
     dict['Number of Rooms'] = numroom
-    alert(JSON.stringify(dict))
+    //alert(JSON.stringify(dict))
 
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
@@ -130,7 +130,7 @@ const DestinationSearch = () => {
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='input' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
@@ -160,7 +160,7 @@ const DestinationSearch = () => {
             <div className="optionItem">
               <span className="optionText">Guests</span>
               <div className="optionCounter">
-                <button id='guest-count'
+                <button id='guest-count-d'
                   disabled={options.guest <= 1}
                   className="optionCounterButton"
                   data-testid='guestminus'
@@ -171,7 +171,7 @@ const DestinationSearch = () => {
                 <span className="optionCounterNumber" data-testid='guestno'>
                   {options.guest}
                 </span>
-                <button
+                <button id='guest-count-i'
                   className="optionCounterButton"
                   data-testid='guestplus'
                   onClick={() => handleOption("guest", "i")}
@@ -207,9 +207,9 @@ const DestinationSearch = () => {
           {/* <Link to={`/hotelsearch/${destId}`}>
               <button className="siCheckButton" onClick={handleSearch}>See availability</button>
           </Link> */}
-           <button onClick={onSearch}>Search</button>
+           <button id="search_button" onClick={onSearch}>Search</button>
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>
+      {/*<a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>*/}
         {/*</button>*/}
         </div>
         </div>
