@@ -29,13 +29,13 @@ export class ImageSlide extends Component {
                     <section>
                         <Slider {...settings} >
                             <div className="wdt">
-                                <img className="img" src={'images/hotelimage1.jpg'} alt='image1'/>
+                                <img className="img" data-testid='slide1' src={'images/hotelimage1.jpg'} alt='image1'/>
                             </div>
                             <div className="wdt">
-                                <img className="img" src={'images/hotelimage2.jpg'} alt='image2'/>
+                                <img className="img" data-testid='slide2' src={'images/hotelimage2.jpg'} alt='image2'/>
                             </div>
                             <div className="wdt">
-                                <img className="img" src={'images/hotelimage3.jpeg'} alt='image3'/>
+                                <img className="img" data-testid='slide3' src={'images/hotelimage3.jpeg'} alt='image3'/>
                             </div>
                         </Slider>
                     </section>

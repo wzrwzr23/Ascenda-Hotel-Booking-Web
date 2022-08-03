@@ -8,8 +8,13 @@ import user from '@testing-library/user-event'
 
 it('renders correctly', () => {
     const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
-    // expect(getByTestId('submit')).toBeTruthy;
-    expect(queryByPlaceholderText('Search City')).toBeTruthy;
+    expect(getByTestId('submit')).toBeTruthy();
+    expect(getByTestId('guestminus')).toBeTruthy();
+    expect(getByTestId('guestplus')).toBeTruthy();
+    expect(getByTestId('roomminus')).toBeTruthy();
+    expect(getByTestId('roomplus')).toBeTruthy();
+    expect(getByTestId('userdate')).toBeTruthy();
+    expect(queryByPlaceholderText('Search City')).toBeTruthy();
 })
 
 describe('Destination search input: Typing', () => {

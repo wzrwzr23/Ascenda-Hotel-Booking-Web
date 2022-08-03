@@ -140,6 +140,7 @@ const DestinationSearch = () => {
           <div className='data-space'>
             <span
               onClick={() => setOpenDate(!openDate)}
+              data-testid='userdate'
               className="headerSearchText"
             >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                 dates[0].endDate,
@@ -207,7 +208,7 @@ const DestinationSearch = () => {
           {/* <Link to={`/hotelsearch/${destId}`}>
               <button className="siCheckButton" onClick={handleSearch}>See availability</button>
           </Link> */}
-           <button id="search_button" onClick={onSearch}>Search</button>
+           <button id="search_button" onClick={onSearch} data-testid='submit'>Search</button>
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
       {/*<a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>*/}
         {/*</button>*/}
