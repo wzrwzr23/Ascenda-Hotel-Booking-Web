@@ -60,8 +60,8 @@ input {
     height: 30px;
     padding-left: 10px;
 }
-.usersearch input{
-    width: 90%;
+.usersearch {
+    width: 87%;
 }
 
 button {
