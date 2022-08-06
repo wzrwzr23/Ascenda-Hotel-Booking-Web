@@ -21,10 +21,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Homepage/>}/>
-        <Route path="/destinationsearch" element={<Feature1/>}/>
+       {/* <Route path="/destinationsearch" element={<Feature1/>}/>*/}
         <Route path="/hotelsearch/:id" element={<Feature2/>}/>
         <Route path="/hotelsearch/:id/roomsearch/:id" element={<Feature3/>}/>
-        <Route path="/booking" element={<Feature4/>}/>
+        <Route path="/hotelsearch/:id/roomsearch/:id/booking" element={<Feature4/>}/>
         <Route path="/payment" element={<Payment/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>

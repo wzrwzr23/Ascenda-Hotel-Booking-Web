@@ -106,6 +106,7 @@ const DestinationSearch = () => {
 
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
+    /*navigate("/booking?")*/
   }
 
   function getUID(value, file) {

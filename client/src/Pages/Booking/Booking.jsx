@@ -1,13 +1,13 @@
 import './Booking.css'
-import React, {useState, useContext} from "react";
+import React, {useContext, useState} from "react";
 import axios from 'axios'
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
 import key from '../../secretKey'
 import useFetch from './../../hooks/useFetch'
-import { SearchContext } from '../../Context/SearchContext';
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
+import {SearchContext} from '../../Context/SearchContext';
+import {useNavigate} from "react-router-dom";
 
 var CryptoJS = require("crypto-js")
 
@@ -26,8 +26,8 @@ const Booking = () => {
     const [billingAdd, setBillingAdd] = useState('')
     const [msg, setMsg] = useState('')
     const {dates,options} = useContext(SearchContext);
-    console.log('huh',dates)
-    console.log(options)
+    console.log('dates',dates)
+    console.log('options', options)
     const navigate = useNavigate();
 
     function maskData(cardNo) {
@@ -41,13 +41,11 @@ const Booking = () => {
                 maskedPart += 'X'
             }
         }
-        var maskedData = firstPart + maskedPart + lastPart
-        return maskedData
+        return firstPart + maskedPart + lastPart
     }
 
     function encryption(data) {
-        var ciphertext = CryptoJS.AES.encrypt(data, key).toString()
-        return ciphertext
+        return CryptoJS.AES.encrypt(data, key).toString()
     }
 
     async function delete_key (id){
@@ -117,28 +115,28 @@ const Booking = () => {
                                 <option value="miss">Miss</option>
                             </select>
                             <div className="firstName">
-                                First Name<span class="require">*</span>
+                                First Name<span className="require">*</span>
                                 <input className='inputBox' type="text" value={userFirstName}
                                        onChange={(e) => setUserFirstName(e.target.value)} required/>
                             </div>
                             <div className="lastName">
-                                Last Name<span class="require">*</span>
+                                Last Name<span className="require">*</span>
                                 <input className='inputBox' type="text" value={userLastName}
                                        onChange={(e) => setUserLastName(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="phoneNumber">
-                            Phone Number<span class="require">*</span>
+                            Phone Number<span className="require">*</span>
                             <input className='inputBox' type="tel" value={phoneNum}
                                    onChange={(e) => setPhoneNum(e.target.value)} required/>
                         </div>
                         <div className="emailAddress">
-                            Email Address<span class="require">*</span>
+                            Email Address<span className="require">*</span>
                             <input className='inputBox' type="email" value={emailAdd}
                                    onChange={(e) => setEmailAdd(e.target.value)} required/>
                         </div>
                         <div className="cardNumber">
-                            Card Number<span class="require">*</span>
+                            Card Number<span className="require">*</span>
                             <input
                                 className='inputBox'
                                 name='number'
@@ -155,7 +153,7 @@ const Booking = () => {
                             />
                         </div>
                         <div className="cardExpiry">
-                            Card Expiry<span class="require">*</span>
+                            Card Expiry<span className="require">*</span>
                             <input
                                 className='inputBox'
                                 name='expiry'
@@ -172,7 +170,7 @@ const Booking = () => {
                             />
                         </div>
                         <div className="cardCVC">
-                            CVV/CVC<span class="require">*</span>
+                            CVV/CVC<span className="require">*</span>
                             <input
                                 className='inputBox'
                                 name='cvc'
@@ -192,19 +190,19 @@ const Booking = () => {
                         <div className="specials">
                             Special Requests:
                             <div className="textBox">
-                                <textarea classname="Text1" cols="40" rows="5" value={msg}
+                                <textarea className="Text1" cols="40" rows="5" value={msg}
                                             onChange={(e) => setMsg(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className="billingAddress">
-                            Billing Address<span class="require">*</span>
+                            Billing Address<span className="require">*</span>
                             <div className="textBox">
-                                <textarea classname="Text1" cols="40" rows="5" value={billingAdd}
+                                <textarea className="Text1" cols="40" rows="5" value={billingAdd}
                                           onChange={(e) => setBillingAdd(e.target.value)}></textarea>
                             </div>
                         </div>
                         {/*<input className='submitBtn' type="submit"/>*/}
-                        <a href={`/booking`}></a>
+                        {/*<a href={`/booking`}>Submit</a>*/}
                         <input className='submitBtn' type="submit" onClick={handleSubmit}/>
                     </form>
                 </div>

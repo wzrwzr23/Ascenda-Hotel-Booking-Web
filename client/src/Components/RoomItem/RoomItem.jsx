@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../../Components/RoomItem/RoomItem.css'
 import {SearchContext} from "../../Context/SearchContext";
 
@@ -12,6 +12,8 @@ class RoomList extends React.Component {
         totalPage: 0,  //total number of page
         rooms:[],
         redirect: false,
+        dest_id: "",
+        hotel_id: ""
     }
 
     static contextType = SearchContext
@@ -95,6 +97,10 @@ class RoomList extends React.Component {
         const hotel_id = url.substring(url.lastIndexOf("/") + 1, url.length);
         const params = url.split("/")
         const dest_id = params[4]
+        this.setState({
+            dest_id: dest_id,
+            hotel_id: hotel_id
+        })
         this.initData(hotel_id, dest_id);
     }
     render() {
@@ -113,9 +119,9 @@ class RoomList extends React.Component {
                                 </div>
                                 <div className="riPrice">S${item.converted_price}</div>
                                 {/* <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button> */}
-                                <form action="/booking">
+                                <Link to={/hotelsearch/+this.state.dest_id+/roomsearch/+this.state.hotel_id+/booking/}>
                                     <button className="riCheckButton" onClick={() => this.book(item.key)}>Book Now!</button>
-                                </form>
+                                </Link>
                             </div>
                         )
                     })
