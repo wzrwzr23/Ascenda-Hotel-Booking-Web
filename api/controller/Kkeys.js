@@ -40,12 +40,9 @@ export const updateKeys = async (req, res, next) => {
   };
   export const getKeys = async (req, res, next) => {
     //const { min, max, ...others } = req.query;
-    const {firstname, lastname} = req.query
+    // const {key} = req.query
     try {
-        const keys = await Keys.find({
-            firstname: firstname,
-            lastname: lastname
-        });
+        const keys = await Keys.find();
         res.status(200).json(keys);
     } catch (err) {
         next(err);

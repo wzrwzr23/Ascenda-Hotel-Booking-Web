@@ -21,6 +21,5 @@ router.delete("/:id", deleteKeys);
 router.get("/find/:id", getKkeys);
 //GET ALL
 
-router.get("/", getKkeys);
 router.get("/", getKeys);
 export default router

@@ -24,8 +24,6 @@ function RoomSearch() {
     const [default_image_index, setDefault_image_index] = useState(1);
     const {dates,options} = useContext(SearchContext);
 
-    console.log("# of rooms", options.rooms);
-
     const fetchData = async (hotelID) => {
 
         await axios.get(`https://hotelapi.loyalty.dev/api/hotels/${hotelID}`)

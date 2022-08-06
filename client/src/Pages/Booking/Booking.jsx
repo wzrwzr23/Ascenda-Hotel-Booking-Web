@@ -1,18 +1,21 @@
 import './Booking.css'
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import axios from 'axios'
 import Navbar from '../../Components/Navbar/Navbar'
 import Header from '../../Components/Header/Header'
 import Footer from '../../Components/Footer/Footer';
 import key from '../../secretKey'
+import useFetch from './../../hooks/useFetch'
+import { SearchContext } from '../../Context/SearchContext';
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 var CryptoJS = require("crypto-js")
 
 
 
-const Booking = async () => {
-    const res = await axios.get(`/Kkeys`);
-    console.log(res)
+const Booking = () => {
+    const { data, loading, error } = useFetch(`/Kkeys`);
+    console.log(data[1])
     const [userFirstName, setUserFirstName] = useState('')
     const [userLastName, setUserLastName] = useState('')
     const [phoneNum, setPhoneNum] = useState('')
@@ -21,6 +24,11 @@ const Booking = async () => {
     const [cardExpiry, setCardExpiry] = useState('')
     const [cardCvc, setCardCvc] = useState('')
     const [billingAdd, setBillingAdd] = useState('')
+    const [msg, setMsg] = useState('')
+    const {dates,options} = useContext(SearchContext);
+    console.log('huh',dates)
+    console.log(options)
+    const navigate = useNavigate();
 
     function maskData(cardNo) {
         var firstPart = cardNo.slice(0, 7)
@@ -42,7 +50,35 @@ const Booking = async () => {
         return ciphertext
     }
 
+    async function delete_key (id){
+        try{
+            const res = axios.delete(`/Kkeys/${id}`, {});
+        }catch(err){}
+    }
+
+    async function book (key){
+        try{
+            const res = axios.post(`/keys/`, {
+                key: key,
+                firstname: userFirstName,
+                lastname: userLastName,
+                phoneNumber: phoneNum,
+                emailAddress: emailAdd,
+                billingAddress: billingAdd,
+                numberOfNights: 2,
+                startDate: "44",
+                endDate: "33",
+                numberOfGuests: 1,
+                message: msg,
+                roomTypes: "single?"
+            });
+        }catch(err){}
+    }
+
+
+
     function handleSubmit(e) {
+        delete_key(data[0]._id)
         e.preventDefault()
         var dict = {}
         dict['Phone Number'] = encryption(phoneNum)
@@ -50,6 +86,7 @@ const Booking = async () => {
         dict['Billing Address'] = encryption(billingAdd)
         dict['Card Number'] = maskData(cardNum)
         alert(JSON.stringify(dict))
+        book(data[0].key)
         setUserFirstName('')
         setUserLastName('')
         setPhoneNum('')
@@ -58,6 +95,7 @@ const Booking = async () => {
         setCardExpiry('')
         setCardCvc('')
         setBillingAdd('')
+        navigate('/payment')
     }
 
     return (
@@ -154,7 +192,8 @@ const Booking = async () => {
                         <div className="specials">
                             Special Requests:
                             <div className="textBox">
-                                <textarea classname="Text1" cols="40" rows="5"></textarea>
+                                <textarea classname="Text1" cols="40" rows="5" value={msg}
+                                            onChange={(e) => setMsg(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className="billingAddress">
@@ -165,7 +204,7 @@ const Booking = async () => {
                             </div>
                         </div>
                         {/*<input className='submitBtn' type="submit"/>*/}
-                        <a href={`/booking/`}></a>
+                        <a href={`/booking`}></a>
                         <input className='submitBtn' type="submit" onClick={handleSubmit}/>
                     </form>
                 </div>
