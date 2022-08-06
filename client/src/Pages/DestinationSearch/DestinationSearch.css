@@ -77,17 +77,37 @@ button:hover {
     background-color: #e4d2a0;
 }
 
+.data-space {
+    display: inline-block;
+    position: relative;
+    width: max-content;
+}
+
+.headerSearchText {
+    /* padding-left: 10px; */
+    margin-left: 10px;
+}
+
+.data-space:hover {
+    background-color: #eccb72;
+    transform: scale(1.2);
+    left: 7%;
+    width: max-content;
+}
+
 .date {
     position: absolute;
-    top: 50px;
+    top: 100%;
     color: black;
+    left: 6%;
 }
   
 .options {
     flex: 1;
     flex-direction: column;
     background-color: rgba(254, 187, 2, 0);
-    position: sticky;
+    position: relative;
+    top: 30%;
     width: fit-content;
     box-shadow: none;
 }

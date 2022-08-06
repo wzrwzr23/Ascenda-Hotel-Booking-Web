@@ -141,22 +141,38 @@ const DestinationSearch = () => {
           <div className='data-space'>
             <span
               onClick={() => setOpenDate(!openDate)}
+              style={{color: 'white', fontWeight:'bold'}}
               data-testid='userdate'
               className="headerSearchText"
             >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                 dates[0].endDate,
                 "MM/dd/yyyy"
               )}`}</span>
+              {/* <div className='date'>
               {openDate && (
                 <DateRange
                   editableDateInputs={true}
                   onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
-                  className="date"
+                  // className="date"
                   minDate={new Date()}
                 />
               )}
+              </div> */}
+          </div>
+          <div className='date'>
+            {openDate && (
+              <DateRange
+                portalId='data-space'
+                editableDateInputs={true}
+                onChange={(item) => setDates([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={dates}
+                // className="date"
+                minDate={new Date()}
+              />
+            )}
           </div>
           <div className="options">
             <div className="optionItem">
