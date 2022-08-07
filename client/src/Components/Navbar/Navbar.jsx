@@ -44,10 +44,10 @@ const Navbar = () => {
             <span className="logo">Ascenda Hotel Booking</span>
           </Link>}
         </ErrorBoundary>
-        <div className="navItems">
+        {/* <div className="navItems">
           <button className="navButtons" data-testid="navRegister">Register</button>
           <button className="navButtons">Login</button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

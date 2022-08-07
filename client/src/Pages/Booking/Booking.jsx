@@ -15,7 +15,6 @@ var CryptoJS = require("crypto-js")
 
 const Booking = () => {
     const { data, loading, error } = useFetch(`/Kkeys`);
-    console.log(data[1])
     const [userFirstName, setUserFirstName] = useState('')
     const [userLastName, setUserLastName] = useState('')
     const [phoneNum, setPhoneNum] = useState('')
@@ -26,7 +25,7 @@ const Booking = () => {
     const [billingAdd, setBillingAdd] = useState('')
     const [msg, setMsg] = useState('')
     const {dates,options} = useContext(SearchContext);
-    console.log('dates',dates)
+    console.log('dates',dates[0].startDate)
     console.log('options', options)
     const navigate = useNavigate();
 
@@ -48,6 +47,39 @@ const Booking = () => {
         return CryptoJS.AES.encrypt(data, key).toString()
     }
 
+    function getStartDate () {
+        let start;
+        try{
+            start = JSON.stringify(dates[0].startDate).slice(1, 11)
+        } catch(e){
+            start = "2022-09-23"
+        }
+        return start
+    }
+
+    function getEndDate () {
+        let end;
+        try{
+            end = JSON.stringify(dates[0].endDate).slice(1, 11)
+        } catch(e){
+            end = "2022-09-24"
+        }
+        return end
+    }
+
+    function getGuest () {
+        let guest;
+        try{
+            guest = options.guest
+            if (guest === undefined){
+                guest = "1"
+            }
+        }catch (e) {
+            guest = "1"
+        }
+        return guest
+    }
+
     async function delete_key (id){
         try{
             const res = axios.delete(`/Kkeys/${id}`, {});
@@ -56,6 +88,8 @@ const Booking = () => {
 
     async function book (key){
         try{
+            //let numberOfNights = dayDifference(dates[0].startDate, dates[0].endDate)
+            console.log("here")
             const res = axios.post(`/keys/`, {
                 key: key,
                 firstname: userFirstName,
@@ -63,10 +97,10 @@ const Booking = () => {
                 phoneNumber: phoneNum,
                 emailAddress: emailAdd,
                 billingAddress: billingAdd,
-                numberOfNights: 2,
-                startDate: "44",
-                endDate: "33",
-                numberOfGuests: 1,
+                numberOfNights: 1,
+                startDate: "1",
+                endDate: "1",
+                numberOfGuests: options.adult,
                 message: msg,
                 roomTypes: "single?"
             });

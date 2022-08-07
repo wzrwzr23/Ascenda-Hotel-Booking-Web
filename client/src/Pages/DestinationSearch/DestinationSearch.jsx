@@ -125,8 +125,7 @@ const DestinationSearch = () => {
   return (
     // <div>Destination Search</div>
     <section className='destform'>
-      <div className='dest-container'>
-        <div className="destWrapper">
+      <div className='desti-container'>
         <div className="searchItems">
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
@@ -138,7 +137,7 @@ const DestinationSearch = () => {
               <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
             )})}
           </div>
-          <div className='data-space'>
+          <div className='listItem'>
             <span
               onClick={() => setOpenDate(!openDate)}
               style={{color: 'white', fontWeight:'bold'}}
@@ -148,6 +147,15 @@ const DestinationSearch = () => {
                 dates[0].endDate,
                 "MM/dd/yyyy"
               )}`}</span>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDates([item.selection])}
+                  minDate={new Date()}
+                  ranges={dates}
+                  moveRangeOnFirstSelection={false}
+                  editableDateInputs={true}
+                />
+              )}
               {/* <div className='date'>
               {openDate && (
                 <DateRange
@@ -161,7 +169,7 @@ const DestinationSearch = () => {
               )}
               </div> */}
           </div>
-          <div className='date'>
+          {/* <div className='date'>
             {openDate && (
               <DateRange
                 portalId='data-space'
@@ -173,7 +181,7 @@ const DestinationSearch = () => {
                 minDate={new Date()}
               />
             )}
-          </div>
+          </div> */}
           <div className="options">
             <div className="optionItem">
               <span className="optionText">Guests</span>
@@ -229,7 +237,6 @@ const DestinationSearch = () => {
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
       {/*<a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>*/}
         {/*</button>*/}
-        </div>
         </div>
       </div>
     </section>

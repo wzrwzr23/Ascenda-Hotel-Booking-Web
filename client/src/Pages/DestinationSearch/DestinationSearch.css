@@ -7,23 +7,16 @@ span {
     margin: 10px 10px 10px 10px;
 }
 
-.dest-container {
+.desti-container {
     display: flex;
     justify-content: center;
     /* margin-top: 20px;
     padding-bottom: 20px; */
     position: absolute;
-    height: 380px;
     left: 150px;
     top: 480px;
-    overflow: auto;
-   
-}
-
-.destWrapper{
     width: 400px;
-    display: flex;
-    gap: 20px;
+   
 }
 
 /* #usersearch input {
@@ -77,23 +70,39 @@ button:hover {
     background-color: #e4d2a0;
 }
 
-.data-space {
+/* .data-space {
     display: inline-block;
     position: relative;
     width: max-content;
+} */
+
+.lsItem{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+  
+  
+.lsItem>span{
+    height: 30px;
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .headerSearchText {
-    /* padding-left: 10px; */
     margin-left: 10px;
 }
 
-.data-space:hover {
+/* .listItem:hover {
     background-color: #eccb72;
     transform: scale(1.2);
     left: 7%;
     width: max-content;
-}
+} */
 
 .date {
     position: absolute;

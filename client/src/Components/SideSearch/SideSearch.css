@@ -6,16 +6,30 @@ span {
     color: white;
     margin: 10px 10px 10px 10px;
 }
+
 .dest-container {
     background-color: #febb02;
-    width: max-content;
+    width:70px;
     align-items: center;
     justify-content: center;
 }
 
-/* #usersearch input {
-    width: 100%;
-} */
+.lsItem{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+
+.lsItem>span{
+  height: 30px;
+  padding: 5px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 
 input {
     width: 40%;
@@ -23,8 +37,9 @@ input {
     height: 30px;
     padding-left: 10px;
 }
+
 .usersearch input{
-    width: 90%;
+    width: 100%;
 }
 button {
     width: 100%;

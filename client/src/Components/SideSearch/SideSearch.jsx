@@ -119,8 +119,6 @@ const SideSearch = () => {
   return (
     // <div>Destination Search</div>
     <section className='destform'>
-      <div className='dest-container'>
-        <div className="destWrapper">
         <div className="searchItems">
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
@@ -132,7 +130,7 @@ const SideSearch = () => {
               <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
             )})}
           </div>
-          <div className='data-space'>
+          <div className='lsItem'>
             <span
               onClick={() => setOpenDate(!openDate)}
               className="headerSearchText"
@@ -223,8 +221,6 @@ const SideSearch = () => {
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
       <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
         {/*</button>*/}
-        </div>
-        </div>
       </div>
     </section>
   ) 

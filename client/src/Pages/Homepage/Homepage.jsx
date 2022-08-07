@@ -13,9 +13,10 @@ const Homepage = () => {
     <div id='homewrap'>
       <Navbar/>
       <Header/>
-      <ImageSlide/>
-      <DestinationSearch/>
-      {/* <div id='featured'><Featured/></div> */}
+      <div className="destination">
+        <ImageSlide/>
+        <DestinationSearch/>
+      </div>
       {/* <div className="homeContainer">
           <Featured/>
       </div> */}
