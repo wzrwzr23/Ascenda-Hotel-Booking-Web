@@ -5,7 +5,8 @@ import {
     getKey,
     getKeys,
     updateKey,
-  } from "../controller/key.js";
+    getKeysByKey
+    } from "../controller/key.js";
 
 const router = express.Router();
 
@@ -22,5 +23,6 @@ router.get("/find/:id", getKey);
 //GET ALL
 
 router.get("/", getKeys);
+router.get("/getkeysbykey/:id", getKeysByKey);
 
 export default router

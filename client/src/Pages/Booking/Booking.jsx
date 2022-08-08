@@ -28,6 +28,8 @@ const Booking = () => {
     console.log('dates',dates[0].startDate)
     console.log('options', options)
     const navigate = useNavigate();
+    const alldates = getDatesInRange(dates[0].startDate,dates[0].endDate);
+    console.log("starting",dates[0].startDate, dates[0].endDate,alldates);
 
     function maskData(cardNo) {
         var firstPart = cardNo.slice(0, 7)
@@ -50,7 +52,8 @@ const Booking = () => {
     function getStartDate () {
         let start;
         try{
-            start = JSON.stringify(dates[0].startDate).slice(1, 11)
+            // start = JSON.stringify(dates[0].startDate).slice(1, 11)
+            start = JSON.stringify(dates[0].startDate)
         } catch(e){
             start = "2022-09-23"
         }
@@ -60,7 +63,8 @@ const Booking = () => {
     function getEndDate () {
         let end;
         try{
-            end = JSON.stringify(dates[0].endDate).slice(1, 11)
+            // end = JSON.stringify(dates[0].endDate).slice(1, 11)
+            end = JSON.stringify(dates[0].endDate)
         } catch(e){
             end = "2022-09-24"
         }
@@ -80,6 +84,26 @@ const Booking = () => {
         return guest
     }
 
+    function getDatesInRange(startDate, endDate){
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        console.log("start = ", start);
+        console.log("end = ", end);
+    
+        const date = new Date(start.getTime());
+        console.log("date = ", date);
+    
+        const dates = [];
+    
+        while (date <= end) {
+          dates.push(new Date(date).getTime());
+          date.setDate(date.getDate() + 1);
+          console.log("date = ", date);
+        }
+    
+        return dates;
+    };
+
     async function delete_key (id){
         try{
             const res = axios.delete(`/Kkeys/${id}`, {});
@@ -91,8 +115,9 @@ const Booking = () => {
             const start = getStartDate();
             const end = getEndDate();
             const guest = getGuest();
+            //const alldates = getDatesInRange(start,end);
+            console.log("here",start, end, alldates);
             //let numberOfNights = dayDifference(dates[0].startDate, dates[0].endDate)
-            console.log("here")
             const res = axios.post(`/keys/`, {
                 key: key,
                 firstname: userFirstName,
@@ -103,6 +128,7 @@ const Booking = () => {
                 numberOfNights: 1,
                 startDate: start,
                 endDate: end,
+                unavailableDates: alldates,
                 numberOfGuests: guest,
                 message: msg,
                 roomTypes: "single?"

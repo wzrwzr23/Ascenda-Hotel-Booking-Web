@@ -38,6 +38,9 @@ const KeySchema = new mongoose.Schema({
         type:String,
         required: true
     },
+    unavailableDates:{
+        type: [Date]
+    },
     numberOfGuests:{
         type:Number,
         required: true

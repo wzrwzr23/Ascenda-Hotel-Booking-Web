@@ -154,6 +154,8 @@ const DestinationSearch = () => {
                   ranges={dates}
                   moveRangeOnFirstSelection={false}
                   editableDateInputs={true}
+                  endDatePlaceholder={new Date(2022, 1, 9)}
+                  endDate={new Date(2022, 1, 9)}
                 />
               )}
               {/* <div className='date'>

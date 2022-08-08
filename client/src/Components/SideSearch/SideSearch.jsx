@@ -144,7 +144,6 @@ const SideSearch = () => {
                   onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
-                  className="date"
                   minDate={new Date()}
                 />
               )}
