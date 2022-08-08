@@ -88,6 +88,9 @@ const Booking = () => {
 
     async function book (key){
         try{
+            const start = getStartDate();
+            const end = getEndDate();
+            const guest = getGuest();
             //let numberOfNights = dayDifference(dates[0].startDate, dates[0].endDate)
             console.log("here")
             const res = axios.post(`/keys/`, {
@@ -98,9 +101,9 @@ const Booking = () => {
                 emailAddress: emailAdd,
                 billingAddress: billingAdd,
                 numberOfNights: 1,
-                startDate: "1",
-                endDate: "1",
-                numberOfGuests: options.adult,
+                startDate: start,
+                endDate: end,
+                numberOfGuests: guest,
                 message: msg,
                 roomTypes: "single?"
             });
