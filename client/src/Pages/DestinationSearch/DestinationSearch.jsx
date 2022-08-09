@@ -76,10 +76,12 @@ const DestinationSearch = () => {
   function updateDate() {
     var date = new Date()
     var currentMonth = date.getMonth();
-    var currentDate = date.getDate();
+    var currentDate = date.getDate() + 1;
     var currentYear = date.getFullYear();
-    return new Date(currentYear, currentMonth, currentDate + 1)
-    // return moment(date).add(1, 'days')
+    var doo = new Date(currentYear, currentMonth, currentDate)
+    return new Date(doo.getTime() + Math.abs(doo.getTimezoneOffset() * 60000))
+    // return doo
+
   }
   // function onSearch(userDest) {
   //   if (userDest === '') {
@@ -112,7 +114,9 @@ const DestinationSearch = () => {
     dict['Number of Guests'] = numguest
     dict['Number of Rooms'] = numroom
     //alert(JSON.stringify(dict))
-
+    console.log("hi")
+    console.log(dates[0].endDate)
+    console.log(JSON.stringify(dates[0].endDate).slice(1, 11));
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
     /*navigate("/booking?")*/
@@ -163,8 +167,8 @@ const DestinationSearch = () => {
                   ranges={dates}
                   moveRangeOnFirstSelection={false}
                   editableDateInputs={true}
-                  endDatePlaceholder={new Date(2022, 1, 9)}
-                  endDate={new Date(2022, 1, 9)}
+                  endDatePlaceholder={updateDate()}
+                  endDate={updateDate()}
                 />
               )}
               {/* <div className='date'>
