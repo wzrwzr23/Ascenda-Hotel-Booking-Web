@@ -16,3 +16,8 @@ it("renders without crashing", ()=>{
   , div)
   ReactDOM.unmountComponentAtNode(div)
 })
+
+test("renders and checks if submit button enabled", async ()=>{
+    render(<BrowserRouter><Login></Login></BrowserRouter>);
+    expect(await screen.findByRole('button', { name: /Submit/i })).toBeEnabled();
+})
