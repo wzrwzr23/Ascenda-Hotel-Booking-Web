@@ -10,6 +10,7 @@ import axios from "axios";
 import SideSearch from './../../Components/SideSearch/SideSearch'
 import LoadingSpinner from "./../../Components/Loading/Loading";
 import {SearchContext} from "../../Context/SearchContext";
+import { Link } from 'react-router-dom'
 
 class HotelSearch extends React.Component {
   state = {
@@ -149,6 +150,9 @@ class HotelSearch extends React.Component {
     this.setState({
       dest_id: dest_id
     })
+    if (dest_id == null){
+      
+    }
     this.initData(dest_id);
   }
 

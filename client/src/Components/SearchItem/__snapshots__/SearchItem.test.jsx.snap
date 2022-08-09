@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="searchItem"
+>
+  <img
+    alt="Hotel Pic"
+    className="siImg"
+    src={null}
+  />
+  <div
+    className="siDesc"
+  >
+    <h1
+      className="siTitle"
+    />
+    <div
+      className="siAddress"
+    />
+    <div
+      className="siCity"
+    >
+      , 
+    </div>
+    <div
+      className="siTaxiOp"
+    >
+      Airport taxi with 10% off
+    </div>
+    <div
+      className="siSubtitle"
+    />
+    <div
+      className="siCancelOp"
+    >
+      Cancellation  with refund!
+    </div>
+    <div
+      className="siCancelOpSubtitle"
+    >
+      You can cancel later, so lock in this great price today!
+    </div>
+  </div>
+  <div
+    className="siDetails"
+  >
+    <div
+      className="siRating"
+    >
+      <button />
+    </div>
+    <div
+      className="siDetailTexts"
+    >
+      <div
+        className="siPrice"
+      >
+        S$
+      </div>
+      <div
+        className="siTaxOp"
+      >
+        Includes taxes and fees
+      </div>
+      <a
+        href="/hotelsearch/undefined/roomsearch/null"
+        onClick={[Function]}
+      >
+        <button
+          className="siCheckButton"
+        >
+          See availability
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;

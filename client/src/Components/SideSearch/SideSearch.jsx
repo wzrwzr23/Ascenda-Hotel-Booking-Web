@@ -27,7 +27,7 @@ const SideSearch = () => {
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: updateDate(),
       key: "selection",
     },
   ]);
@@ -84,6 +84,17 @@ const SideSearch = () => {
   //     getUID(userDest, destData)
   //   }
   // }
+
+  function updateDate() {
+    var date = new Date()
+    var currentMonth = date.getMonth();
+    var currentDate = date.getDate() + 1;
+    var currentYear = date.getFullYear();
+    var doo = new Date(currentYear, currentMonth, currentDate)
+    return new Date(doo.getTime() + Math.abs(doo.getTimezoneOffset() * 60000))
+    // return doo
+
+  }
 
   function onSearch(){
     var uid;
@@ -151,6 +162,8 @@ const SideSearch = () => {
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
                   minDate={new Date()}
+                  endDatePlaceholder={updateDate()}
+                  endDate={updateDate()}
                 />
               )}
           </div>

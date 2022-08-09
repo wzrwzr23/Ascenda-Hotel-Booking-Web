@@ -1,0 +1,20 @@
+.errorFullPage{
+    height: 100%;
+}
+
+.errorPage{
+    align-self: center;
+    align-content: center;
+    text-align: center;
+    margin-bottom: 20%;
+}
+
+.error404{
+    padding-top: 70px;
+    color: black;
+    font-size: 70px;
+}
+
+.errorLine{
+    font-size: 30px;
+}

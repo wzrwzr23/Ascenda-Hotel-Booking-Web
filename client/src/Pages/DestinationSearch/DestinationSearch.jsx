@@ -118,7 +118,14 @@ const DestinationSearch = () => {
     console.log(dates[0].endDate)
     console.log(JSON.stringify(dates[0].endDate).slice(1, 11));
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
-    navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
+    console.log(uid);
+    if (uid == null) {
+      console.log("null");
+      navigate("/error");
+    }
+    else{
+      navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
+    }
     /*navigate("/booking?")*/
   }
 

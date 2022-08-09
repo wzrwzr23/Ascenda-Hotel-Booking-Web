@@ -24,6 +24,7 @@ const Payment = () => {
           </button>
         </Link>
       </div>
+      <Footer/>
     </>
   )
 }
