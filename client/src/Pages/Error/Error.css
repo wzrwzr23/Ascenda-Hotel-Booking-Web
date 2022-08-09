@@ -18,3 +18,13 @@
 .errorLine{
     font-size: 30px;
 }
+.button{
+    width: fit-content;
+    align-items: center;
+    margin: auto;
+}
+
+.homepage{
+    color: #003580;
+    font-size: 20px;
+}

@@ -119,7 +119,7 @@ const DestinationSearch = () => {
     console.log(JSON.stringify(dates[0].endDate).slice(1, 11));
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     console.log(uid);
-    if (uid == null) {
+    if (uid == null || checkindate == checkoutdate){
       console.log("null");
       navigate("/error");
     }
@@ -173,7 +173,7 @@ const DestinationSearch = () => {
                   minDate={new Date()}
                   ranges={dates}
                   moveRangeOnFirstSelection={false}
-                  editableDateInputs={true}
+                  /*editableDateInputs={true}*/
                   endDatePlaceholder={updateDate()}
                   endDate={updateDate()}
                 />

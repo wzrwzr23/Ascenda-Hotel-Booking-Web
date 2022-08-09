@@ -20,7 +20,7 @@ const Payment = () => {
         </div>
         <div className="button">
           <Link to={`/`}>
-            <button className="homepage">
+            <button className="homepage" id="confirm">
               Go back to homepage
             </button>
           </Link>

@@ -116,8 +116,15 @@ const SideSearch = () => {
     // console.log("reset")
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
     console.log("dispatched")
-    alert(JSON.stringify(dict))
-    navigate("/hotelsearch2/"+uid, { state: { destination, dates, options } });
+    //alert(JSON.stringify(dict))
+    if (uid == null || checkindate == checkoutdate){
+      console.log("null");
+      navigate("/error");
+    }
+    else{
+      navigate("/hotelsearch2/"+uid, { state: { destination, dates, options } });
+    }
+    /*navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });*/
   }
 
   function getUID(value, file) {
@@ -140,7 +147,7 @@ const SideSearch = () => {
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='input' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
@@ -157,7 +164,7 @@ const SideSearch = () => {
               )}`}</span>
               {openDate && (
                 <DateRange
-                  editableDateInputs={true}
+                  /*editableDateInputs={true}*/
                   onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
