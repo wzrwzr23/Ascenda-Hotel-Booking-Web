@@ -14,15 +14,17 @@ const Payment = () => {
     <>
       <Navbar/>
       <Header type='list'/>
-      <div className="confirmation">
-        PAYMENT CONFIRMED!
-      </div>
-      <div className="button">
-        <Link to={`/`}>
-          <button className="homepage">
-            Go back to homepage
-          </button>
-        </Link>
+      <div className="confirm">
+        <div className="confirmation">
+          PAYMENT CONFIRMED!
+        </div>
+        <div className="button">
+          <Link to={`/`}>
+            <button className="homepage">
+              Go back to homepage
+            </button>
+          </Link>
+        </div>
       </div>
       <Footer/>
     </>

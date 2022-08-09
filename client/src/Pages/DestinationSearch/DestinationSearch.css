@@ -46,7 +46,7 @@ span {
 
 .searchItems{
     flex: 1;
-    background-color: rgba(254, 187, 2, 0.9);
+    background-color: rgba(112, 73, 119, 0.9);
     padding: 10px;
     border-radius: 10px;
     position: sticky;
