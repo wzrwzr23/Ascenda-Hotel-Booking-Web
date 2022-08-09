@@ -4,7 +4,7 @@ import Navbar from '../../Components/Navbar/Navbar'
 import React from 'react'
 import { useContext, useState } from 'react'
 import destData from '../../destinations.json'
-import './DestinationSearch.css'
+import './SideSearch.css'
 import { format } from "date-fns";
 import { DateRange } from 'react-date-range'
 import { SearchContext } from '../../Context/SearchContext'
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 
 // import './DestinationSearch.css'
 
-const DestinationSearch = () => {
+const SideSearch = () => {
   const [userDest, setUserDest] = useState('')
   const [filteredDest, setFilteredDest] = useState([])
   const [checkInDate, setCheckInDate] = useState(null)
@@ -27,7 +27,7 @@ const DestinationSearch = () => {
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: updateDate(),
+      endDate: new Date(),
       key: "selection",
     },
   ]);
@@ -72,15 +72,6 @@ const DestinationSearch = () => {
       setFilteredDest([])
     } else {setFilteredDest(filterDest.slice(0, 10))}
   }
-
-  function updateDate() {
-    var date = new Date()
-    var currentMonth = date.getMonth();
-    var currentDate = date.getDate();
-    var currentYear = date.getFullYear();
-    return new Date(currentYear, currentMonth, currentDate + 1)
-    // return moment(date).add(1, 'days')
-  }
   // function onSearch(userDest) {
   //   if (userDest === '') {
   //     alert('please fill in all input fields.')
@@ -104,18 +95,18 @@ const DestinationSearch = () => {
     var checkindate = JSON.stringify(dates[0].startDate).slice(1, 11)
     var checkoutdate = JSON.stringify(dates[0].endDate).slice(1, 11)
     var numguest = options.guest
-    setNumAdult(numguest)
     var numroom = options.room
-    setNumRoom(numroom)
     dict['Check-In Date'] = checkindate
     dict['Check-Out Date'] = checkoutdate
     dict['Number of Guests'] = numguest
     dict['Number of Rooms'] = numroom
-    //alert(JSON.stringify(dict))
-
+    console.log("helllllllllo")
+    // dispatch({type:"RESET_SEARCH"})
+    // console.log("reset")
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
-    navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
-    /*navigate("/booking?")*/
+    console.log("dispatched")
+    alert(JSON.stringify(dict))
+    navigate("/hotelsearch2/"+uid, { state: { destination, dates, options } });
   }
 
   function getUID(value, file) {
@@ -133,23 +124,21 @@ const DestinationSearch = () => {
 
   return (
     // <div>Destination Search</div>
-    <section className='destformss'>
+    <section className='destform'>
         <div className="searchItems">
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
           <div className='usersearch'>
-            <input className='searchcity' type='text' placeholder='Search City' name='' id='input' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
+            <input className='searchcity' type='text' placeholder='Search City' name='' id='' value={userDest} onChange={(e) => {searchDest(e.target.value); setDestination(e.target.value);}} data-testid='searchinput'/>
           </div>
           <div className='dropdown' data-testid="filter-dest">
             {filteredDest.map((item) => {return (
               <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
             )})}
           </div>
-          <div className='listItem'>
+          <div className='lsItem'>
             <span
               onClick={() => setOpenDate(!openDate)}
-              style={{color: 'white', fontWeight:'bold'}}
-              data-testid='userdate'
               className="headerSearchText"
             >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                 dates[0].endDate,
@@ -157,82 +146,72 @@ const DestinationSearch = () => {
               )}`}</span>
               {openDate && (
                 <DateRange
-                  onChange={(item) => setDates([item.selection])}
-                  minDate={new Date()}
-                  ranges={dates}
-                  moveRangeOnFirstSelection={false}
-                  editableDateInputs={true}
-                  endDatePlaceholder={new Date(2022, 1, 9)}
-                  endDate={new Date(2022, 1, 9)}
-                />
-              )}
-              {/* <div className='date'>
-              {openDate && (
-                <DateRange
                   editableDateInputs={true}
                   onChange={(item) => setDates([item.selection])}
                   moveRangeOnFirstSelection={false}
                   ranges={dates}
-                  // className="date"
                   minDate={new Date()}
                 />
               )}
-              </div> */}
           </div>
-          {/* <div className='date'>
-            {openDate && (
-              <DateRange
-                portalId='data-space'
-                editableDateInputs={true}
-                onChange={(item) => setDates([item.selection])}
-                moveRangeOnFirstSelection={false}
-                ranges={dates}
-                // className="date"
-                minDate={new Date()}
-              />
-            )}
-          </div> */}
           <div className="options">
             <div className="optionItem">
               <span className="optionText">Guests</span>
               <div className="optionCounter">
-                <button id='guest-count-d'
+                <button
                   disabled={options.guest <= 1}
                   className="optionCounterButton"
-                  data-testid='guestminus'
                   onClick={() => handleOption("guest", "d")}
                 >
                   -
                 </button>
-                <span className="optionCounterNumber" data-testid='guestno'>
+                <span className="optionCounterNumber">
                   {options.guest}
                 </span>
-                <button id='guest-count-i'
+                <button
                   className="optionCounterButton"
-                  data-testid='guestplus'
                   onClick={() => handleOption("guest", "i")}
                 >
                   +
                 </button>
               </div>
             </div>
+            {/* <div className="optionItem">
+              <span className="optionText">Children</span>
+              <div className="optionCounter"> */}
+                {/* <button
+                  disabled={options.children <= 0}
+                  className="optionCounterButton"
+                  onClick={() => handleOption("children", "d")}
+                >
+                  -
+                </button> */}
+                {/* <span className="optionCounterNumber">
+                  {options.children}
+                </span>
+                <button
+                  className="optionCounterButton"
+                  onClick={() => handleOption("children", "i")}
+                >
+                  +
+                </button>
+              </div>
+            </div> */}
             <div className="optionItem">
               <span className="optionText">Room</span>
               <div className="optionCounter">
                 <button
                   disabled={options.room <= 1}
                   className="optionCounterButton"
-                  data-testid='roomminus'
                   onClick={() => handleOption("room", "d")}
                 >
                   -
                 </button>
-                <span className="optionCounterNumber" data-testid='roomno'>
+                <span className="optionCounterNumber">
                   {options.room}
                 </span>
                 <button
                   className="optionCounterButton"
-                  data-testid='roomplus'
                   onClick={() => handleOption("room", "i")}
                 >
                   +
@@ -243,13 +222,14 @@ const DestinationSearch = () => {
           {/* <Link to={`/hotelsearch/${destId}`}>
               <button className="siCheckButton" onClick={handleSearch}>See availability</button>
           </Link> */}
-           <button id="search_button" onClick={onSearch} data-testid='submit'>Search</button>
+          {/* <button onClick={handleSearch}>Search</button> */}
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      {/*<a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>*/}
+      {/* <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a> */}
+      <button id="search_button" onClick={onSearch} data-testid='submit'>Search</button>
         {/*</button>*/}
-        </div>
+      </div>
     </section>
   ) 
 }
 
-export default DestinationSearch
+export default SideSearch
