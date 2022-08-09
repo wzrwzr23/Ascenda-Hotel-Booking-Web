@@ -137,8 +137,7 @@ const DestinationSearch = () => {
 
   return (
     // <div>Destination Search</div>
-    <section className='destform'>
-      <div className='desti-container'>
+    <section className='destformss'>
         <div className="searchItems">
         <h2>Enjoy Your Stay</h2>  
         <span>Search and Book Hotel</span>
@@ -253,7 +252,6 @@ const DestinationSearch = () => {
       {/*<a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch} data-testid='submit'>Search</a>*/}
         {/*</button>*/}
         </div>
-      </div>
     </section>
   ) 
 }

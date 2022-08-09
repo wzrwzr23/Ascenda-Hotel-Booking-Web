@@ -10,6 +10,7 @@ import {
 import Homepage from "./Pages/Homepage/Homepage";
 import Feature1 from "./Pages/DestinationSearch/DestinationSearch";
 import Feature2 from "./Pages/HotelSearch/HotelSearch";
+import Feature2New from "./Pages/HotelSearch/HotelSearch2"
 import Feature3 from "./Pages/RoomSearch/RoomSearch";
 import Feature4 from "./Pages/Booking/Booking";
 import Login from "./Pages/Login/Login";
@@ -23,6 +24,7 @@ function App() {
         <Route path="/" element={<Homepage/>}/>
        {/* <Route path="/destinationsearch" element={<Feature1/>}/>*/}
         <Route path="/hotelsearch/:id" element={<Feature2/>}/>
+        <Route path="/hotelsearch2/:id" element={<Feature2New/>}/>
         <Route path="/hotelsearch/:id/roomsearch/:id" element={<Feature3/>}/>
         <Route path="/hotelsearch/:id/roomsearch/:id/booking" element={<Feature4/>}/>
         <Route path="/payment" element={<Payment/>}/>
