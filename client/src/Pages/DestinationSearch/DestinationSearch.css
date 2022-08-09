@@ -7,8 +7,12 @@ span {
     margin: 10px 10px 10px 10px;
 }
 
-.destform{
+.destformss{
     width: 370px;
+    left: 150px;
+    top: 480px;
+    width: 400px;
+    position: absolute;
 }
 
 .desti-container {

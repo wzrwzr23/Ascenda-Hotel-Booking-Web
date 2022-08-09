@@ -38,10 +38,10 @@ class ErrorBoundary extends React.Component {
 const Navbar = () => {
   return (
     <div className='navbar'>
-      <div className="navContainer">
+      <div className="navContainer" data-testid="navRegister">
         <ErrorBoundary>
         {<Link to="/" style={{ color: "inherit", textDecoration: "none" }}>
-            <span className="logo">Ascenda Hotel Booking</span>
+            <span className="logo" >Ascenda Hotel Booking</span>
           </Link>}
         </ErrorBoundary>
         {/* <div className="navItems">

@@ -25,11 +25,11 @@ const Booking = () => {
     const [billingAdd, setBillingAdd] = useState('')
     const [msg, setMsg] = useState('')
     const {dates,options} = useContext(SearchContext);
-    console.log('dates',dates[0].startDate)
+    // console.log('dates',dates[0].startDate)
     console.log('options', options)
     const navigate = useNavigate();
-    const alldates = getDatesInRange(dates[0].startDate,dates[0].endDate);
-    console.log("starting",dates[0].startDate, dates[0].endDate,alldates);
+    const alldates = getDatesInRange((dates[0] == undefined ? new Date() : dates[0].startDate),(dates[0] == undefined ? new Date() : dates[0].endDate));
+    // console.log("starting",dates[0].startDate, dates[0].endDate,alldates);
 
     function maskData(cardNo) {
         var firstPart = cardNo.slice(0, 7)

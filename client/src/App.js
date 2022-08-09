@@ -16,6 +16,7 @@ import Feature4 from "./Pages/Booking/Booking";
 import Login from "./Pages/Login/Login";
 import Payment from './Pages/Payment/Payment'
 import React from 'react'
+import Error from './Pages/Error/Error'
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
         <Route path="/hotelsearch/:id/roomsearch/:id" element={<Feature3/>}/>
         <Route path="/hotelsearch/:id/roomsearch/:id/booking" element={<Feature4/>}/>
         <Route path="/payment" element={<Payment/>}/>
-        <Route path="/login" element={<Login/>}/>
+        <Route path="/error" element={<Error/>}/>
       </Routes>
     </BrowserRouter>
   );

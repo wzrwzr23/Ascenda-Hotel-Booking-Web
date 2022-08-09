@@ -7,7 +7,7 @@ import SearchItem from '../../Components/SearchItem/SearchItem';
 import React from "react";
 import axios from "axios";
 // import DestinationSearch from '../DestinationSearch/DestinationSearch';
-import DestinationSearch from '../DestinationSearch/DestinationSearch'
+import SideSearch from '../../Components/SideSearch/SideSearch2'
 import LoadingSpinner from "./../../Components/Loading/Loading";
 import {SearchContext} from "../../Context/SearchContext";
 
@@ -160,7 +160,7 @@ class HotelSearch extends React.Component {
         <div className='listContainer'>
         <div className="listWrapper">
         <div className="listSearch">
-          <DestinationSearch/>
+          <SideSearch/>
           </div>
           <div className="listResult"> 
           {this.state.loading ? (

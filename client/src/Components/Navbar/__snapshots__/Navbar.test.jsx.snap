@@ -6,6 +6,7 @@ exports[`matches snapshot 1`] = `
 >
   <div
     className="navContainer"
+    data-testid="navRegister"
   >
     <div>
       <h2>
@@ -27,21 +28,6 @@ exports[`matches snapshot 1`] = `
     at div
     at Navbar
       </details>
-    </div>
-    <div
-      className="navItems"
-    >
-      <button
-        className="navButtons"
-        data-testid="navRegister"
-      >
-        Register
-      </button>
-      <button
-        className="navButtons"
-      >
-        Login
-      </button>
     </div>
   </div>
 </div>

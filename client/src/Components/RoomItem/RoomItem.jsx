@@ -83,30 +83,30 @@ class RoomList extends React.Component {
         return data.data;
     }
 
-    isAvailable = async (roomNumber) => {
-        var data;
-        try{
-            data = await axios.get(`/keys`, {});
-            // console.log("data", data.data[12])
-        }catch(err){}
-        var unavailableDatesOfRoom;
-        for (let i=0; i<data.data.length; i++){
-            if(data.data[i].key == roomNumber){
-                unavailableDatesOfRoom = data.data[i].unavailableDates;
-                break;
-            }
-            if(data.data[i].key != roomNumber && i == data.data.length-1){
-                return false;
-            }
-        }
-        console.log("unavailable dates = ", unavailableDatesOfRoom);
-        const alldates = this.getDatesInRange(this.getStartDate(), this.getEndDate());
-        const isFound = unavailableDatesOfRoom.some((date) =>
-            alldates.includes(new Date(date).getTime())
-        );
+    // isAvailable = async (roomNumber) => {
+    //     var data;
+    //     try{
+    //         data = await axios.get(`/keys`, {});
+    //         // console.log("data", data.data[12])
+    //     }catch(err){}
+    //     var unavailableDatesOfRoom;
+    //     for (let i=0; i<data.data.length; i++){
+    //         if(data.data[i].key == roomNumber){
+    //             unavailableDatesOfRoom = data.data[i].unavailableDates;
+    //             break;
+    //         }
+    //         if(data.data[i].key != roomNumber && i == data.data.length-1){
+    //             return false;
+    //         }
+    //     }
+    //     console.log("unavailable dates = ", unavailableDatesOfRoom);
+    //     const alldates = this.getDatesInRange(this.getStartDate(), this.getEndDate());
+    //     const isFound = unavailableDatesOfRoom.some((date) =>
+    //         alldates.includes(new Date(date).getTime())
+    //     );
 
-        return !isFound;
-    };
+    //     return !isFound;
+    // };
 
     timeout = (delay: number) => {
         return new Promise( res => setTimeout(res, delay) );
@@ -153,9 +153,9 @@ class RoomList extends React.Component {
     dayDifference() {
         const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
         const dates = this.context.dates
-        const date1 = dates[0].endDate;
+        const date1 = (dates[0] == undefined ? new Date() : dates[0].endDate);
         console.log("date2 = ", date1);
-        const date2 = dates[0].startDate;
+        const date2 = (dates[0] == undefined ? new Date() : dates[0].startDate);
         const timeDiff = Math.abs(date2.getTime() - date1.getTime());
         const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
         return diffDays;
@@ -180,7 +180,7 @@ class RoomList extends React.Component {
                     this.state.rooms.map((item) => {
                         return (
                             <div className="roomItem">
-                                {!this.isAvailable(item.key) ? (
+                                {false ? (
                                     "."
                                 ) : (<>
                                 <div className="riDesc">

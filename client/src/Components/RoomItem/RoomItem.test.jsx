@@ -13,6 +13,11 @@ it("renders without crashing", ()=>{
     ReactDOM.unmountComponentAtNode(div)
 })
 
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<RoomList/>).toJSON();
+    expect(tree).toMatchSnapshot();
+})
+
 // it("renders and shows Book Now! button", ()=>{
 //     render(<RoomList></RoomList>);
 //     // expect(screen.getByRole('button', {name: /Book Now!/i, hidden: true})).toBeEnabled();
