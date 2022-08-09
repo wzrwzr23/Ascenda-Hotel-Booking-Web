@@ -171,37 +171,38 @@ const Booking = () => {
                         <br/>
                         <br/>
                         <div className="userName">
-                            <select name="salutation" className="salutation">
+                            <select name="salutation" id="salutation" className="salutation">
                                 <option value="select">Select an option</option>
-                                <option value="mr">Mr</option>
+                                <option value="mr" id="mr">Mr</option>
                                 <option value="mrs">Mrs</option>
                                 <option value="miss">Miss</option>
                             </select>
                             <div className="firstName">
                                 First Name<span className="require">*</span>
-                                <input className='inputBox' type="text" value={userFirstName}
+                                <input className='inputBox' id="firstName" type="text" value={userFirstName}
                                        onChange={(e) => setUserFirstName(e.target.value)} required/>
                             </div>
                             <div className="lastName">
                                 Last Name<span className="require">*</span>
-                                <input className='inputBox' type="text" value={userLastName}
+                                <input className='inputBox' id="lastName" type="text" value={userLastName}
                                        onChange={(e) => setUserLastName(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="phoneNumber">
                             Phone Number<span className="require">*</span>
-                            <input className='inputBox' type="tel" value={phoneNum}
+                            <input className='inputBox' id="phone" type="tel" value={phoneNum}
                                    onChange={(e) => setPhoneNum(e.target.value)} required/>
                         </div>
                         <div className="emailAddress">
                             Email Address<span className="require">*</span>
-                            <input className='inputBox' type="email" value={emailAdd}
+                            <input className='inputBox' id="email" type="email" value={emailAdd}
                                    onChange={(e) => setEmailAdd(e.target.value)} required/>
                         </div>
                         <div className="cardNumber">
                             Card Number<span className="require">*</span>
                             <input
                                 className='inputBox'
+                                id="card"
                                 name='number'
                                 placeholder='0000 0000 0000 0000'
                                 type="tel"
@@ -219,6 +220,7 @@ const Booking = () => {
                             Card Expiry<span className="require">*</span>
                             <input
                                 className='inputBox'
+                                id="expiry"
                                 name='expiry'
                                 placeholder='MM/YY'
                                 type="tel"
@@ -236,6 +238,7 @@ const Booking = () => {
                             CVV/CVC<span className="require">*</span>
                             <input
                                 className='inputBox'
+                                id="cvc"
                                 name='cvc'
                                 placeholder='CVC/CVV'
                                 type="tel"
@@ -253,20 +256,20 @@ const Booking = () => {
                         <div className="specials">
                             Special Requests:
                             <div className="textBox">
-                                <textarea className="Text1" cols="40" rows="5" value={msg}
+                                <textarea className="Text1" id="special" cols="40" rows="5" value={msg}
                                             onChange={(e) => setMsg(e.target.value)}></textarea>
                             </div>
                         </div>
                         <div className="billingAddress">
                             Billing Address<span className="require">*</span>
                             <div className="textBox">
-                                <textarea className="Text1" cols="40" rows="5" value={billingAdd}
+                                <textarea className="Text1" id="billing" cols="40" rows="5" value={billingAdd}
                                           onChange={(e) => setBillingAdd(e.target.value)}></textarea>
                             </div>
                         </div>
                         {/*<input className='submitBtn' type="submit"/>*/}
                         {/*<a href={`/booking`}>Submit</a>*/}
-                        <input className='submitBtn' type="submit" onClick={handleSubmit}/>
+                        <input className='submitBtn' id="submit" type="submit" onClick={handleSubmit}/>
                     </form>
                 </div>
             </div>

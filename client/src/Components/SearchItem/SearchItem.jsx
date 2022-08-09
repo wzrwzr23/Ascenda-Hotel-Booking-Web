@@ -4,7 +4,7 @@ import React from 'react';
 
 const SearchItem = ({item, price, id}) => {
   return (
-    <div className="searchItem">
+    <div className="searchItem" id="searchItem">
         <img className="siImg"  src={`${item.image_details.prefix}${item.default_image_index}${item.image_details.suffix}`}  alt={"Hotel Pic"}/>
         <div className="siDesc">
             <h1 className="siTitle">{item.name}</h1>

@@ -221,6 +221,7 @@ const DestinationSearch = () => {
               <span className="optionText">Room</span>
               <div className="optionCounter">
                 <button
+                    id='room-count-d'
                   disabled={options.room <= 1}
                   className="optionCounterButton"
                   data-testid='roomminus'
@@ -232,6 +233,7 @@ const DestinationSearch = () => {
                   {options.room}
                 </span>
                 <button
+                    id='room-count-i'
                   className="optionCounterButton"
                   data-testid='roomplus'
                   onClick={() => handleOption("room", "i")}

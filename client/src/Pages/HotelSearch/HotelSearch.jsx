@@ -6,8 +6,8 @@ import Footer from '../../Components/Footer/Footer'
 import SearchItem from '../../Components/SearchItem/SearchItem';
 import React from "react";
 import axios from "axios";
-// import DestinationSearch from '../DestinationSearch/DestinationSearch';
 import SideSearch from './../../Components/SideSearch/SideSearch'
+import DestinationSearch from '../DestinationSearch/DestinationSearch'
 import LoadingSpinner from "./../../Components/Loading/Loading";
 import {SearchContext} from "../../Context/SearchContext";
 
@@ -115,8 +115,9 @@ class HotelSearch extends React.Component {
   }
 
   loader = async () => {
+    window.scrollTo(0, 0)
     this.state.loading = true;
-    await this.timeout(6500)
+    await this.timeout(6000)
     let hotel_list_more = await this.fetch_data_more()
     let price_list_more = this.getPriceThen()
     await this.setState({
@@ -157,12 +158,13 @@ class HotelSearch extends React.Component {
       <>
       <Navbar/>
       <Header type="list"/>
-        <div className='listContainer'>
-        <div className="listWrapper">
+        <div className='listContainer' id="container">
+        <div className="listWrapper" id="wrapper">
         <div className="listSearch">
-          <SideSearch/>
+          {/*<SideSearch/>*/}
+          <DestinationSearch/>
           </div>
-          <div className="listResult"> 
+          <div className="listResult" id="result">
           {this.state.loading ? (
               <LoadingSpinner /> 
             ) : (
@@ -172,6 +174,7 @@ class HotelSearch extends React.Component {
                 ))}
               </>
           )}
+
           <div className="Center" align='center'>
             {this.state.current_page >= this.state.totalPage ? null : <Button type='primary' onClick={this.loader}>More</Button>}
           </div>
