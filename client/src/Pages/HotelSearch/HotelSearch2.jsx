@@ -7,7 +7,7 @@ import SearchItem from '../../Components/SearchItem/SearchItem';
 import React from "react";
 import axios from "axios";
 // import DestinationSearch from '../DestinationSearch/DestinationSearch';
-import SideSearch from '../../Components/SideSearch/SideSearch2'
+import SideSearch from '../../Components/SideSearch/SideSearch'
 import LoadingSpinner from "./../../Components/Loading/Loading";
 import {SearchContext} from "../../Context/SearchContext";
 

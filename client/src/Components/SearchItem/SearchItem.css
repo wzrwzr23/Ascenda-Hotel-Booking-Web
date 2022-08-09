@@ -39,7 +39,7 @@
   
   .siTitle {
     font-size: 20px;
-    color: #0071c2;
+    color: #270732;
     padding-bottom: 0;
   }
   
@@ -92,7 +92,7 @@
     font-weight: 500;
   }
   .siRating>button{
-   background-color: #003580;
+   background-color: #270732;
    color: white;
    padding: 5px;
    font-weight: bold;
@@ -116,7 +116,7 @@
   }
   
   .siCheckButton{
-    background-color: #0071c2;
+    background-color: #582769;
     color: white;
     font-weight: bold;
     padding: 10px 5px;

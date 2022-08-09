@@ -17,7 +17,7 @@
 
 .listSearch {
   flex: 1;
-  background-color: #febb02;
+  background-color: rgb(112, 73, 119);;
   padding: 10px;
   border-radius: 10px;
   position: sticky;
@@ -76,7 +76,7 @@
 
 .listSearch>button{
   padding: 10px;
-  background-color: #0071c2;
+  background-color: #270732;
   color: white;
   border: none;
   width: 100%;
@@ -95,7 +95,7 @@
 }
 
 .dropdown-row:hover {
-  background-color: #fcde8d;
+  background-color: rgb(132, 98, 138);
 }
 
 .dropdpwn-row {

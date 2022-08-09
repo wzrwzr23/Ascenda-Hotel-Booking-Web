@@ -115,13 +115,14 @@ const SideSearch = () => {
     // dispatch({type:"RESET_SEARCH"})
     // console.log("reset")
     dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
-    console.log("dispatched")
+    console.log("dispatched2")
     //alert(JSON.stringify(dict))
     if (uid == null || checkindate == checkoutdate){
       console.log("null");
       navigate("/error");
     }
     else{
+      console.log("hotelsearch2 ->")
       navigate("/hotelsearch2/"+uid, { state: { destination, dates, options } });
     }
     /*navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });*/

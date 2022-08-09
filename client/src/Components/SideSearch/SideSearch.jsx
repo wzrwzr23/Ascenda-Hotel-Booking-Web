@@ -120,6 +120,7 @@ const SideSearch = () => {
       navigate("/error");
     }
     else{
+      console.log("hotelsearch ->")
       navigate("/hotelsearch/"+uid, { state: { destination, dates, options } });
     }
     //alert(JSON.stringify(dict))

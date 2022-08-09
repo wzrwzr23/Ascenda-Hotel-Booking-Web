@@ -5,14 +5,14 @@
 }
 
 .detailsTitle{
-    color: #0071c2;
+    color: #270732;
 }
 
 .user{
     padding-left: 20px;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    background-color: #febb02;
+    background-color: rgba(112, 73, 119, 0.816);
     border-radius: 10px;
     width: 750px;
 }
@@ -24,16 +24,16 @@
 }
 
 .salutation{
-    border-color: #0071c2;
+    border-color: #270732;
     width: 50px;
 }
 
 .inputBox{
-    border-color: #0071c2;
+    border-color: #270732;
 }
 
 .Text1{
-    border-color: #0071c2;
+    border-color: #270732;
 }
 
 .phoneNumber{
@@ -54,11 +54,11 @@
 }
 
 .require{
-    color: red;
+    color: rgb(126, 6, 6);
 }
 
 .submitBtn{
-    background-color: #0071c2;
+    background-color: #270732;
     color: white;
     font-weight: 500;
     border: none;

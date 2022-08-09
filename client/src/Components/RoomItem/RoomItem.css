@@ -43,7 +43,7 @@
   
   .riTitle {
     font-size: 20px;
-    color: #0071c2;
+    color: #270732;
   }
   
   .riSubtitle{
@@ -57,7 +57,8 @@
   }
   
   .riPrice{
-    font-size: 20px;
+    padding-top: 10px;
+    font-size: 25px;
     color: #008009;
     font-weight: bold;
   }
@@ -75,7 +76,7 @@
   }
 
   .riCheckButton{
-    background-color: #0071c2;
+    background-color: #270732;
     color: white;
     font-weight: bold;
     padding: 10px 5px;

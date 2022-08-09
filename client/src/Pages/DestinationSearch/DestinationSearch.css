@@ -34,7 +34,7 @@ span {
 .searchBtn{
     display: flex;
     justify-content: center;
-    background-color: #bc9a39;  
+    background-color: rgb(112, 73, 119);  
     color: #e4d2a0;
     text-decoration: none;
     padding:6px;
@@ -72,10 +72,10 @@ button {
     cursor: pointer;
     border: none;
     color: white;
-    background-color: #bc9a39;
+    background-color: rgb(112, 73, 119);
 }
 button:hover {
-    background-color: #e4d2a0;
+    background-color: rgb(132, 98, 138);
 }
 
 /* .data-space {
@@ -147,10 +147,10 @@ button:hover {
 .optionCounterButton {
     width: 20px;
     height: 20px;
-    border: 1px solid #0071c2;
-    color: rgba(254, 187, 2, 0.9);
+    border: 1px solid #270732;
+    color: white;
     cursor: pointer;
-    background-color: #0071c2;
+    background-color: #270732;
 }
 
 .optionCounterButton:disabled {

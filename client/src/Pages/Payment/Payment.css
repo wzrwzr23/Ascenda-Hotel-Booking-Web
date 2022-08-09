@@ -14,9 +14,11 @@
   width: fit-content;
   align-items: center;
   margin: auto;
+  color: aliceblue;
 }
 
 .homepage{
-  color: #003580;
+  color: white;
   font-size: 20px;
+  border-top-color: aliceblue;
 }

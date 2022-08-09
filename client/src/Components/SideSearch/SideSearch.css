@@ -12,7 +12,7 @@ span {
 }
 
 .dest-container {
-    background-color: #febb02;
+    background-color: rgb(112, 73, 119);
     width:70px;
     align-items: center;
     justify-content: center;
@@ -52,8 +52,8 @@ button {
     cursor: pointer;
     border: none;
     color: white;
-    background-color: #bc9a39;
+    background-color: rgb(112, 73, 119);
 }
 button:hover {
-    background-color: #e4d2a0;
+    background-color: rgb(132, 98, 138);
 }
