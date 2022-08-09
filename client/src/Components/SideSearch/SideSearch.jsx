@@ -100,7 +100,13 @@ const SideSearch = () => {
     dict['Check-Out Date'] = checkoutdate
     dict['Number of Guests'] = numguest
     dict['Number of Rooms'] = numroom
+    console.log("helllllllllo")
+    // dispatch({type:"RESET_SEARCH"})
+    // console.log("reset")
+    dispatch({type:"NEW_SEARCH", payload:{destination, dates, options}})
+    console.log("dispatched")
     alert(JSON.stringify(dict))
+    navigate("/hotelsearch2/"+uid, { state: { destination, dates, options } });
   }
 
   function getUID(value, file) {
@@ -218,7 +224,8 @@ const SideSearch = () => {
           </Link> */}
           {/* <button onClick={handleSearch}>Search</button> */}
         {/*<button type='Submit' className='submitDest' data-testid='submit'*/}
-      <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a>
+      {/* <a className='searchBtn' href={'/hotelsearch/'+destId} onClick={onSearch}>Search</a> */}
+      <button id="search_button" onClick={onSearch} data-testid='submit'>Search</button>
         {/*</button>*/}
       </div>
     </section>

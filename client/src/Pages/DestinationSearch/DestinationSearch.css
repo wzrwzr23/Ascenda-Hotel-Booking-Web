@@ -7,6 +7,10 @@ span {
     margin: 10px 10px 10px 10px;
 }
 
+.destform{
+    width: 370px;
+}
+
 .desti-container {
     display: flex;
     justify-content: center;
@@ -104,12 +108,12 @@ button:hover {
     width: max-content;
 } */
 
-.date {
+/* .date {
     position: absolute;
     top: 100%;
     color: black;
     left: 6%;
-}
+} */
   
 .options {
     flex: 1;
