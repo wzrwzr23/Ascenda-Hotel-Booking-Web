@@ -37,7 +37,7 @@ const Login = () => {
           <h1 className="heading">Ascenda Login</h1>
             <input type="text" placeholder='username' id="username" onChange={handleChange} className="lInput" />
             <input type="text" placeholder='password' id="password" onChange={handleChange} className="lInput" />
-            <button disabled={loading} onClick={handleClick} className="lBtn">Login</button>
+            <button disabled={loading} onClick={handleClick} className="lBtn" data-testid='Submit'>Login</button>
             {error && <span className="error">{error.message}</span>}
         </div>
     </div>
