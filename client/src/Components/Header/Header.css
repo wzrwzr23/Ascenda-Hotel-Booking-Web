@@ -1,5 +1,5 @@
 .header {
-  background-color: #003580;
+  background-color: #270732;
   color: white;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
 .headerContainer {
   width: 100%;
   max-width: 1024px;
-  margin: 20px 0px 100px 0px;
+  margin: 20px 0px 40px 0px;
 }
 
 .headerContainer.listMode {

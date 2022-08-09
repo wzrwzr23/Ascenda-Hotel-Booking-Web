@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <div
   className="searchItem"
+  id="searchItem"
 >
   <img
     alt="Hotel Pic"

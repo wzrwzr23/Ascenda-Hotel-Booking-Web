@@ -20,17 +20,17 @@ const Footer = () => {
                     <FontAwesomeIcon icon={faLocation} />
                     <span><h2>Address</h2></span><br/><br />
                 </div>
-                205 Fida Walinton, Tongo Street Front The USA
+                380 Jln Besar, Singapore 209000
                 <div className="fBoxItem" data-testid="phone">
                     <FontAwesomeIcon icon={faPhone} />
                     <span><h2>Phone</h2></span><br/><br />
                 </div>
-                +123 456 7898
+                +65 88730488
                 <div className="fBoxItem">
                     <FontAwesomeIcon icon={faAt} />
                     <span><h2>Email</h2></span><br/><br />
                 </div>
-                hello@ecorik.com
+                customerservice@ascenda.com
             </div>
         </div>
         <div className="fText">Copyright © 2022 Ascenda Hotel Booking</div>

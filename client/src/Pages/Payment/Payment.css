@@ -1,11 +1,18 @@
-.confirmation{
-  margin-top: 80px;
-  font-size: 26px;
+.confirm{
   text-align: center;
+  align-self: center;
+  align-content: center;
+  padding-top: 250px;
+  padding-bottom: 250px;
+}
+
+.confirmation{
+  font-size: 26px;
 }
 
 .button{
   width: fit-content;
+  align-items: center;
   margin: auto;
 }
 

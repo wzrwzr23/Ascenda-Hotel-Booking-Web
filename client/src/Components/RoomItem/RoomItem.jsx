@@ -180,27 +180,25 @@ class RoomList extends React.Component {
                     this.state.rooms.map((item) => {
                         return (
                             <div className="roomItem">
-                                {(<>
-                                    <div className="riDesc">
-                                        <h1 className="riTitle">{item.description} room</h1>
-                                    </div>
-                                    <div className="riSubtitle">
-                                        {item.amenities.slice(0, 5).map((item, index) => {
-                                            return (
-                                                <li key={index}>{item}</li>
-                                            )
-                                        })}
-                                    </div>
-                                    <div className="riPricenight">S${item.converted_price}/night</div>
-                                    <div className="riPrice">Total
-                                        S${(item.converted_price * (this.state.days <=1 ? 1 : this.state.days)).toFixed(2)}</div>
-                                    {/* <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button> */}
-                                    <Link
-                                        to={/hotelsearch/ + this.state.dest_id + /roomsearch/ + this.state.hotel_id + /booking/}>
-                                        <button className="riCheckButton" onClick={() => this.book(item.key)}>Book
-                                            Now!
-                                        </button>
-                                    </Link>
+                                {false ? (
+                                    "."
+                                ) : (<>
+                                <div className="riDesc">
+                                    <h1 className="riTitle">{item.description} room</h1>
+                                </div>
+                                <div className="riSubtitle">
+                                    {item.amenities.slice(0,5).map((item, index) =>{
+                                        return(
+                                        <li key = {index}>{item}</li>
+                                        )
+                                    })}
+                                </div>
+                                <div className="riPricenight">S${item.converted_price}/night</div>
+                                <div className="riPrice">Total S${(item.converted_price*(this.state.days <=1 ? 1 : this.state.days)).toFixed(2)}</div>
+                                {/* <button className="riCheckButton" onClick={this.handleClicked}>Book Now!</button> */}
+                                <Link to={/hotelsearch/+this.state.dest_id+/roomsearch/+this.state.hotel_id+/booking/}>
+                                    <button className="riCheckButton" onClick={() => this.book(item.key)}>Book Now!</button>
+                                </Link>
                                 </>)}
                             </div>
                         )
