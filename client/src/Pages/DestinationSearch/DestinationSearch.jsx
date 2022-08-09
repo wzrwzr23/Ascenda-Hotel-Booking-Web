@@ -158,6 +158,7 @@ const DestinationSearch = () => {
           </div>
           <div className='listItem'>
             <span
+                id="date_click"
               onClick={() => setOpenDate(!openDate)}
               style={{color: 'white', fontWeight:'bold'}}
               data-testid='userdate'
