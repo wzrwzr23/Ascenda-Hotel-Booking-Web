@@ -27,7 +27,7 @@ const DestinationSearch = () => {
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: updateDate(),
       key: "selection",
     },
   ]);
@@ -71,6 +71,15 @@ const DestinationSearch = () => {
     if (userSearch === '') {
       setFilteredDest([])
     } else {setFilteredDest(filterDest.slice(0, 10))}
+  }
+
+  function updateDate() {
+    var date = new Date()
+    var currentMonth = date.getMonth();
+    var currentDate = date.getDate();
+    var currentYear = date.getFullYear();
+    return new Date(currentYear, currentMonth, currentDate + 1)
+    // return moment(date).add(1, 'days')
   }
   // function onSearch(userDest) {
   //   if (userDest === '') {
