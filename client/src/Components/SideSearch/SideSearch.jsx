@@ -154,9 +154,10 @@ const SideSearch = () => {
               <div  className='dropdown-row' style={{color: 'black'}} onClick={() => searchDest(item.term)}>{item.term}</div>
             )})}
           </div>
-          <div className='lsItem'>
+          <div className='lsItem' data-testid='guestno'>
             <span
               onClick={() => setOpenDate(!openDate)}
+              data-testid='userdate'
               className="headerSearchText"
             >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                 dates[0].endDate,
@@ -182,6 +183,7 @@ const SideSearch = () => {
                   disabled={options.guest <= 1}
                   className="optionCounterButton"
                   onClick={() => handleOption("guest", "d")}
+                  data-testid='guestminus'
                 >
                   -
                 </button>
@@ -191,6 +193,7 @@ const SideSearch = () => {
                 <button
                   className="optionCounterButton"
                   onClick={() => handleOption("guest", "i")}
+                  data-testid='guestplus'
                 >
                   +
                 </button>
@@ -217,13 +220,14 @@ const SideSearch = () => {
                 </button>
               </div>
             </div> */}
-            <div className="optionItem">
+            <div className="optionItem" data-testid='roomno'>
               <span className="optionText">Room</span>
               <div className="optionCounter">
                 <button
                   disabled={options.room <= 1}
                   className="optionCounterButton"
                   onClick={() => handleOption("room", "d")}
+                  data-testid='roomminus'
                 >
                   -
                 </button>
@@ -233,6 +237,7 @@ const SideSearch = () => {
                 <button
                   className="optionCounterButton"
                   onClick={() => handleOption("room", "i")}
+                  data-testid='roomplus'
                 >
                   +
                 </button>

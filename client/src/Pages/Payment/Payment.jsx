@@ -18,7 +18,7 @@ const Payment = () => {
         <div className="confirmation">
           PAYMENT CONFIRMED!
         </div>
-        <div className="button">
+        <div className="button" data-testid="button">
           <Link to={`/`}>
             <button className="homepage" id="confirm">
               Go back to homepage

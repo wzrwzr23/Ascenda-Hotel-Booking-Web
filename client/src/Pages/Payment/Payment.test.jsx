@@ -7,6 +7,7 @@ import TestRenderer from 'react-test-renderer';
 import Navbar from "../../Components/Navbar/Navbar";
 import { render, fireEvent, screen } from "@testing-library/react";
 import ReactDOM from 'react-dom'
+import renderer from "react-test-renderer"
 
 it("renders without crashing", ()=>{
     const div = document.createElement("div")
@@ -14,6 +15,11 @@ it("renders without crashing", ()=>{
         <BrowserRouter><Payment></Payment></BrowserRouter>
     , div)
     ReactDOM.unmountComponentAtNode(div)
+})
+
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<BrowserRouter><Payment/></BrowserRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
 })
 
 
@@ -62,10 +68,10 @@ it("renders without crashing", ()=>{
 //     });
 // })
 
-test("renders and checks if submit button enabled", async ()=>{
-    render(<BrowserRouter><Payment></Payment></BrowserRouter>);
-    expect(await screen.findByRole('button', { name: /Submit/i })).toBeEnabled();
-})
+// test("renders and checks if submit button enabled", async ()=>{
+//     render(<BrowserRouter><Payment></Payment></BrowserRouter>);
+//     expect(await screen.findByTestId('button', { name: /Submit/i })).toBeEnabled();
+// })
 
 
 

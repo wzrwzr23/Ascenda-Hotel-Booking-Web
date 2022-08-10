@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section
+  className="destformss"
+>
+  <div
+    className="searchItems"
+  >
+    <h2>
+      Enjoy Your Stay
+    </h2>
+    <span>
+      Search and Book Hotel
+    </span>
+    <div
+      className="usersearch"
+    >
+      <input
+        className="searchcity"
+        data-testid="searchinput"
+        id="input"
+        name=""
+        onChange={[Function]}
+        placeholder="Search City"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="dropdown"
+      data-testid="filter-dest"
+    />
+    <div
+      className="listItem"
+    >
+      <span
+        className="headerSearchText"
+        data-testid="userdate"
+        id="date_click"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "white",
+            "fontWeight": "bold",
+          }
+        }
+      >
+        08/10/2022 to 08/11/2022
+      </span>
+    </div>
+    <div
+      className="options"
+    >
+      <div
+        className="optionItem"
+      >
+        <span
+          className="optionText"
+        >
+          Guests
+        </span>
+        <div
+          className="optionCounter"
+        >
+          <button
+            className="optionCounterButton"
+            data-testid="guestminus"
+            disabled={true}
+            id="guest-count-d"
+            onClick={[Function]}
+          >
+            -
+          </button>
+          <span
+            className="optionCounterNumber"
+            data-testid="guestno"
+          >
+            1
+          </span>
+          <button
+            className="optionCounterButton"
+            data-testid="guestplus"
+            id="guest-count-i"
+            onClick={[Function]}
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div
+        className="optionItem"
+      >
+        <span
+          className="optionText"
+        >
+          Room
+        </span>
+        <div
+          className="optionCounter"
+        >
+          <button
+            className="optionCounterButton"
+            data-testid="roomminus"
+            disabled={true}
+            id="room-count-d"
+            onClick={[Function]}
+          >
+            -
+          </button>
+          <span
+            className="optionCounterNumber"
+            data-testid="roomno"
+          >
+            1
+          </span>
+          <button
+            className="optionCounterButton"
+            data-testid="roomplus"
+            id="room-count-i"
+            onClick={[Function]}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <button
+      data-testid="submit"
+      id="search_button"
+      onClick={[Function]}
+    >
+      Search
+    </button>
+  </div>
+</section>
+`;

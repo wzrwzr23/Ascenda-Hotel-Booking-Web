@@ -73,7 +73,7 @@ exports[`matches snapshot 1`] = `
         <br />
         <br />
       </div>
-      205 Fida Walinton, Tongo Street Front The USA
+      380 Jln Besar, Singapore 209000
       <div
         className="fBoxItem"
         data-testid="phone"
@@ -103,7 +103,7 @@ exports[`matches snapshot 1`] = `
         <br />
         <br />
       </div>
-      +123 456 7898
+      +65 88730488
       <div
         className="fBoxItem"
       >
@@ -132,7 +132,7 @@ exports[`matches snapshot 1`] = `
         <br />
         <br />
       </div>
-      hello@ecorik.com
+      customerservice@ascenda.com
     </div>
   </div>
   <div

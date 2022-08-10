@@ -3,6 +3,7 @@ import { render, screen, cleanup, fireEvent} from '@testing-library/react';
 import { BrowserRouter, Routes } from "react-router-dom";
 const { default: Booking } = require("./Booking");
 import ReactDOM from 'react-dom'
+import renderer from "react-test-renderer"
 
 afterEach(cleanup);
 
@@ -45,6 +46,11 @@ describe('Destination search input: Typing', () => {
         // userEvent.type(searchInput, 'test')
         expect(searchInput.value).toBe("03/22");
     });
+})
+
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<BrowserRouter><Booking/></BrowserRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
 })
 
 // let container = null

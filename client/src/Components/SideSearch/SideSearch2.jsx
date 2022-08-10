@@ -159,6 +159,7 @@ const SideSearch = () => {
             <span
               onClick={() => setOpenDate(!openDate)}
               className="headerSearchText"
+              data-testid='userdate'
             >{`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                 dates[0].endDate,
                 "MM/dd/yyyy"
@@ -176,12 +177,13 @@ const SideSearch = () => {
               )}
           </div>
           <div className="options">
-            <div className="optionItem">
+            <div className="optionItem" data-testid="guestno">
               <span className="optionText">Guests</span>
               <div className="optionCounter">
                 <button
                   disabled={options.guest <= 1}
                   className="optionCounterButton"
+                  data-testid='guestminus'
                   onClick={() => handleOption("guest", "d")}
                 >
                   -
@@ -192,6 +194,7 @@ const SideSearch = () => {
                 <button
                   className="optionCounterButton"
                   onClick={() => handleOption("guest", "i")}
+                  data-testid='guestplus'
                 >
                   +
                 </button>
@@ -218,13 +221,14 @@ const SideSearch = () => {
                 </button>
               </div>
             </div> */}
-            <div className="optionItem">
+            <div className="optionItem" data-testid="roomno">
               <span className="optionText">Room</span>
               <div className="optionCounter">
                 <button
                   disabled={options.room <= 1}
                   className="optionCounterButton"
                   onClick={() => handleOption("room", "d")}
+                  data-testid='roomminus'
                 >
                   -
                 </button>
@@ -234,6 +238,7 @@ const SideSearch = () => {
                 <button
                   className="optionCounterButton"
                   onClick={() => handleOption("room", "i")}
+                  data-testid='roomplus'
                 >
                   +
                 </button>

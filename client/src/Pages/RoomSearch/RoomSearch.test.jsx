@@ -7,6 +7,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import { render, fireEvent, screen, cleanup } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import ReactDOM from 'react-dom'
+import renderer from "react-test-renderer"
 
 let container = null;
 beforeEach(() => {
@@ -27,6 +28,11 @@ it("renders without crashing", ()=>{
     const div = document.createElement("div")
     render(<BrowserRouter><RoomSearch/></BrowserRouter>, div)
     ReactDOM.unmountComponentAtNode(div)
+})
+
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<BrowserRouter><RoomSearch/></BrowserRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
 })
 
 // it("renders hotel data", async () => {

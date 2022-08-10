@@ -2,14 +2,12 @@ import React from "react";
 import {unmountComponentAtNode} from "react-dom";
 import {act} from "react-dom/test-utils";
 import HotelSearch from "./HotelSearch";
-import TestRenderer from 'react-test-renderer';
 import Navbar from "../../Components/Navbar/Navbar";
 import { BrowserRouter } from "react-router-dom";
 import DestinationSearch from "./../DestinationSearch/DestinationSearch"
 import ReactDOM from 'react-dom'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react';
-import ReactDOM from 'react-dom'
-import { BrowserRouter } from "react-router-dom";
+import renderer from "react-test-renderer"
 
 
 it("renders without crashing", ()=>{
@@ -36,11 +34,16 @@ afterEach(() => {
     cleanup
 });
 
-it("renders without crashing", ()=>{
-    const div = document.createElement("div")
-    render(<BrowserRouter><HotelSearch/></BrowserRouter>, div)
-    ReactDOM.unmountComponentAtNode(div)
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<BrowserRouter><HotelSearch/></BrowserRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
 })
+
+// it("renders without crashing", ()=>{
+//     const div = document.createElement("div")
+//     render(<BrowserRouter><HotelSearch/></BrowserRouter>, div)
+//     ReactDOM.unmountComponentAtNode(div)
+// })
 
 // it("renders hotel data", async () => {
 //     const fakeHotelN = {

@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section
+  className="destform"
+>
+  <div
+    className="searchItems"
+  >
+    <h2>
+      Enjoy Your Stay
+    </h2>
+    <span>
+      Search and Book Hotel
+    </span>
+    <div
+      className="usersearch"
+    >
+      <input
+        className="searchcity"
+        data-testid="searchinput"
+        id="input"
+        name=""
+        onChange={[Function]}
+        placeholder="Search City"
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="dropdown"
+      data-testid="filter-dest"
+    />
+    <div
+      className="lsItem"
+    >
+      <span
+        className="headerSearchText"
+        data-testid="userdate"
+        onClick={[Function]}
+      >
+        08/10/2022 to 08/11/2022
+      </span>
+    </div>
+    <div
+      className="options"
+    >
+      <div
+        className="optionItem"
+        data-testid="guestno"
+      >
+        <span
+          className="optionText"
+        >
+          Guests
+        </span>
+        <div
+          className="optionCounter"
+        >
+          <button
+            className="optionCounterButton"
+            data-testid="guestminus"
+            disabled={true}
+            onClick={[Function]}
+          >
+            -
+          </button>
+          <span
+            className="optionCounterNumber"
+          >
+            1
+          </span>
+          <button
+            className="optionCounterButton"
+            data-testid="guestplus"
+            onClick={[Function]}
+          >
+            +
+          </button>
+        </div>
+      </div>
+      <div
+        className="optionItem"
+        data-testid="roomno"
+      >
+        <span
+          className="optionText"
+        >
+          Room
+        </span>
+        <div
+          className="optionCounter"
+        >
+          <button
+            className="optionCounterButton"
+            data-testid="roomminus"
+            disabled={true}
+            onClick={[Function]}
+          >
+            -
+          </button>
+          <span
+            className="optionCounterNumber"
+          >
+            1
+          </span>
+          <button
+            className="optionCounterButton"
+            data-testid="roomplus"
+            onClick={[Function]}
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+    <button
+      data-testid="submit"
+      id="search_button"
+      onClick={[Function]}
+    >
+      Search
+    </button>
+  </div>
+</section>
+`;

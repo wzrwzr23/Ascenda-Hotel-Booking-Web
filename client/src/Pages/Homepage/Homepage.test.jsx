@@ -35,3 +35,8 @@ test('image3 is loaded in image slider', () => {
     expect(slide3[1]).toHaveAttribute('src', 'images/hotelimage3.jpeg')
     expect(slide3[2]).toHaveAttribute('src', 'images/hotelimage3.jpeg')
 })
+
+it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
+    const tree = renderer.create(<BrowserRouter><Homepage/></BrowserRouter>).toJSON();
+    expect(tree).toMatchSnapshot();
+})

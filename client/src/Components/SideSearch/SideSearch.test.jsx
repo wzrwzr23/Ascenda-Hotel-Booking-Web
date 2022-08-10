@@ -1,13 +1,14 @@
 import React from "react";
-import DestinationSearch from "./DestinationSearch";
+import SideSearch from "./SideSearch";
 import { render, fireEvent, queryByTestId, getByTestId, getByPlaceholderText} from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom";
 import user from '@testing-library/user-event'
 import renderer from "react-test-renderer"
 
 
+
 it('renders correctly', () => {
-    const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
+    const {getByTestId, queryByPlaceholderText} = render(<BrowserRouter><SideSearch/></BrowserRouter>);
     expect(getByTestId('submit')).toBeTruthy();
     expect(getByTestId('guestminus')).toBeTruthy();
     expect(getByTestId('guestplus')).toBeTruthy();
@@ -19,17 +20,17 @@ it('renders correctly', () => {
 
 describe('Destination search input: Typing', () => {
     test('search box updates on change', () => {
-        const {queryByPlaceholderText} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>);
+        const {queryByPlaceholderText} = render(<BrowserRouter><SideSearch/></BrowserRouter>);
         const searchInput = queryByPlaceholderText('Search City');
-        fireEvent.change(searchInput, {target: {value: "test"}});
+        fireEvent.change(searchInput, {target: {value: "New Delhi"}});
         // userEvent.type(searchInput, 'test')
-        expect(searchInput.value).toBe("test");
+        expect(searchInput.value).toBe("New Delhi");
     });
 })
 
 describe('Guest count (+)', () => {
     test('guest count updates on change', () => {
-        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const {getByTestId} = render(<BrowserRouter><SideSearch/></BrowserRouter>)
         const guestcount = getByTestId('guestno')
         fireEvent.click(getByTestId('guestplus'))
         expect(guestcount.value).not.toBe(1)
@@ -38,7 +39,7 @@ describe('Guest count (+)', () => {
 
 describe('Guest count (-)', () => {
     test('guest count does not updates on change', () => {
-        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const {getByTestId} = render(<BrowserRouter><SideSearch/></BrowserRouter>)
         const guestcount = getByTestId('guestno')
         fireEvent.click(getByTestId('guestminus'))
         expect(guestcount.value).toBe(undefined)
@@ -47,7 +48,7 @@ describe('Guest count (-)', () => {
 
 describe('Room count (+)', () => {
     test('guest count updates on change', () => {
-        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const {getByTestId} = render(<BrowserRouter><SideSearch/></BrowserRouter>)
         const guestcount = getByTestId('roomno')
         fireEvent.click(getByTestId('roomplus'))
         expect(guestcount.value).not.toBe(1)
@@ -56,7 +57,7 @@ describe('Room count (+)', () => {
 
 describe('Guest count (-)', () => {
     test('guest count does not updates on change', () => {
-        const {getByTestId} = render(<BrowserRouter><DestinationSearch/></BrowserRouter>)
+        const {getByTestId} = render(<BrowserRouter><SideSearch/></BrowserRouter>)
         const guestcount = getByTestId('roomno')
         fireEvent.click(getByTestId('roomminus'))
         expect(guestcount.value).toBe(undefined)
@@ -64,7 +65,7 @@ describe('Guest count (-)', () => {
 })
 
 it("matches snapshot", ()=>{ //if you change the code in footer, then this test will fail. if intentional, can update snapshot. if by mistake, undo the code
-    const tree = renderer.create(<BrowserRouter><DestinationSearch/></BrowserRouter>).toJSON();
+    const tree = renderer.create(<BrowserRouter><SideSearch/></BrowserRouter>).toJSON();
     expect(tree).toMatchSnapshot();
 })
 
