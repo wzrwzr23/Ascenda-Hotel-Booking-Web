@@ -1,10 +1,24 @@
-# Getting Started with Create React App
+# Getting Started with Our Ascenda Hotel Booking Web Page
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Disable Chrome security setting
+
+First, you need to have a Chrome browser which disabled security setting to solve Cross-Origin Resource Sharing (CORS) problem.
+
+Add the add-on to your browser: 
+
+https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en
+
+Then tap the "C" to make it orange to allow CORS for the current page.
+
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory, go to the client folder. 
+
+```cd client```
+
+then run:
 
 ### `npm start`
 
@@ -13,6 +27,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+Then open another terminal which is at project folder, and go to api folder to start mongoDB.
+
+```
+cd api
+node index.js
+```
+If the terminal returns ```connect to backend!
+Connected to mongo DB```, then you are successfully connected to mongoDB.
+
 
 ### `npm test`
 
